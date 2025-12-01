@@ -128,7 +128,7 @@ export default function Meetings() {
     },
     {
       id: 8,
-      title: "Africa Digital Economy and Technology Forum",
+      title: "Africa Education Forum",
       description: "The Africa Digital Economy & Tech Forum (ADETF) is the flagship platform dedicated to Africa’s strategic digital transformation, bringing together governments, tech giants, startups, investment funds, researchers, and regulatory institutions to catalyze local innovation, digital sovereignty, and inclusive connectivity.",
       image: "https://readdy.ai/api/search-image?query=African%20students%20and%20teachers%20using%20modern%20educational%20technology%2C%20digital%20learning%20platforms%20in%20contemporary%20African%20classroom%2C%20diverse%20students%20with%20computers%20and%20tablets%2C%20modern%20educational%20environment&width=400&height=250&seq=education1&orientation=landscape",
       overview: "The Education & Skills Development Conference focuses on building Africa's human capital to support economic transformation. With over 60% of Africa's population under 25, investing in education and skills development is critical for harnessing the demographic dividend. This forum brings together education ministers, universities, vocational training institutes, and EdTech companies to reform education systems and align skills development with economic opportunities.",

@@ -377,7 +377,7 @@ export default function Home() {
                       className="w-full h-48 object-cover object-top" 
                     />
                     <div className="p-4">
-                      <h4 className="font-semibold text-gray-900">Centre for Advanced Manufacturing and Supply Chains</h4>
+                      <h4 className="font-semibold text-gray-900">Africa Investment & Innovation Fund (AIIF)</h4>
                     </div>
                   </div>
                   <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
@@ -387,7 +387,7 @@ export default function Home() {
                       className="w-full h-48 object-cover object-top" 
                     />
                     <div className="p-4">
-                      <h4 className="font-semibold text-gray-900">Centre for AI Excellence</h4>
+                      <h4 className="font-semibold text-gray-900">African Economic Intelligence Hub</h4>
                     </div>
                   </div>
                 </div>
@@ -399,7 +399,7 @@ export default function Home() {
                       className="w-full h-48 object-cover object-top" 
                     />
                     <div className="p-4">
-                      <h4 className="font-semibold text-gray-900">Centre for Cybersecurity</h4>
+                      <h4 className="font-semibold text-gray-900">Next Africa Accelerator</h4>
                     </div>
                   </div>
                   <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
@@ -409,7 +409,7 @@ export default function Home() {
                       className="w-full h-48 object-cover object-top" 
                     />
                     <div className="p-4">
-                      <h4 className="font-semibold text-gray-900">Centre for Energy and Materials</h4>
+                      <h4 className="font-semibold text-gray-900">AEF Labs</h4>
                     </div>
                   </div>
                 </div>
@@ -503,7 +503,7 @@ export default function Home() {
                   className="w-full h-48 object-cover object-top" 
                 />
                 <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Digital Economy and Technology Forum</h3>
+                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Wealth Forum</h3>
                 </div>
               </div>
               <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
@@ -526,7 +526,7 @@ export default function Home() {
             <div className="flex justify-between items-center mb-12">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">Spotlight</h2>
-                <p className="text-gray-600 text-lg">Latest analysis, insights and explainers from across the Forum.</p>
+                <p className="text-gray-600 text-lg"> Invest in Africa. Country by Country.</p>
               </div>
               <button className="bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium flex items-center space-x-2 whitespace-nowrap cursor-pointer">
                 <span>More Stories</span>
@@ -547,7 +547,7 @@ export default function Home() {
                     <div className="flex items-center space-x-4 mb-4">
                       <span className="text-blue-600 font-medium text-sm">Global Cooperation</span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 leading-tight">SDIM 2025: Surprising stats and key conversations from our New York meetings</h3>
+                    <h3 className="text-xl font-bold text-gray-900 leading-tight">Unveiling investment-ready nations and transformative partnerships.</h3>
                   </div>
                 </article>
               </div>
