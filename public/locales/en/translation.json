@@ -1,0 +1,86 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "initiatives": "Initiatives",
+    "stakeholders": "Stakeholders",
+    "agenda": "Agenda",
+    "publications": "Publications",
+    "meetings": "Meetings",
+    "contact": "Contact",
+    "signIn": "Sign In"
+  },
+  "meetingsPage": {
+    "heroTitle": "Specialized Forums",
+    "heroSubtitle": "Sector-specific gatherings that drive targeted solutions and create tangible outcomes for Africa's economic transformation.",
+    "sectionTitle": "Our Specialized Forums",
+    "sectionSubtitle": "Each forum is designed to address specific challenges and opportunities, bringing together the right stakeholders to create actionable solutions.",
+    "readMore": "Read More",
+    "showLess": "Show Less"
+  },
+  "cta": {
+    "title": "Join the Conversation",
+    "subtitle": "Be part of Africa's transformation. Connect with leaders, share insights, and contribute to solutions that will shape the continent's future.",
+    "register": "Register for Forums",
+    "contact": "Contact Us"
+  },
+  "footer": {
+    "aboutUs": "About us",
+    "ourMission": "Our mission",
+    "ourFramework": "Our Institutional Framework",
+    "history": "History",
+    "leadership": "Leadership and governance",
+    "ourImpact": "Our Impact",
+    "moreFromForum": "More from the Forum",
+    "centres": "Centres",
+    "meetings": "Meetings",
+    "stakeholders": "Stakeholders",
+    "forumStories": "Forum Stories",
+    "pressReleases": "Press releases",
+    "gallery": "Photo gallery",
+    "podcasts": "Podcasts",
+    "videos": "Videos",
+    "engage": "Engage with us",
+    "signIn": "Sign in",
+    "logout": "Logout",
+    "partner": "Partner with us",
+    "member": "Become a member",
+    "pressSignUp": "Sign up for our press releases",
+    "newsletters": "Subscribe to our newsletters",
+    "contactUs": "Contact us",
+    "quickLinks": "Quick links",
+    "sustainability": "Sustainability at the Forum",
+    "careers": "Careers",
+    "languageEditions": "Language editions",
+    "privacy": "Privacy Policy & Terms of Service",
+    "copyright": "© 2025 Africa Economic Forum"
+  },
+  "forums": [
+    {
+      "id": 1,
+      "title": "Africa Agriculture & Food Forum (AAFF)",
+      "description": "Transforming African agriculture from subsistence farming to a modern, productive, and sustainable system.",
+      "overview": "The Agriculture and Food Security Forum addresses one of Africa's most critical development challenges and opportunities. Despite possessing over 60% of the world's uncultivated arable land, Africa continues to face persistent food insecurity and agricultural productivity issues. This forum serves as a dedicated platform to transform African agriculture from subsistence farming to a modern, productive, and sustainable system that can ensure food security for the continent's growing population while creating economic prosperity. The forum aligns with the African Union's Comprehensive Africa Agriculture Development Programme (CAADP) and focuses on promoting agricultural innovation, sustainable practices, value chain development, and investment in agribusiness.",
+      "keyAreas": [
+        "Modernizing farming practices through adoption of advanced technologies, precision agriculture, and climate-resilient techniques",
+        "Developing integrated value chains that connect smallholder farmers to markets, processing facilities, and distribution networks",
+        "Promoting sustainable land management and water conservation practices to preserve Africa's agricultural resources",
+        "Facilitating investment in agricultural infrastructure, processing facilities, and storage capabilities to reduce post-harvest losses",
+        "Advancing policy reforms that support agricultural development, cross-border trade, and private sector investment"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Africa Energy & Infrastructure Forum",
+      "description": "Mobilizing capital and expertise to build world-class infrastructure that connects Africa and drives economic growth.",
+      "overview": "The Infrastructure Investment Forum is designed to address Africa's massive infrastructure deficit, which is estimated to require over $130 billion annually. This forum brings together governments, development finance institutions, private investors, and infrastructure companies to unlock the capital needed for transformational projects across the continent. The forum focuses on transportation networks, energy systems, telecommunications infrastructure, and urban development projects that will connect African markets, reduce trade costs, and improve quality of life for millions of people.",
+      "keyAreas": [
+        "Transportation infrastructure including highways, railways, ports, and airports to enhance regional connectivity",
+        "Energy infrastructure development focusing on renewable energy, grid modernization, and rural electrification",
+        "Digital infrastructure expansion including fiber optic networks, data centers, and telecommunications systems",
+        "Water and sanitation infrastructure to support urban growth and improve public health outcomes",
+        "Public-private partnership models that leverage both public resources and private sector efficiency"
+      ]
+    }
+  ]
+}

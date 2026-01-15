@@ -156,7 +156,7 @@ INTEGRATED SECURITY & RIGHTS COMPONENT
       id: 2,
       title: "THE GREAT INAUGURATION:Setting the Sovereign Agenda",
       date: "April 14-15, 2026",
-      location: "Addis Ababa, Ethiopia (In partnership with the African Union)",
+      location: "Luanda, Angola (In partnership with the African Union)",
       theme: "Africa Economic Forum Cooperation Summit (Africa's Davos)",
       objective: "#",
       image: "/images/annual.jpg",
@@ -1268,12 +1268,13 @@ Join us at The African Table. Let's redesign the future, together.`,
             ANNUAL THEME: Africa and Global Realignments: Investments, Alliances, and Strategic Opportunities <br/>
             Our Mantra: We Don't Just Talk. We Deal.
           </p>
-          <button 
-            onClick={downloadAgenda} 
+          <a 
+            href="/Brochure.pdf"
+            download="AEF-2026-Full-Agenda.pdf"
             className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
           >
             Download Full Agenda
-          </button>
+          </a>
         </div>
       </section>
 
@@ -1360,15 +1361,13 @@ Join us at The African Table. Let's redesign the future, together.`,
               >
                 Close
               </button>
-              <button
-                onClick={() => {
-                  setShowChairmanModal(false);
-                  downloadAgenda();
-                }}
+              <a
+                href="/Brochure.pdf"
+                download="AEF-2026-Full-Agenda.pdf"
                 className="px-6 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 font-medium cursor-pointer transition-colors"
               >
                 Download Full Agenda
-              </button>
+              </a>
             </div>
           </div>
         </div>

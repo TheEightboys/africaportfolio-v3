@@ -455,11 +455,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Leadership Section */}
+        {/* Organizing Committee */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Leadership Structure</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Organizing Committee</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
                 Meet the distinguished leaders guiding Africa's economic transformation through strategic vision,
                 executive leadership, and scientific expertise.
@@ -706,15 +706,15 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* Dr. Amina Touré */}
+                {/* Amina Touré */}
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
                     src="/images/amina-Touré.jpeg"
-                    alt="Dr. Amina Touré"
+                    alt="Amina Touré"
                     className="w-full h-64 object-cover object-top"
                   />
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Dr. Amina Touré</h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Amina Touré</h4>
                     <p className="text-sm text-blue-600 mb-3">Director of Communication, Media & Public Relations, Africa Economic Forum</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Development practitioner, researcher, and strategic communicator with a strong focus on Africa’s political economy and global narratives. Amina holds a Bachelor of Laws and an MSc in International Development & Humanitarian Emergencies from the London School of Economics, and is completing an MPhil in African Studies at the University of Cambridge, specializing in extractive industries, Chinese investment, and state–business relations in the Democratic Republic of Congo (DRC).
@@ -722,6 +722,26 @@ export default function AboutPage() {
 Her work spans policy research, media strategy, and narrative shaping. She has authored influential analyses on resource governance, value-chain upgrading, and the political economy of strategic minerals. As an independent journalist, she documents the conflict in eastern Congo and the expansion of mining operations in the south, producing field-rooted reporting that centers Congolese perspectives and brings nuance to globally misunderstood issues.
 
 Amina brings to the AEF a unique blend of intellectual rigor, communication expertise, and geopolitical insight—crafting narratives that strengthen Africa’s voice, credibility, and influence on the global stage.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Walid Louki*/}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="/images/walid-loukil.jpeg"
+                    alt="Walid Louki"
+                    className="w-full h-64 object-cover object-top"
+                  />
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Walid Louki</h4>
+                    <p className="text-sm text-blue-600 mb-3">Walid Loukil, AEF Regional Director for North Africa</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Walid Koulil is a senior executive and strategic leader with extensive experience in international investment, economic development, and cross-border partnerships across Africa, Europe, and the Middle East. He is recognized for his ability to bridge public and private sector stakeholders, mobilize capital, and structure high-impact initiatives aligned with long-term growth and regional integration.
+
+With a career spanning executive leadership, advisory roles, and board governance, Mr. Koulil has been closely involved in large-scale projects at the intersection of infrastructure, finance, energy, and strategic industries. His work focuses on value creation, institutional strengthening, and positioning emerging markets within the evolving global economic order.
+
+At the Africa Economic Forum, Walid Koulil serves as Regional Director for North Africa, where he contributes to advancing economic diplomacy, investment facilitation, and strategic alliances between Africa and global capital markets.
                     </p>
                   </div>
                 </div>

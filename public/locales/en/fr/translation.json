@@ -1,0 +1,86 @@
+{
+  "header": {
+    "home": "Accueil",
+    "about": "À propos",
+    "initiatives": "Initiatives",
+    "stakeholders": "Parties prenantes",
+    "agenda": "Agenda",
+    "publications": "Publications",
+    "meetings": "Réunions",
+    "contact": "Contact",
+    "signIn": "Se connecter"
+  },
+  "meetingsPage": {
+    "heroTitle": "Forums Spécialisés",
+    "heroSubtitle": "Des rassemblements sectoriels qui génèrent des solutions ciblées et créent des résultats tangibles pour la transformation économique de l'Afrique.",
+    "sectionTitle": "Nos Forums Spécialisés",
+    "sectionSubtitle": "Chaque forum est conçu pour relever des défis et des opportunités spécifiques, réunissant les bonnes parties prenantes pour créer des solutions concrètes.",
+    "readMore": "Lire la suite",
+    "showLess": "Afficher moins"
+  },
+  "cta": {
+    "title": "Rejoignez la Conversation",
+    "subtitle": "Participez à la transformation de l'Afrique. Connectez-vous avec des leaders, partagez des idées et contribuez à des solutions qui façonneront l'avenir du continent.",
+    "register": "S'inscrire aux Forums",
+    "contact": "Nous contacter"
+  },
+  "footer": {
+    "aboutUs": "À propos de nous",
+    "ourMission": "Notre mission",
+    "ourFramework": "Notre Cadre Institutionnel",
+    "history": "Histoire",
+    "leadership": "Direction et gouvernance",
+    "ourImpact": "Notre Impact",
+    "moreFromForum": "Plus du Forum",
+    "centres": "Centres",
+    "meetings": "Réunions",
+    "stakeholders": "Parties prenantes",
+    "forumStories": "Histoires du Forum",
+    "pressReleases": "Communiqués de presse",
+    "gallery": "Galerie de photos",
+    "podcasts": "Podcasts",
+    "videos": "Vidéos",
+    "engage": "Engagez-vous",
+    "signIn": "Se connecter",
+    "logout": "Se déconnecter",
+    "partner": "Devenez partenaire",
+    "member": "Devenez membre",
+    "pressSignUp": "Inscrivez-vous à nos communiqués de presse",
+    "newsletters": "Abonnez-vous à nos newsletters",
+    "contactUs": "Nous contacter",
+    "quickLinks": "Liens rapides",
+    "sustainability": "La durabilité au Forum",
+    "careers": "Carrières",
+    "languageEditions": "Éditions linguistiques",
+    "privacy": "Politique de confidentialité et conditions d'utilisation",
+    "copyright": "© 2025 Africa Economic Forum"
+  },
+  "forums": [
+    {
+      "id": 1,
+      "title": "Forum Africain de l'Agriculture et de l'Alimentation (FAAA)",
+      "description": "Transformer l'agriculture africaine d'une agriculture de subsistance à un système moderne, productif et durable.",
+      "overview": "Le Forum sur l'Agriculture et la Sécurité Alimentaire aborde l'un des défis et opportunités de développement les plus critiques de l'Afrique. Bien que possédant plus de 60 % des terres arables non cultivées du monde, l'Afrique continue de faire face à une insécurité alimentaire persistante et à des problèmes de productivité agricole. Ce forum sert de plateforme dédiée pour transformer l'agriculture africaine d'une agriculture de subsistance à un système moderne, productif et durable capable d'assurer la sécurité alimentaire pour la population croissante du continent tout en créant une prospérité économique. Le forum s'aligne sur le Programme Détaillé de Développement de l'Agriculture Africaine (PDDAA) de l'Union Africaine et se concentre sur la promotion de l'innovation agricole, des pratiques durables, du développement des chaînes de valeur et de l'investissement dans l'agro-industrie.",
+      "keyAreas": [
+        "Modernisation des pratiques agricoles par l'adoption de technologies avancées, l'agriculture de précision et les techniques résilientes au climat",
+        "Développement de chaînes de valeur intégrées qui relient les petits exploitants aux marchés, aux installations de transformation et aux réseaux de distribution",
+        "Promotion de la gestion durable des terres et des pratiques de conservation de l'eau pour préserver les ressources agricoles de l'Afrique",
+        "Facilitation de l'investissement dans les infrastructures agricoles, les installations de transformation et les capacités de stockage pour réduire les pertes post-récolte",
+        "Avancement des réformes politiques qui soutiennent le développement agricole, le commerce transfrontalier et l'investissement du secteur privé"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Forum Africain de l'Énergie et des Infrastructures",
+      "description": "Mobiliser des capitaux et de l'expertise pour construire des infrastructures de classe mondiale qui connectent l'Afrique et stimulent la croissance économique.",
+      "overview": "Le Forum sur l'Investissement dans les Infrastructures est conçu pour combler le déficit massif d'infrastructures en Afrique, estimé à plus de 130 milliards de dollars par an. Ce forum rassemble gouvernements, institutions de financement du développement, investisseurs privés et entreprises d'infrastructure pour débloquer les capitaux nécessaires à des projets de transformation à travers le continent. Le forum se concentre sur les réseaux de transport, les systèmes énergétiques, les infrastructures de télécommunications et les projets de développement urbain qui connecteront les marchés africains, réduiront les coûts commerciaux et amélioreront la qualité de vie de millions de personnes.",
+      "keyAreas": [
+        "Infrastructures de transport, y compris les autoroutes, les chemins de fer, les ports et les aéroports pour améliorer la connectivité régionale",
+        "Développement des infrastructures énergétiques axé sur les énergies renouvelables, la modernisation du réseau et l'électrification rurale",
+        "Expansion de l'infrastructure numérique, y compris les réseaux de fibre optique, les centres de données et les systèmes de télécommunications",
+        "Infrastructures d'eau et d'assainissement pour soutenir la croissance urbaine et améliorer les résultats de santé publique",
+        "Modèles de partenariat public-privé qui tirent parti à la fois des ressources publiques et de l'efficacité du secteur privé"
+      ]
+    }
+  ]
+}
