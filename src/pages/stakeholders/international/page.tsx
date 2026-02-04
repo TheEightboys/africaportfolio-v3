@@ -212,9 +212,7 @@ export default function International() {
               <a href="/agenda" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Agenda
               </a>
-              <a href="/publications" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
-                Publications
-              </a>
+
               <a href="/meetings" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Meetings
               </a>
@@ -1100,7 +1098,7 @@ export default function International() {
                 <a href="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy &amp; Terms of Service
                 </a>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://Codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

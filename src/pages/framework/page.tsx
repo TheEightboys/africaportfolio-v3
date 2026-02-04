@@ -147,11 +147,11 @@ export default function Framework() {
                 <div>
                   <h2 className="text-4xl font-bold text-gray-900 mb-6">Organizational Structure</h2>
                   <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                    The Africa Economic Forum operates through a multi-layered institutional structure that ensures 
+                    The Africa Economic Forum operates through a multi-layered institutional structure that ensures
                     representativeness, transparency and effectiveness in executing our continental mission.
                   </p>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    Our organizational architecture was designed to facilitate collaboration between governments, 
+                    Our organizational architecture was designed to facilitate collaboration between governments,
                     private sector, academia and civil society, creating an integrated ecosystem for economic development.
                   </p>
                 </div>
@@ -747,7 +747,7 @@ export default function Framework() {
                 <a href="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy and Terms of Service
                 </a>
-               
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

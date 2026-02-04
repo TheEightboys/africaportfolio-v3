@@ -856,7 +856,7 @@ export default function Careers() {
                 <a href="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy and Terms of Service
                 </a>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

@@ -18,10 +18,10 @@ export default function Stakeholders() {
   const handleSignInSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    
+
     if (email && password) {
       alert('Sign in successful! Welcome back.');
       setShowSignInModal(false);
@@ -33,18 +33,18 @@ export default function Stakeholders() {
   const handleCreateAccountSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const confirmPassword = formData.get('confirm_password') as string;
     const firstName = formData.get('first_name') as string;
     const lastName = formData.get('last_name') as string;
-    
+
     if (password !== confirmPassword) {
       alert('Passwords do not match. Please try again.');
       return;
     }
-    
+
     if (email && password && firstName && lastName) {
       alert('Account created successfully! Welcome to Africa Economic Forum.');
       setShowSignInModal(false);
@@ -149,8 +149,8 @@ export default function Stakeholders() {
     }
   ];
 
-  const filteredCategories = selectedCategory === 'all' 
-    ? stakeholderCategories 
+  const filteredCategories = selectedCategory === 'all'
+    ? stakeholderCategories
     : stakeholderCategories.filter(category => category.id === selectedCategory);
 
   return (
@@ -161,10 +161,10 @@ export default function Stakeholders() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <img 
-                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png" 
-                  alt="Africa Economic Forum" 
-                  className="h-10 w-auto" 
+                <img
+                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png"
+                  alt="Africa Economic Forum"
+                  className="h-10 w-auto"
                 />
               </Link>
             </div>
@@ -187,9 +187,10 @@ export default function Stakeholders() {
               <Link to="/agenda" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Agenda
               </Link>
-              <Link to="/publications" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
-                Publications
+              <Link to="/spotlight" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
+                Spotlight
               </Link>
+
               <Link to="/contact" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Contact
               </Link>
@@ -207,7 +208,7 @@ export default function Stakeholders() {
                         onClick={() => navigate('/profile')}
                       />
                     ) : (
-                      <div 
+                      <div
                         className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center cursor-pointer"
                         title={user.name}
                         onClick={() => navigate('/profile')}
@@ -217,11 +218,11 @@ export default function Stakeholders() {
                         </span>
                       </div>
                     )}
-                    
+
                     {/* Dropdown menu */}
                     <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <button 
-                        onClick={() => navigate('/profile')} 
+                      <button
+                        onClick={() => navigate('/profile')}
                         className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       >
                         View Profile
@@ -236,7 +237,7 @@ export default function Stakeholders() {
                   </button>
                 </div>
               ) : (
-                <Link 
+                <Link
                   to="/signin"
                   className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
                 >
@@ -244,7 +245,7 @@ export default function Stakeholders() {
                 </Link>
               )}
             </div>
-            <button 
+            <button
               className="md:hidden p-2 cursor-pointer"
               onClick={toggleMobileMenu}
             >
@@ -275,9 +276,10 @@ export default function Stakeholders() {
               <Link to="/agenda" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
                 Agenda
               </Link>
-              <Link to="/publications" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
-                Publications
+              <Link to="/spotlight" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
+                Spotlight
               </Link>
+
               <Link to="/contact" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
                 Contact
               </Link>
@@ -300,14 +302,14 @@ export default function Stakeholders() {
                       )}
                       <span className="text-gray-700 font-medium">{user.firstName || user.name}</span>
                     </div>
-                    <Link 
-                      to="/profile" 
+                    <Link
+                      to="/profile"
                       className="block w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 font-medium text-center"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       View Profile
                     </Link>
-                    <button 
+                    <button
                       onClick={() => {
                         signOut();
                         setIsMobileMenuOpen(false);
@@ -318,7 +320,7 @@ export default function Stakeholders() {
                     </button>
                   </div>
                 ) : (
-                  <Link 
+                  <Link
                     to="/signin"
                     className="w-full bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer block text-center"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -333,7 +335,7 @@ export default function Stakeholders() {
       </header>
 
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://readdy.ai/api/search-image?query=Diverse%20group%20of%20African%20leaders%2C%20business%20executives%2C%20academics%20and%20civil%20society%20representatives%20in%20formal%20meeting%2C%20international%20conference%20setting%20with%20flags%20and%20modern%20architecture&width=1920&height=800&seq=stakeholders-hero&orientation=landscape')`
@@ -342,15 +344,18 @@ export default function Stakeholders() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">Stakeholders</h1>
           <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-            The Africa Economic Forum (AEF) convenes the minds, leaders, and changemakers shaping Africa's future. 
-            Our stakeholders are the engine of transformative investment, innovative policies, and sustainable development, 
+            The Africa Economic Forum (AEF) convenes the minds, leaders, and changemakers shaping Africa's future.
+            Our stakeholders are the engine of transformative investment, innovative policies, and sustainable development,
             working together to position Africa as the next global frontier.
           </p>
           <p className="text-lg text-blue-100 max-w-3xl mx-auto mt-6">
             AEF is where business, diplomacy, innovation, and culture intersect—a unique platform for collaboration, influence, and impact.
           </p>
+
+
         </div>
       </section>
+
 
       {/* Main Content */}
       <section className="py-20 bg-white">
@@ -386,7 +391,7 @@ export default function Stakeholders() {
                   </Link>
                 </div>
                 <div className={`relative ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                  <img 
+                  <img
                     src={category.image}
                     alt={category.title}
                     className="w-full rounded-lg shadow-md object-cover h-64"

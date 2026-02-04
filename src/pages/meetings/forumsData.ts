@@ -7,4 +7,6 @@ export interface Forum {
   keyAreas: string[];
   objectives?: string[];
   pillars?: { title: string; items: string[] }[];
+  stakeholders?: string[];
+  purpose?: string;
 }

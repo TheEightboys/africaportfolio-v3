@@ -90,7 +90,7 @@ export default function Partners() {
           },
           body: JSON.stringify({ name: 'partner-with-us' }),
         });
-        
+
         if (response.ok) {
           const data = await response.json();
           setSubmitAddr(data.submitAddr);
@@ -127,13 +127,13 @@ export default function Partners() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       if (name === 'partnershipTypes' || name === 'areasOfInterest') {
         setFormData(prev => ({
           ...prev,
-          [name]: checked 
+          [name]: checked
             ? [...prev[name as keyof typeof prev] as string[], value]
             : (prev[name as keyof typeof prev] as string[]).filter(item => item !== value)
         }));
@@ -147,7 +147,7 @@ export default function Partners() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.agreeContact) {
       alert('Please agree to be contacted by the Africa Economic Forum team.');
       return;
@@ -219,10 +219,10 @@ export default function Partners() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <a href="/" className="flex items-center">
-                <img 
-                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png" 
-                  alt="Africa Economic Forum" 
-                  className="h-10 w-auto" 
+                <img
+                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png"
+                  alt="Africa Economic Forum"
+                  className="h-10 w-auto"
                 />
               </a>
             </div>
@@ -266,7 +266,7 @@ export default function Partners() {
                   </button>
                 </div>
               ) : (
-                <button 
+                <button
                   onClick={handleSignIn}
                   className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
                 >
@@ -274,7 +274,7 @@ export default function Partners() {
                 </button>
               )}
             </div>
-            <button 
+            <button
               onClick={toggleMobileMenu}
               className="md:hidden p-2 cursor-pointer"
             >
@@ -287,57 +287,57 @@ export default function Partners() {
         {showMobileMenu && (
           <div className="md:hidden bg-white border-t border-gray-200">
             <div className="px-4 py-2 space-y-1">
-              <a 
-                href="/" 
+              <a
+                href="/"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Home
               </a>
-              <a 
-                href="/about" 
+              <a
+                href="/about"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 About
               </a>
-              <a 
-                href="/initiatives" 
+              <a
+                href="/initiatives"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Initiatives
               </a>
-              <a 
-                href="/stakeholders" 
+              <a
+                href="/stakeholders"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Stakeholders
               </a>
-              <a 
-                href="/agenda" 
+              <a
+                href="/agenda"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Agenda
               </a>
-              <a 
-                href="/publications" 
+              <a
+                href="/publications"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Publications
               </a>
-              <a 
-                href="/meetings" 
+              <a
+                href="/meetings"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Meetings
               </a>
-              <a 
-                href="/contact" 
+              <a
+                href="/contact"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
@@ -346,14 +346,14 @@ export default function Partners() {
               <div className="pt-4 pb-2">
                 {user ? (
                   <div className="space-y-2">
-                    <a 
-                      href="/profile" 
+                    <a
+                      href="/profile"
                       className="block text-gray-700 hover:text-teal-600 font-medium px-3 py-2"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Welcome, {user.name}
                     </a>
-                    <button 
+                    <button
                       onClick={() => {
                         handleLogout();
                         setShowMobileMenu(false);
@@ -364,7 +364,7 @@ export default function Partners() {
                     </button>
                   </div>
                 ) : (
-                  <button 
+                  <button
                     onClick={() => {
                       handleSignIn();
                       setShowMobileMenu(false);
@@ -387,7 +387,7 @@ export default function Partners() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Partner With Us</h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Join the Africa Economic Forum in driving economic transformation across the continent. 
+              Join the Africa Economic Forum in driving economic transformation across the continent.
               Together, we can create lasting impact through strategic partnerships and collaborative initiatives.
             </p>
           </div>
@@ -781,7 +781,7 @@ export default function Partners() {
           <div className="border-t border-gray-700 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
               <a href="/privacy" className="hover:text-white cursor-pointer">Privacy Policy &amp; Terms of Service</a>
-              
+
               <p>© 2025 Africa Economic Forum</p>
               <a href="https://codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
             </div>
@@ -790,7 +790,7 @@ export default function Partners() {
       </footer>
 
       {/* Auth Modal */}
-      <AuthModal 
+      <AuthModal
         isOpen={showSignInModal}
         onClose={() => setShowSignInModal(false)}
         onLogin={handleLogin}

@@ -238,13 +238,13 @@ export default function History() {
                 <div>
                   <h2 className="text-4xl font-bold text-gray-900 mb-6">A Transformative Vision</h2>
                   <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                    The Africa Economic Forum was born from a bold vision: to create a pan-African platform 
-                    that could catalyze the continent's economic transformation through dialogue, cooperation 
+                    The Africa Economic Forum was born from a bold vision: to create a pan-African platform
+                    that could catalyze the continent's economic transformation through dialogue, cooperation
                     and strategic partnerships.
                   </p>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    From the first concepts in 2018 to our current position as a leader in African economic 
-                    cooperation, our journey reflects an unwavering commitment to economic sovereignty 
+                    From the first concepts in 2018 to our current position as a leader in African economic
+                    cooperation, our journey reflects an unwavering commitment to economic sovereignty
                     and Africa's sustainable development.
                   </p>
                 </div>
@@ -447,7 +447,7 @@ export default function History() {
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Legacy and Future</h2>
               <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-                Our history is just the beginning. We continue building a legacy of economic transformation 
+                Our history is just the beginning. We continue building a legacy of economic transformation
                 that will inspire future generations of African leaders.
               </p>
             </div>
@@ -785,7 +785,7 @@ export default function History() {
                 <a href="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy and Terms of Service
                 </a>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

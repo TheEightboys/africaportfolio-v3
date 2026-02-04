@@ -1,175 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export default function Governments() {
-  // Original state
+export default function DiplomaticClubPage() {
   const [showMembershipForm, setShowMembershipForm] = useState(false);
-  const [formData, setFormData] = useState({
-    country: '',
-    ministry: '',
-    position: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    diplomaticRank: '',
-    areasOfInterest: [] as string[],
-    currentInitiatives: '',
-    collaborationGoals: '',
-    agreeToTerms: false
-  });
 
-  // Modified state
-  const [showApplicationModal, setShowApplicationModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
-  const [showCreateAccount, setShowCreateAccount] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
-
-  // Original handlers
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData(prev => ({ ...prev, [name]: checked }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleInterestChange = (interest: string) => {
-    setFormData(prev => ({
-      ...prev,
-      areasOfInterest: prev.areasOfInterest.includes(interest)
-        ? prev.areasOfInterest.filter(i => i !== interest)
-        : [...prev.areasOfInterest, interest]
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleMembershipSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Diplomatic membership application:', formData);
+    alert('Membership application submitted successfully! We will contact you within 48 hours.');
     setShowMembershipForm(false);
-    // Reset form
-    setFormData({
-      country: '',
-      ministry: '',
-      position: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      diplomaticRank: '',
-      areasOfInterest: [],
-      currentInitiatives: '',
-      collaborationGoals: '',
-      agreeToTerms: false
-    });
-  };
-
-  // Modified handlers
-  useEffect(() => {
-    try {
-      const savedUser = localStorage.getItem('aef_user');
-      if (savedUser) {
-        const parsed = JSON.parse(savedUser);
-        if (parsed && typeof parsed.name === 'string' && typeof parsed.email === 'string') {
-          setUser(parsed);
-        }
-      }
-    } catch (err) {
-      console.error('Failed to read user from localStorage:', err);
-    }
-  }, []);
-
-  const handleSignIn = () => {
-    setShowSignInModal(true);
-    setShowCreateAccount(false);
-  };
-
-  const handleLogout = () => {
-    try {
-      localStorage.removeItem('aef_user');
-    } catch (err) {
-      console.error('Failed to remove user from localStorage:', err);
-    }
-    setUser(null);
-  };
-
-  const handleSignInSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-
-    if (email && password) {
-      const userName = email.split('@')[0];
-      const userData = {
-        name: userName.charAt(0).toUpperCase() + userName.slice(1),
-        email: email,
-      };
-
-      try {
-        localStorage.setItem('aef_user', JSON.stringify(userData));
-        setUser(userData);
-        alert('Sign in successful! Welcome back.');
-        setShowSignInModal(false);
-      } catch (err) {
-        console.error('Failed to store user data:', err);
-        alert('An error occurred while signing in. Please try again.');
-      }
-    } else {
-      alert('Please fill in all required fields.');
-    }
-  };
-
-  const handleCreateAccountSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    const confirmPassword = formData.get('confirm_password') as string;
-    const firstName = formData.get('first_name') as string;
-    const lastName = formData.get('last_name') as string;
-
-    if (password !== confirmPassword) {
-      alert('Passwords do not match. Please try again.');
-      return;
-    }
-
-    if (email && password && firstName && lastName) {
-      const userData = {
-        name: `${firstName} ${lastName}`,
-        email: email,
-      };
-
-      try {
-        localStorage.setItem('aef_user', JSON.stringify(userData));
-        setUser(userData);
-        alert('Account created successfully! Welcome to Africa Economic Forum.');
-        setShowSignInModal(false);
-        setShowCreateAccount(false);
-      } catch (err) {
-        console.error('Failed to store new account data:', err);
-        alert('An error occurred while creating the account. Please try again.');
-      }
-    } else {
-      alert('Please fill in all required fields.');
-    }
-  };
-
-  const switchToCreateAccount = () => {
-    setShowCreateAccount(true);
-  };
-
-  const switchToSignIn = () => {
-    setShowCreateAccount(false);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -203,9 +41,7 @@ export default function Governments() {
               <a href="/agenda" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Agenda
               </a>
-              <a href="/publications" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
-                Publications
-              </a>
+
               <a href="/meetings" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Meetings
               </a>
@@ -213,664 +49,235 @@ export default function Governments() {
                 Contact
               </a>
             </nav>
-            <div className="hidden md:flex items-center space-x-4">
-              {user ? (
-                <div className="flex items-center space-x-3">
-                  <span className="text-gray-700">Welcome, {user.name}</span>
-                  <button
-                    onClick={handleLogout}
-                    className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 whitespace-nowrap cursor-pointer"
-                  >
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={handleSignIn}
-                  className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
-                >
-                  Sign In
-                </button>
-              )}
-            </div>
-            <button
-              className="md:hidden p-2 cursor-pointer"
-              onClick={toggleMobileMenu}
-            >
-              <i className={`ri-${isMobileMenuOpen ? 'close' : 'menu'}-line text-2xl`}></i>
-            </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <a href="/" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Home
-              </a>
-              <a href="/about" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                About
-              </a>
-              <a href="/initiatives" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Initiatives
-              </a>
-              <a href="/stakeholders" className="block px-3 py-2 text-base font-medium text-teal-600 bg-teal-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Stakeholders
-              </a>
-              <a href="/agenda" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Agenda
-              </a>
-              <a href="/publications" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Publications
-              </a>
-              <a href="/meetings" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Meetings
-              </a>
-              <a href="/contact" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md" onClick={() => setIsMobileMenuOpen(false)}>
-                Contact
-              </a>
-              <div className="px-3 py-2">
-                {user ? (
-                  <div className="space-y-2">
-                    <div className="text-gray-700">Welcome, {user.name}</div>
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 whitespace-nowrap cursor-pointer"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => {
-                      handleSignIn();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
-                  >
-                    Sign In
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </header>
 
-      <main>
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-                    AEF Diplomatic Club
-                  </h1>
-                  <p className="text-xl text-blue-100 leading-relaxed">
-                    Connecting Heads of State, Government Officials, and Diplomatic Corps to drive Africa's economic transformation through strategic policy dialogue and international cooperation.
-                  </p>
-                  <button
-                    onClick={() => setShowMembershipForm(true)}
-                    className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
-                  >
-                    Apply for Membership
-                  </button>
-                </div>
-              </div>
-              <div className="relative">
-                <img
-                  src="https://readdy.ai/api/search-image?query=African%20heads%20of%20state%20and%20government%20officials%20in%20formal%20diplomatic%20meeting%2C%20elegant%20conference%20room%20with%20African%20flags%2C%20high-level%20diplomatic%20summit%20with%20diverse%20African%20leaders%20in%20formal%20attire%20discussing%20economic%20cooperation%20and%20policy&width=600&height=400&seq=diplomatic-hero&orientation=landscape"
-                  alt="Diplomatic Club"
-                  className="w-full h-96 object-cover object-top rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <h2 className="text-4xl font-bold text-gray-900">Diplomatic Excellence</h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  The AEF Diplomatic Club brings together the highest levels of African leadership to foster economic diplomacy, regional integration, and strategic partnerships that advance Africa's position in the global economy.
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+                  AEF Diplomatic Club
+                </h1>
+                <h2 className="text-2xl text-blue-100">
+                  Bridging Diplomacy and Development for Africa's Global Future
+                </h2>
+                <p className="text-lg text-blue-100 leading-relaxed">
+                  The AEF Diplomatic Club is a high-level platform launched by the Africa Economic Forum to connect African states, diplomatic missions, multilateral institutions, international organizations, and global influencers committed to advancing Africa's strategic interests worldwide.
                 </p>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <i className="ri-government-line text-blue-600"></i>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">High-Level Policy Dialogue</h3>
-                      <p className="text-gray-600">Exclusive forums for heads of state and senior officials to discuss economic policy and regional cooperation.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <i className="ri-global-line text-green-600"></i>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">International Relations</h3>
-                      <p className="text-gray-600">Strengthening diplomatic ties and economic partnerships between African nations and global partners.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <i className="ri-handshake-line text-purple-600"></i>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Regional Integration</h3>
-                      <p className="text-gray-600">Advancing continental free trade agreements and economic integration initiatives.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="relative">
-                <img
-                  src="https://readdy.ai/api/search-image?query=African%20Union%20summit%20meeting%20with%20heads%20of%20state%20around%20conference%20table%2C%20formal%20diplomatic%20setting%20with%20African%20flags%20and%20modern%20architecture%2C%20diverse%20African%20leaders%20in%20official%20government%20meeting%20discussing%20economic%20policies&width=600&height=500&seq=diplomatic-meeting&orientation=portrait"
-                  alt="Diplomatic Meeting"
-                  className="w-full h-96 object-cover object-top rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Statistics */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-8 text-center">
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-blue-600">54</div>
-                <div className="text-gray-600">African Nations Represented</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-green-600">120+</div>
-                <div className="text-gray-600">Government Officials</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-purple-600">25</div>
-                <div className="text-gray-600">Heads of State</div>
-              </div>
-              <div className="space-y-2">
-                <div className="text-4xl font-bold text-orange-600">200+</div>
-                <div className="text-gray-600">Diplomatic Corps Members</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Member Showcase */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Distinguished Members</h2>
-              <p className="text-gray-600 text-lg">Leading voices in African diplomacy and governance</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                    <i className="ri-government-line text-blue-600 text-2xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Ministry of Trade & Industry</h3>
-                    <p className="text-gray-600">Republic of Ghana</p>
-                    <p className="text-sm text-gray-500 mt-2">Leading regional trade initiatives and industrial development policies</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                    <i className="ri-global-line text-green-600 text-2xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Ministry of Foreign Affairs</h3>
-                    <p className="text-gray-600">Federal Republic of Nigeria</p>
-                    <p className="text-sm text-gray-500 mt-2">Advancing diplomatic relations and economic partnerships across Africa</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                    <i className="ri-bank-line text-purple-600 text-2xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Ministry of Finance</h3>
-                    <p className="text-gray-600">Republic of Kenya</p>
-                    <p className="text-sm text-gray-500 mt-2">Driving financial sector reforms and economic integration policies</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-                    <i className="ri-building-line text-orange-600 text-2xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Presidential Office</h3>
-                    <p className="text-gray-600">Republic of Rwanda</p>
-                    <p className="text-sm text-gray-500 mt-2">Championing digital transformation and economic modernization</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto">
-                    <i className="ri-earth-line text-teal-600 text-2xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">African Union Commission</h3>
-                    <p className="text-gray-600">Continental Leadership</p>
-                    <p className="text-sm text-gray-500 mt-2">Coordinating continental economic integration and development</p>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
-                    <i className="ri-flag-line text-red-600 text-2xl"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Embassy of South Africa</h3>
-                    <p className="text-gray-600">Diplomatic Mission</p>
-                    <p className="text-sm text-gray-500 mt-2">Facilitating bilateral trade and investment partnerships</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Membership Benefits</h2>
-              <p className="text-gray-600 text-lg">Exclusive access to high-level diplomatic and economic forums</p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                  <i className="ri-vip-crown-line text-blue-600 text-2xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900">Exclusive Summits</h3>
-                <p className="text-gray-600">Access to private meetings with heads of state and senior government officials</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <i className="ri-file-text-line text-green-600 text-2xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900">Policy Briefings</h3>
-                <p className="text-gray-600">Early access to policy papers and economic intelligence reports</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
-                  <i className="ri-handshake-line text-purple-600 text-2xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900">Diplomatic Networks</h3>
-                <p className="text-gray-600">Direct connections with diplomatic corps and international organizations</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-                  <i className="ri-global-line text-orange-600 text-2xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900">Regional Integration</h3>
-                <p className="text-gray-600">Participation in continental trade and economic integration initiatives</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto">
-                  <i className="ri-presentation-line text-teal-600 text-2xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900">Strategic Dialogue</h3>
-                <p className="text-gray-600">Platform for high-level economic policy discussions and consensus building</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
-                  <i className="ri-award-line text-red-600 text-2xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900">Recognition</h3>
-                <p className="text-gray-600">Platform to showcase national economic achievements and best practices</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-blue-900 text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-bold mb-6">Join the Diplomatic Club</h2>
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Be part of Africa's premier diplomatic and economic leadership network. Shape the continent's economic future through strategic dialogue and cooperation.
-            </p>
-            <button
-              onClick={() => setShowMembershipForm(true)}
-              className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
-            >
-              Apply for Membership
-            </button>
-          </div>
-        </section>
-      </main>
-
-      {/* Sign In Modal */}
-      {showSignInModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-md w-full">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {showCreateAccount ? 'Create Account' : 'Sign In'}
-                </h3>
+                <p className="text-base text-blue-100 leading-relaxed">
+                  Positioned at the intersection of diplomacy, development, and investment, the Club serves as a privileged space for ambassadors, envoys, policymakers, and multilateral partners to align efforts with Africa's long-term vision.
+                </p>
                 <button
-                  onClick={() => setShowSignInModal(false)}
-                  className="text-gray-400 hover:text-gray-600 cursor-pointer"
+                  onClick={() => setShowMembershipForm(true)}
+                  className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
                 >
-                  <i className="ri-close-line text-2xl"></i>
+                  Apply for Membership
                 </button>
               </div>
-
-              {/* Sign‑In Form */}
-              {!showCreateAccount && (
-                <>
-                  <form onSubmit={handleSignInSubmit} className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                        placeholder="Enter your email address"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Password *
-                      </label>
-                      <input
-                        type="password"
-                        name="password"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                        placeholder="Enter your password"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <label className="flex items-center space-x-2">
-                        <input type="checkbox" name="remember_me" className="cursor-pointer" />
-                        <span className="text-sm text-gray-600">Remember me</span>
-                      </label>
-                      <button type="button" className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer">
-                        Forgot password?
-                      </button>
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
-                    >
-                      Sign In
-                    </button>
-                  </form>
-                  <div className="mt-6 text-center">
-                    <p className="text-sm text-gray-600">
-                      Don't have an account?
-                      <button
-                        onClick={switchToCreateAccount}
-                        className="text-blue-600 hover:text-blue-800 font-medium ml-1 cursor-pointer"
-                      >
-                        Create Account
-                      </button>
-                    </p>
-                  </div>
-                </>
-              )}
-
-              {/* Create Account Form */}
-              {showCreateAccount && (
-                <>
-                  <form onSubmit={handleCreateAccountSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                        <input
-                          type="text"
-                          name="first_name"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                          placeholder="First name"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                        <input
-                          type="text"
-                          name="last_name"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                          placeholder="Last name"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                        placeholder="Enter your email address"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Organization</label>
-                      <input
-                        type="text"
-                        name="organization"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                        placeholder="Your organization"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
-                      <input
-                        type="password"
-                        name="password"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                        placeholder="Create a password"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
-                      <input
-                        type="password"
-                        name="confirm_password"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                        placeholder="Confirm your password"
-                      />
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        name="terms_agreement"
-                        required
-                        className="mt-1 cursor-pointer"
-                      />
-                      <span className="text-sm text-gray-600">
-                        I agree to the Terms of Service and Privacy Policy
-                      </span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <input
-                        type="checkbox"
-                        name="newsletter_consent"
-                        className="mt-1 cursor-pointer"
-                      />
-                      <span className="text-sm text-gray-600">
-                        I would like to receive updates about Forum activities and events
-                      </span>
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
-                    >
-                      Create Account
-                    </button>
-                  </form>
-                  <div className="mt-6 text-center">
-                    <p className="text-sm text-gray-600">
-                      Already have an account?
-                      <button
-                        onClick={switchToSignIn}
-                        className="text-blue-600 hover:text-blue-800 font-medium ml-1 cursor-pointer"
-                      >
-                        Sign In
-                      </button>
-                    </p>
-                  </div>
-                </>
-              )}
-
-              {/* Social Auth Buttons – shown only for sign‑in */}
-              {!showCreateAccount && (
-                <div className="mt-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="px-2 bg-white text-gray-500">Or continue with</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 grid grid-cols-2 gap-3">
-                    <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer">
-                      <i className="ri-google-fill text-red-500 text-lg"></i>
-                      <span className="ml-2">Google</span>
-                    </button>
-                    <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer">
-                      <i className="ri-linkedin-fill text-blue-600 text-lg"></i>
-                      <span className="ml-2">LinkedIn</span>
-                    </button>
-                  </div>
-                </div>
-              )}
+            </div>
+            <div className="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=African%20heads%20of%20state%20and%20diplomats%20in%20formal%20diplomatic%20meeting%2C%20flags%20of%20African%20nations%2C%20prestigious%20government%20building%20interior%20with%20ceremonial%20atmosphere&width=600&height=400&seq=governments&orientation=landscape"
+                alt="AEF Diplomatic Club"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
             </div>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      {/* Main Content - Diplomacy as a Development Engine */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            <div>
-              <h3 className="font-semibold text-lg mb-6">About us</h3>
-              <ul className="space-y-3">
-                <li><a href="/about" className="text-gray-300 hover:text-white cursor-pointer">Our mission</a></li>
-                <li><a href="/framework" className="text-gray-300 hover:text-white cursor-pointer">Our Institutional Framework</a></li>
-                <li><a href="/history" className="text-gray-300 hover:text-white cursor-pointer">History</a></li>
-                <li><a href="/about" className="text-gray-300 hover:text-white cursor-pointer">Leadership and governance</a></li>
-                <li><a href="/about" className="text-gray-300 hover:text-white cursor-pointer">Our Impact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-6">More from the Forum</h3>
-              <ul className="space-y-3">
-                <li><a href="/initiatives" className="text-gray-300 hover:text-white cursor-pointer">Centres</a></li>
-                <li><a href="/meetings" className="text-gray-300 hover:text-white cursor-pointer">Meetings</a></li>
-                <li><a href="/stakeholders" className="text-gray-300 hover:text-white cursor-pointer">Stakeholders</a></li>
-                <li><a href="/agenda" className="text-gray-300 hover:text-white cursor-pointer">Forum Stories</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Press releases</a></li>
-                <li><a href="/gallery" className="text-gray-300 hover:text-white cursor-pointer">Photo gallery</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Podcasts</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Videos</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-6">Engage with us</h3>
-              <ul className="space-y-3">
-                <li>
-                  {user ? (
-                    <button onClick={handleLogout} className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 whitespace-nowrap cursor-pointer">
-                      Logout
-                    </button>
-                  ) : (
-                    <button onClick={handleSignIn} className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 whitespace-nowrap cursor-pointer">
-                      Sign in
-                    </button>
-                  )}
-                </li>
-                <li><a href="/partners" className="text-gray-300 hover:text-white cursor-pointer">Become our partner</a></li>
-                <li><a href="/join" className="text-gray-300 hover:text-white cursor-pointer">Become a member</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Subscribe to our press releases</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Subscribe to our newsletters</a></li>
-                <li><a href="/contact" className="text-gray-300 hover:text-white cursor-pointer">Contact us</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-6">Quick links</h3>
-              <ul className="space-y-3 mb-8">
-                <li><a href="/initiatives" className="text-gray-300 hover:text-white cursor-pointer">Sustainability at the Forum</a></li>
-                <li><a href="/careers" className="text-gray-300 hover:text-white cursor-pointer">Careers</a></li>
-              </ul>
-              <div>
-                <h4 className="font-semibold mb-4">Language editions</h4>
-                <div className="flex space-x-2">
-                  <a href="/" className="text-gray-300 hover:text-white cursor-pointer">PT</a>
-                  <span className="text-gray-500">•</span>
-                  <a href="/en" className="text-gray-300 hover:text-white cursor-pointer">EN</a>
-                  <span className="text-gray-500">•</span>
-                  <a href="/es" className="text-gray-300 hover:text-white cursor-pointer">ES</a>
-                  <span className="text-gray-500">•</span>
-                  <a href="/fr" className="text-gray-300 hover:text-white cursor-pointer">FR</a>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <h2 className="text-4xl font-bold text-gray-900">Diplomacy as a Development Engine</h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                The AEF Diplomatic Club transforms diplomacy into a strategic engine for economic cooperation, sovereign positioning, and global engagement. It facilitates trusted dialogue, intelligence sharing, and the co-creation of diplomatic and development strategies that place African leadership at the center of global decision-making.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i className="ri-discuss-line text-blue-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-xl mb-2">Diplomatic Roundtables & Global Dialogue</h3>
+                    <p className="text-gray-600">High-level diplomatic roundtables and Africa-World Dialogue Series bringing together governments, multilateral institutions, and strategic partners to align global cooperation with Africa's priorities.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i className="ri-shield-keyhole-line text-green-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-xl mb-2">Strategic Missions & Closed-Door Consultations</h3>
+                    <p className="text-gray-600">Confidential briefings, closed-door consultations, and strategic missions to embassies, international organizations, and regional institutions to deepen cooperation and policy alignment.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i className="ri-global-line text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-xl mb-2">Sovereign Image, Soft Power & Cultural Diplomacy</h3>
+                    <p className="text-gray-600">Programs focused on strengthening Africa's global image, soft power, and sovereign branding through cultural diplomacy, strategic communication, and international positioning.</p>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=African%20heads%20of%20state%20and%20diplomats%20in%20formal%20diplomatic%20meeting%2C%20flags%20of%20African%20nations%2C%20prestigious%20government%20building%20interior%20with%20ceremonial%20atmosphere&width=600&height=400&seq=governments&orientation=landscape"
+                alt="Diplomacy as Development Engine"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="border-t border-gray-700 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex space-x-4">
-                <a href="https://www.facebook.com/share/17Jr8NpqZJ/" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-facebook-fill text-xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/the-africa-economic-forum/" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-linkedin-fill text-xl"></i>
-                </a>
-                <a href="https://www.instagram.com/theafricaeconomicforum?igsh=MWowNmw1NjdueXNkbQ==" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-instagram-fill text-xl"></i>
-                </a>
-                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-youtube-fill text-xl"></i>
-                </a>
+      {/* Who Can Join & Membership Benefits */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Who Can Join */}
+            <div className="bg-gray-50 rounded-lg p-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Who Can Join</h3>
+              <div className="space-y-3 text-gray-700">
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Embassies and Diplomatic Missions</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Ministries of Foreign Affairs</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Multilateral Organizations (UN, AU, EU, OIF, etc.)</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Cultural and Development Agencies</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Honorary Consuls</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Global Envoys</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Thought Leaders in Diplomacy and Strategy</span>
+                </p>
               </div>
-              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-                <a href="/privacy" className="hover:text-white cursor-pointer">
-                  Privacy Policy &amp; Terms of Service
-                </a>
-                <a href="/sitemap" className="hover:text-white cursor-pointer">
-                  Sitemap
-                </a>
-                <p>© 2025 Africa Economic Forum</p>
-                <a href="https://readdy.ai/?origin=logo" className="hover:text-white cursor-pointer">Website Builder</a>
+            </div>
+
+            {/* Membership Benefits */}
+            <div className="bg-blue-50 rounded-lg p-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Membership Benefits</h3>
+              <div className="space-y-3 text-gray-700">
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Private access to high-level Africa-focused briefings</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Inclusion in diplomatic delegations and global missions</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Strategic networking with ministers, investors, and global leaders</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Enhanced visibility and soft power positioning</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Exclusive invitations to AEF Diplomatic Forums and Summits</span>
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Partnership Benefits */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Partnership Benefits</h2>
+            <p className="text-gray-600 text-lg">Advantages of collaborating with the Africa Economic Forum</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center space-y-4">
+              <div className="w-16h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-map-pin-line text-blue-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Local Expertise</h3>
+              <p className="text-gray-600">Deep understanding of African markets, cultures, and business environments</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-team-line text-green-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Network Access</h3>
+              <p className="text-gray-600">Direct connections to African governments, businesses, and civil society</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-rocket-line text-purple-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Program Implementation</h3>
+              <p className="text-gray-600">Efficient delivery of development programs and initiatives</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-bar-chart-line text-orange-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Impact Measurement</h3>
+              <p className="text-gray-600">Comprehensive monitoring and evaluation of development outcomes</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-lightbulb-line text-teal-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Innovation Hub</h3>
+              <p className="text-gray-600">Platform for testing and scaling innovative development solutions</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-shield-check-line text-red-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Risk Mitigation</h3>
+              <p className="text-gray-600">Reduced operational risks through local partnerships and knowledge</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA - Partner with Us */}
+      <section className="py-20 bg-blue-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6">Partner with Us</h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            Join our network of diplomatic missions and international organizations working to advance Africa's strategic interests on the global stage.
+          </p>
+          <button
+            onClick={() => setShowMembershipForm(true)}
+            className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
+          >
+            Apply for Membership
+          </button>
+        </div>
+      </section>
 
       {/* Membership Form Modal */}
       {showMembershipForm && (
@@ -878,7 +285,7 @@ export default function Governments() {
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">Apply for Diplomatic Club Membership</h3>
+                <h3 className="text-2xl font-bold text-gray-900">Apply for Membership</h3>
                 <button
                   onClick={() => setShowMembershipForm(false)}
                   className="text-gray-400 hover:text-gray-600 cursor-pointer"
@@ -887,26 +294,26 @@ export default function Governments() {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleMembershipSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Country/Nation</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Organization Name
+                    </label>
                     <input
                       type="text"
-                      name="country"
-                      value={formData.country}
-                      onChange={handleInputChange}
+                      name="organizationName"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Ministry/Department</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Contact Person
+                    </label>
                     <input
                       type="text"
-                      name="ministry"
-                      value={formData.ministry}
-                      onChange={handleInputChange}
+                      name="contactName"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -915,82 +322,23 @@ export default function Governments() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Official Position</label>
-                    <input
-                      type="text"
-                      name="position"
-                      value={formData.position}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Diplomatic Rank</label>
-                    <select
-                      name="diplomaticRank"
-                      value={formData.diplomaticRank}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-8"
-                      required
-                    >
-                      <option value="">Select Rank</option>
-                      <option value="head-of-state">Head of State</option>
-                      <option value="head-of-government">Head of Government</option>
-                      <option value="minister">Minister</option>
-                      <option value="deputy-minister">Deputy Minister</option>
-                      <option value="ambassador">Ambassador</option>
-                      <option value="high-commissioner">High Commissioner</option>
-                      <option value="consul-general">Consul General</option>
-                      <option value="senior-official">Senior Government Official</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email
+                    </label>
                     <input
                       type="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Phone
+                    </label>
                     <input
                       type="tel"
                       name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />
@@ -998,57 +346,46 @@ export default function Governments() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Areas of Interest</label>
-                  <div className="grid md:grid-cols-2 gap-2">
-                    {['Trade Policy', 'Investment Promotion', 'Regional Integration', 'Economic Diplomacy', 'Financial Systems', 'Infrastructure Development', 'Technology Transfer', 'Climate Policy'].map((interest) => (
-                      <label key={interest} className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={formData.areasOfInterest.includes(interest)}
-                          onChange={() => handleInterestChange(interest)}
-                          className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        />
-                        <span className="text-sm text-gray-700">{interest}</span>
-                      </label>
-                    ))}
-                  </div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Organization Type
+                  </label>
+                  <select
+                    name="organizationType"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    <option value="">Select Type</option>
+                    <option value="embassy">Embassy/Diplomatic Mission</option>
+                    <option value="ministry">Ministry of Foreign Affairs</option>
+                    <option value="multilateral">Multilateral Organization</option>
+                    <option value="cultural_agency">Cultural/Development Agency</option>
+                    <option value="honorary_consul">Honorary Consul</option>
+                    <option value="envoy">Global Envoy</option>
+                    <option value="thought_leader">Thought Leader</option>
+                  </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Current Economic Initiatives</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Message
+                  </label>
                   <textarea
-                    name="currentInitiatives"
-                    value={formData.currentInitiatives}
-                    onChange={handleInputChange}
-                    rows={3}
+                    name="message"
+                    rows={4}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Describe your current economic development initiatives..."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Collaboration Goals</label>
-                  <textarea
-                    name="collaborationGoals"
-                    value={formData.collaborationGoals}
-                    onChange={handleInputChange}
-                    rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="What do you hope to achieve through AEF membership?"
-                  />
+                    placeholder="Tell us about your diplomatic objectives and interest in joining the club..."
+                  ></textarea>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <input
                     type="checkbox"
                     name="agreeToTerms"
-                    checked={formData.agreeToTerms}
-                    onChange={handleInputChange}
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     required
                   />
                   <label className="text-sm text-gray-700">
-                    I agree to the terms and conditions of AEF Diplomatic Club membership
+                    I agree to the terms and conditions of AEF membership
                   </label>
                 </div>
 

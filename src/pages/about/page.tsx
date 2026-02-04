@@ -6,6 +6,8 @@ import { useAuth } from '../../contexts/AuthContext';
 export default function AboutPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isWhatWeAreExpanded, setIsWhatWeAreExpanded] = useState(false);
+  const [isFounderBioExpanded, setIsFounderBioExpanded] = useState(false);
   const { isAuthenticated, user, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -42,9 +44,9 @@ export default function AboutPage() {
             {/* Logo */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3">
-                <img 
-                  src="https://static.readdy.ai/image/849a2f489cee8d6814d30c5afad3a84a/b4bfbdc8f08b91298cef1ff69a069583.png" 
-                  alt="AEF Logo" 
+                <img
+                  src="https://static.readdy.ai/image/849a2f489cee8d6814d30c5afad3a84a/b4bfbdc8f08b91298cef1ff69a069583.png"
+                  alt="AEF Logo"
                   className="h-10 w-10 object-contain"
                 />
               </Link>
@@ -67,9 +69,10 @@ export default function AboutPage() {
               <Link to="/agenda" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Agenda
               </Link>
-              <Link to="/publications" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Publications
+              <Link to="/spotlight" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                Spotlight
               </Link>
+
               <Link to="/meetings" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Meetings
               </Link>
@@ -161,16 +164,17 @@ export default function AboutPage() {
                 <Link to="/agenda" className="text-gray-700 hover:text-blue-600 font-medium">
                   Agenda
                 </Link>
-                <Link to="/publications" className="text-gray-700 hover:text-blue-600 font-medium">
-                  Publications
+                <Link to="/spotlight" className="text-gray-700 hover:text-blue-600 font-medium">
+                  Spotlight
                 </Link>
+
                 <Link to="/meetings" className="text-gray-700 hover:text-blue-600 font-medium">
                   Meetings
                 </Link>
                 <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium">
                   Contact
                 </Link>
-                
+
                 {user ? (
                   <div className="pt-4 border-t border-gray-100">
                     <div className="flex items-center space-x-3 mb-4">
@@ -232,7 +236,7 @@ export default function AboutPage() {
               About the Africa Economic Forum
             </h1>
             <p className="text-xl text-blue-100 max-w-4xl mx-auto">
-              A pan-African and global platform for economic dialogue, strategic cooperation, and sovereign development. More than an event, the AEF is a movement that repositions Africa as a strategic partner and co‑architect of the world's future.
+              A pan-African and global platform for strategic dialogue, sovereign cooperation, and long-term economic transformation. More than an event, the AEF is a permanent architecture for aligning leadership, capital, and policy to shape Africa's role in the world economy.
             </p>
           </div>
         </section>
@@ -240,96 +244,278 @@ export default function AboutPage() {
         {/* What We Are Section */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <div>
-                  <h2 className="text-4xl font-bold text-gray-900 mb-6">What We Are</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                    The Africa Economic Forum (AEF) is a pan-African and global platform for economic dialogue,
-                    strategic cooperation, and sovereign development. More than an event, the AEF is a movement
-                    that brings together African leaders, governments, investors, entrepreneurs, intellectuals,
-                    and international allies to co‑create new models of growth, leadership, and global engagement.
-                  </p>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    Founded as a response to decades of imbalanced development models, the AEF repositions Africa
-                    not as a continent in need, but as a strategic partner, solution provider, and co‑architect
-                    of the world's future.
-                  </p>
-                </div>
-              </div>
-              <div className="relative">
-                <img
-                  src="https://readdy.ai/api/search-image?query=Modern%20African%20business%20district%20with%20skyscrapers%20and%20economic%20development%2C%20bustling%20financial%20center%20with%20contemporary%20architecture%2C%20symbol%20of%20African%20economic%20sovereignty%20and%20strategic%20partnerships%2C%20dignified%20cooperation&width=600&height=500&seq=what-we-are&orientation=portrait"
-                  alt="Africa Economic Development"
-                  className="w-full h-96 object-cover object-top rounded-lg shadow-lg"
-                />
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">What We Are</h2>
+
+                {/* Always visible preview */}
+                <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  The Africa Economic Forum (AEF) is a pan-African and global platform for strategic cooperation, sovereign development, and high-level economic alignment. It brings together African governments, global investors, institutions, and thought leaders to co-create new models of growth, partnership, and long-term value creation.
+                </p>
+
+                {/* Expandable full content */}
+                {isWhatWeAreExpanded && (
+                  <div className="space-y-8 mt-8">
+                    {/* Our History */}
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Our History</h3>
+
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-2">2022 – Origins</h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            The Africa Economic Forum began in 2022 under the name ICN Global Summit and Award, created as a platform to celebrate inspiring leaders and foster dialogue on Africa's role in the world.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-2">2022 – First Edition, Kinshasa</h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            The inaugural edition in Kinshasa honored Dr. Denis Mukwege, Nobel Peace Prize laureate, and Mrs. Julienne Lusenge, Aurora Prize laureate and Time 100 honoree. The Summit convened senators, parliamentarians, business leaders, and international investors.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-2">2023 – Second Edition, Kinshasa</h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            The Forum returned to Kinshasa with broader recognition and global reach. Distinguished speakers included H.E. Rosalía Arteaga, former President of Ecuador, and H.E. Guy Loando, Minister of Territorial and Land Management of the DRC. The edition also celebrated the presence of Innoss'B, renowned superstar and humanitarian, highlighting the Forum's commitment to cultural influence and social impact. Hundreds of government officials, entrepreneurs, and investors from across Africa and beyond participated.
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-2">2024 and Beyond – Evolution into AEF</h4>
+                          <p className="text-gray-600 leading-relaxed">
+                            Building on its early momentum, the initiative rebranded as the Africa Economic Forum (AEF), consolidating its identity as a premier global platform. Today, AEF convenes governments, investors, and thought leaders to drive investment, shape Africa's global agenda, and build equitable international partnerships.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Our Institutional Framework */}
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Institutional Framework</h3>
+
+                      {/* A. Win-win Cooperation */}
+                      <div className="mb-8">
+                        <h4 className="text-xl font-semibold text-gray-900 mb-3">A. Win-Win, Equitable and Ethical Economic Cooperation</h4>
+                        <p className="text-lg font-medium text-gray-800 mb-2">Rethinking and Reshaping Cooperation Models with Africa</p>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                          A Strategic Imperative of the Africa Economic Forum
+                        </p>
+
+                        <h5 className="font-semibold text-gray-900 mb-2">Why This Rethink Matters</h5>
+                        <p className="text-gray-600 leading-relaxed mb-3">
+                          For decades, cooperation with Africa has often been defined by asymmetries — in power, in perception, and in value creation. The AEF calls for a decisive shift:
+                        </p>
+                        <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4 ml-4">
+                          <li>From aid dependency to economic sovereignty</li>
+                          <li>From foreign-led agendas to African-owned strategies</li>
+                          <li>From short-term fixes to systems change and sustainable growth</li>
+                        </ul>
+
+                        <h5 className="font-semibold text-gray-900 mb-2">The AEF's Contribution to a New Cooperation Paradigm:</h5>
+                        <div className="space-y-3 text-gray-600">
+                          <div>
+                            <span className="font-semibold">1. Platform for Policy Dialogue:</span> Bringing together heads of state, ministers, CEOs, investors, and thought leaders to co-design policies and frameworks that serve long-term African and global interests.
+                          </div>
+                          <div>
+                            <span className="font-semibold">2. Investment Matchmaking:</span> Connecting African opportunities with global capital, with a focus on infrastructure, green energy, tech, health, agriculture, and the creative economy.
+                          </div>
+                          <div>
+                            <span className="font-semibold">3. Narrative Reset:</span> Positioning Africa as a solution provider — not a problem to be solved. AEF elevates success stories, champions innovation, and celebrates Africa's global contributors.
+                          </div>
+                          <div>
+                            <span className="font-semibold">4. Geopolitical Rebalancing:</span> In a shifting global order, the AEF asserts Africa's place at the table — not as a guest, but as a co-architect of the world's future.
+                          </div>
+                          <div>
+                            <span className="font-semibold">5. Inclusive Development Models:</span> Promoting partnerships that empower youth, women, entrepreneurs, and local communities, ensuring that economic growth translates into shared prosperity.
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* B. Quality Leadership */}
+                      <div className="mb-8">
+                        <h4 className="text-xl font-semibold text-gray-900 mb-3">B. Quality Leadership and Governance in Africa</h4>
+
+                        <div className="space-y-4">
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">1. Rethinking Leadership: From Power to Purpose</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              <span className="font-medium">Current Challenge:</span> Leadership is too often centered on the accumulation of personal or clan-based power.
+                            </p>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              <span className="font-medium">New Paradigm:</span> A transformational leadership rooted in purpose, accountability, ethics, and long-term impact.
+                            </p>
+                            <p className="text-gray-600 leading-relaxed">
+                              Examples of models to follow: Servant leadership, Leadership inspired by African values such as Ubuntu
+                            </p>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">2. Reshaping Governance: Institutions That Serve People</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              <span className="font-medium">Objective:</span> Shift from extractive institutions to inclusive and accountable institutions.
+                            </p>
+                            <p className="text-gray-600 leading-relaxed mb-2 font-medium">Key intervention areas:</p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Participatory constitutional reform</li>
+                              <li>Digitalization of public administration</li>
+                              <li>Strengthening mechanisms for transparency and citizen auditing</li>
+                              <li>Real and effective decentralization</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">3. New Patterns: Leadership Ecosystems & Collaborative Governance</h5>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>From verticality to horizontality: Promote the co-creation of public policies with citizens, the diaspora, youth, and local communities</li>
+                              <li>Multi-stakeholder coalitions: Governments + businesses + civil society + traditional institutions</li>
+                              <li>Distributed leadership: Create environments where every citizen becomes an agent of change</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">4. African Solutions to African Challenges</h5>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Integrating African wisdom: Governance inspired by traditional systems (chiefdoms, councils of elders) adapted to contemporary challenges</li>
+                              <li>Revaluing Africa's cultural and spiritual capital in governance models</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">5. Youth & Women as New Pillars of Governance</h5>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Intergenerational leadership: Build bridges between generations</li>
+                              <li>Access to power for women and youth: Smart quotas, campaign financing, and capacity building</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">6. Strategic Actions for Change</h5>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Establish an African Center for Leadership and Innovative Governance</li>
+                              <li>Launch inter-country dialogue forums on institutional reform</li>
+                              <li>Set up public policy labs led by African youth and intellectuals</li>
+                              <li>Train a new generation of leaders through pan-African governance schools</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* C. Africa's Economic Sovereignty */}
+                      <div className="mb-8">
+                        <h4 className="text-xl font-semibold text-gray-900 mb-3">C. Africa's Economic Sovereignty</h4>
+                        <p className="text-lg font-medium text-gray-800 mb-4">Reclaiming and Reasserting African Sovereignty: Our Fight at the Africa Economic Forum</p>
+                        <p className="text-gray-600 leading-relaxed mb-4">
+                          The Africa Economic Forum stands as a pivotal platform for advancing the continent's collective mission: the reappropriation and reconquest of African sovereignty in all its dimensions. This struggle is not merely ideological but a practical necessity for Africa's true emancipation and prosperity. Below are the key pillars of this sovereign revolution:
+                        </p>
+
+                        <div className="space-y-4">
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">1. Economic Sovereignty: An African Market Dominated by African Products</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              Africa remains overly dependent on imports, with intra-African trade accounting for only 15-18% of total trade, compared to 60% in Europe and 40% in Asia (AfDB, 2022). To reverse this, we must:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Strengthen local production and value-added industries to reduce reliance on foreign goods</li>
+                              <li>Accelerate the African Continental Free Trade Area (AfCFTA), which could boost intra-African trade by 52% by 2035 (World Bank)</li>
+                              <li>Implement protectionist policies strategically to nurture homegrown industries while fostering fair and equitable global trade partnerships</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">2. Win-Win South-South and Global Cooperation Based on Equality</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              Africa must redefine its global engagements, moving away from asymmetric partnerships that perpetuate dependency. Instead, we advocate for:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Strengthened South-South alliances (e.g., BRICS+, ASEAN-Africa collaborations) to enhance bargaining power</li>
+                              <li>Technology and knowledge transfer agreements that prioritize Africa's long-term development</li>
+                              <li>Debt justice and fair financing, as African nations spend more on debt servicing (up to 25% of revenues in some cases) than on healthcare or education (UNECA)</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">3. Media Sovereignty: Controlling Our Narrative</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              Over 75% of Africa's media content is sourced from Western outlets (Reuters Institute), distorting perceptions and stifling African perspectives. We must:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Invest in Pan-African media networks (e.g., Africa News Agency, Afrocentric digital platforms)</li>
+                              <li>Regulate foreign media monopolies to ensure balanced representation</li>
+                              <li>Promote journalistic training and investigative reporting rooted in African realities</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">4. Cultural Sovereignty: Reclaiming Our Heritage</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              From repatriating stolen artifacts (only 10% of Africa's cultural heritage remains on the continent) to resisting cultural imperialism, we must:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Revitalize indigenous languages (over 1,000 African languages are endangered – UNESCO)</li>
+                              <li>Support Afrocentric education and creative industries (Nollywood, Afrobeats, and African literature as global soft power tools)</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">5. Scientific Sovereignty: Innovation on Our Terms</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              Africa contributes less than 1% of global research output (World Bank), yet holds untapped potential. Solutions include:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Increasing R&D investment (currently below 0.5% of GDP in most African nations, vs. 2.5%+ in developed countries)</li>
+                              <li>Establishing African-led research hubs in AI, renewable energy, and medicine</li>
+                              <li>Ending brain drain by creating competitive opportunities for African scientists and innovators</li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="font-semibold text-gray-900 mb-2">6. Philosophical Sovereignty: Decolonizing African Thought</h5>
+                            <p className="text-gray-600 leading-relaxed mb-2">
+                              The dominance of Western epistemological frameworks continues to shape African policies and mindsets. We must:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                              <li>Promote endogenous knowledge systems (Ubuntu, Negritude, African feminist thought)</li>
+                              <li>Decolonize education curricula to reflect Africa's historical and philosophical contributions</li>
+                              <li>Foster critical thinking that aligns with Africa's socio-economic realities</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Read More/Show Less Button */}
+                <button
+                  onClick={() => setIsWhatWeAreExpanded(!isWhatWeAreExpanded)}
+                  className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                >
+                  {isWhatWeAreExpanded ? 'Show Less' : 'Read More'}
+                </button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* Our Strategic Role Section */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
-                To catalyze economic transformation and sovereignty in Africa through strategic cooperation and visionary
-                leadership.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className="ri-handshake-line text-2xl text-blue-600"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">Win-Win Cooperation</h3>
-                <p className="text-gray-600 text-center">
-                  Designing win-win cooperation frameworks between Africa and global partners based on mutual respect
-                  and shared prosperity.
-                </p>
-              </div>
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Our Strategic Role</h2>
 
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className="ri-user-star-line text-2xl text-green-600"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">Visionary Leadership</h3>
-                <p className="text-gray-600 text-center">
-                  Promoting ethical, inclusive and visionary leadership across the continent that builds institutions and
-                  creates lasting change.
+              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  The Africa Economic Forum is designed as a permanent strategic platform — not a one-off event. Its role is to align African sovereign priorities with global capital, policy frameworks, and execution capacity in a structured and continuous manner.
                 </p>
-              </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className="ri-links-line text-2xl text-purple-600"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">Strategic Connections</h3>
-                <p className="text-gray-600 text-center">
-                  Connecting African opportunities with capital, technology, and talent to unlock the continent's full
-                  potential.
+                <p>
+                  Through sector-specific forums, high-level deal rooms, and year-round engagement, the AEF enables governments, investors, and institutions to move beyond dialogue into concrete partnerships, co-investment structures, and policy alignment.
                 </p>
-              </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className="ri-megaphone-line text-2xl text-orange-600"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">Narrative Elevation</h3>
-                <p className="text-gray-600 text-center">
-                  Elevating Africa's narrative and value in the global order by challenging stereotypes and amplifying
-                  African voices.
-                </p>
-              </div>
-
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <i className="ri-community-line text-2xl text-teal-600"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">Community Empowerment</h3>
-                <p className="text-gray-600 text-center">
-                  Building ecosystems that empower youth, women, and local communities to shape and lead the future.
+                <p>
+                  The AEF operates as a bridge between strategy and execution — ensuring that political vision, private capital, and institutional capacity are brought into the same architecture, with Africa setting the agenda and defining the terms of cooperation.
                 </p>
               </div>
             </div>
@@ -347,113 +533,137 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Values Section */}
+        {/* The Concept: The Perpetual Forum & The African Table */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                These principles guide everything we do and shape our approach to creating transformational change across
-                Africa.
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                The Concept: The Perpetual Forum & The African Table
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+                A new approach to economic diplomacy: continuous,strategic, and sovereign.
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex items-center mb-6">
-                  <div className="text-3xl mr-4">🌍</div>
-                  <h3 className="text-xl font-semibold text-gray-900">Sovereignty &amp; Self-Determination</h3>
+
+            {/* Intro Text */}
+            <div className="max-w-5xl mx-auto mb-16">
+              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                The Africa Economic Forum is not a gathering. It is an architecture. It operates as a <strong>perpetual, year-round platform</strong> designed to align African sovereign priorities with global capital flows, institutional frameworks, and execution capacity. This model redefines how Africa positions itself in the global economy—not as a destination for donor conferences, but as <strong>the convening authority setting the terms of engagement</strong>.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Three interconnected pillars define the AEF Model:
+              </p>
+            </div>
+
+            {/* Three Core  Pillars */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {/* 1. The Perpetual Forum */}
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg shadow-md border-b-4 border-blue-900">
+                <div className="w-16 h-16 bg-blue-900 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-calendar-event-line text-2xl"></i>
                 </div>
-                <p className="text-gray-600">
-                  We believe Africa must define its own path, develop on its own terms, and build strategic autonomy in
-                  economy, media, culture, science, and governance.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">1. The Perpetual Forum</h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Unlike episodic summits, the AEF runs a continuous cycle of sector-specific forums, ensuring strategic continuity and measurable outcomes.
                 </p>
+                <ul className="text-sm text-gray-700 space-y-2">
+                  <li><strong>Year-Round Engagement:</strong> Sustained dialogue between African governments, global investors, and institutions.</li>
+                  <li><strong>Sector-Driven Precision:</strong> From critical minerals to infrastructure, each forum zeroes in on concrete deal structures and investment vehicles.</li>
+                  <li><strong>Africa Sets the Clock:</strong> The Forum adapts to African policy cycles, resource extraction timelines, and political priorities—not external agendas.</li>
+                </ul>
               </div>
 
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex items-center mb-6">
-                  <div className="text-3xl mr-4">🤝</div>
-                  <h3 className="text-xl font-semibold text-gray-900">Equity &amp; Win-Win Cooperation</h3>
+              {/* 2. The African Table */}
+              <div className="bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-lg shadow-md border-b-4 border-teal-900">
+                <div className="w-16 h-16 bg-teal-900 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-team-line text-2xl"></i>
                 </div>
-                <p className="text-gray-600">
-                  We advocate for fair partnerships based on mutual benefit, respect, and shared prosperity — not charity
-                  or dependency.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">2. The African Table</h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Sovereignty begins with control of the agenda. The African Table means Africa invites, Africa convenes, and Africa defines the terms of cooperation.
                 </p>
+                <ul className="text-sm text-gray-700 space-y-2">
+                  <li><strong>Agenda Sovereignty:</strong> Topics reflect African priorities, not external frameworks or geopolitical impositions.</li>
+                  <li><strong>Strategic Matchmaking:</strong> Investors are curated based on alignment with long-term African development, not short-term extraction.</li>
+                  <li><strong>Deal-Oriented Diplomacy:</strong> Every panel, every roundtable, every closed-door session is structured to move from dialogue to signed commitments.</li>
+                </ul>
               </div>
 
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex items-center mb-6">
-                  <div className="text-3xl mr-4">🔥</div>
-                  <h3 className="text-xl font-semibold text-gray-900">Transformational Leadership</h3>
+              {/* 3. Host Country Partnership */}
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-lg shadow-md border-b-4 border-purple-900">
+                <div className="w-16 h-16 bg-purple-900 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="ri-government-line text-2xl"></i>
                 </div>
-                <p className="text-gray-600">
-                  We promote ethical, servant, and purpose-driven leadership that builds institutions, uplifts people, and
-                  creates lasting change.
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">3. Host Country Partnership</h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Each sector forum is hosted by an African nation that has committed to leading the agenda in that domain, ensuring the highest level of government engagement and deal-making potential.
                 </p>
+                <ul className="text-sm text-gray-700 space-y-2">
+                  <li><strong>National Champions:</strong> The forum host demonstrates sovereign ownership of the sector's strategic vision.</li>
+                  <li><strong>Infrastructure for Execution:</strong> Forums integrate national project pipelines, regulatory frameworks, and investment climate reforms.</li>
+                  <li><strong>Permanent Regional Hub:</strong> Host nations become nodes of expertise and investment, sustaining sectoral networks beyond the event.</li>
+                </ul>
               </div>
+            </div>
 
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex items-center mb-6">
-                  <div className="text-3xl mr-4">📣</div>
-                  <h3 className="text-xl font-semibold text-gray-900">Narrative Justice</h3>
-                </div>
-                <p className="text-gray-600">
-                  We challenge stereotypes and amplify African voices, successes, and world‑changing contributions.
-                </p>
-              </div>
-
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex items-center mb-6">
-                  <div className="text-3xl mr-4">💡</div>
-                  <h3 className="text-xl font-semibold text-gray-900">Innovation &amp; Excellence</h3>
-                </div>
-                <p className="text-gray-600">
-                  We nurture local talents, ideas and technologies that offer bold solutions to Africa's and the world's
-                  challenges.
-                </p>
-              </div>
-
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <div className="flex items-center mb-6">
-                  <div className="text-3xl mr-4">👥</div>
-                  <h3 className="text-xl font-semibold text-gray-900">Inclusion &amp; Intergenerational Empowerment</h3>
-                </div>
-                <p className="text-gray-600">
-                  We create space for youth, women, and communities to shape and lead the future.
-                </p>
-              </div>
+            {/* Closing Statement */}
+            <div className="max-w-5xl mx-auto bg-gray-50 p-8 rounded-lg shadow-md border-l-4 border-blue-900">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Why This Matters</h3>
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                For decades, Africa has been the subject of conferences designed elsewhere. The AEF reverses this dynamic. It positions Africa as a <strong>global convening power</strong>, not a beneficiary of external goodwill. It is where African heads of state, finance ministers, and sovereign wealth funds align their strategies with the world's leading investors, development institutions, and industrial actors.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed font-semibold text-blue-900">
+                The Perpetual Forum ensures continuity. The African Table ensures sovereignty. The Host Country Partnership ensures execution.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed mt-4">
+                This is how Africa designs its future, sector by sector, deal by deal.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Impact Statistics */}
-        <section className="py-20 bg-gray-50">
+        {/* A Message from the Chairman */}
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Impact</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Building bridges between Africa and the world through strategic partnerships and transformational initiatives.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">54</div>
-                <div className="text-gray-600">African Countries Engaged</div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">A Message from the Chairman</h2>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left column - Text */}
+              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  The world is recalibrating. The old paradigms are shifting, and in this new geopolitical and economic landscape, Africa emerges not as a spectator but as a definitive arena of opportunity. The Africa Economic Forum is the platform where this new reality is forged.
+                </p>
+
+                <p>
+                  We are The African Table. It is Africa that extends the invitation, sets the agenda, and defines the terms of a truly strategic, win-win cooperation. Our model is deliberate: a perpetual, year-long journey across the continent, diving deep into each critical sector.
+                </p>
+
+                <p>
+                  In this new era of global realignments, our mission is clear: to connect global capital with Africa's immense opportunities, to build alliances that matter, and to unlock strategic value through structured cooperation.
+                </p>
+
+                <p>
+                  This is not just another forum. This is where the future of Africa is designed — deal by deal. I invite you to join us at The African Table.
+                </p>
+
+                <div className="pt-6 border-t border-gray-200">
+                  <p className="text-xl font-semibold text-gray-900">— Dr. Billy Issa</p>
+                  <p className="text-gray-600 italic">Visionary Founder & Host</p>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">1000+</div>
-                <div className="text-gray-600">Global Leaders Connected</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">$50B+</div>
-                <div className="text-gray-600">Investment Opportunities Facilitated</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-900 mb-2">25+</div>
-                <div className="text-gray-600">Strategic Partnerships Formed</div>
+
+              {/* Right column - Chairman Photo */}
+              <div className="relative">
+                <img
+                  src="/images/billy-issa.jpg"
+                  alt="Dr. Billy Issa - Chairman"
+                  className="w-full h-[500px] object-cover object-top rounded-lg shadow-xl"
+                />
               </div>
             </div>
           </div>
         </section>
+
 
         {/* Organizing Committee */}
         <section className="py-20 bg-white">
@@ -483,10 +693,45 @@ export default function AboutPage() {
                   />
                   <div className="p-6">
                     <h4 className="text-xl font-bold text-gray-900 mb-2">Dr. Billy Issa</h4>
-                    <p className="text-sm text-blue-600 mb-3">Visionary Founder &amp; Host</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-sm text-blue-600 mb-3">Visionary Founder & Host</p>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
                       Visionary leader and architect of the Africa Economic Forum, dedicated to repositioning Africa as a strategic global partner and driving sustainable economic transformation across the continent through innovative partnerships and sovereign development initiatives.
                     </p>
+
+                    {/* Expandable content */}
+                    {isFounderBioExpanded && (
+                      <div className="mt-6 pt-6 border-t border-gray-200 space-y-4">
+                        <h5 className="text-lg font-bold text-gray-900">THE FOUNDER</h5>
+                        <h6 className="text-base font-semibold text-gray-900">Dr. Billy Issa</h6>
+                        <p className="text-sm text-blue-600 italic">Founder, Africa Economic Forum (AEF)</p>
+
+                        <div className="space-y-4 text-sm text-gray-600 leading-relaxed">
+                          <p>
+                            Dr. Billy Issa is the Founder of the Africa Economic Forum (AEF), a premier platform convening governments, investors, thought leaders, and global institutions to shape Africa's role in the new global order. With a vision to position Africa at the center of international dialogue, Dr. Issa is redefining economic cooperation models through strategic partnerships that advance investments, alliances, and innovation across the continent.
+                          </p>
+
+                          <p>
+                            A thinker and leader on transformational leadership, diplomacy, and economic development, Dr. Issa has dedicated his career to bridging Africa with the world. His work spans initiatives that foster win-win cooperation, inclusive growth, and sustainable transformation, making the AEF not only an event but a movement shaping Africa's agenda.
+                          </p>
+
+                          <p>
+                            Passionate about empowering the next generation, Dr. Issa also champions youth leadership, entrepreneurship, and the integration of Africa into global value chains. His efforts bring together heads of state, ministers, investors, philanthropists, and innovators to mobilize capital and ideas for Africa's prosperity.
+                          </p>
+
+                          <p>
+                            Recognized for his ability to convene high-level leaders and inspire collective action, Dr. Issa continues to position the Africa Economic Forum as a global diplomatic and investment platform, where Africa's voice and vision are amplified on the world stage.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Expand/Collapse Button */}
+                    <button
+                      onClick={() => setIsFounderBioExpanded(!isFounderBioExpanded)}
+                      className="mt-4 w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                    >
+                      {isFounderBioExpanded ? 'Show Less' : '👉 Discover more about Billy Issa'}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -661,7 +906,7 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                
+
               </div>
             </div>
 
@@ -709,7 +954,7 @@ export default function AboutPage() {
                 {/* Amina Touré */}
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
-                    src="/images/amina-Touré.jpeg"
+                    src="/images/amina-toure-new.png"
                     alt="Amina Touré"
                     className="w-full h-64 object-cover object-top"
                   />
@@ -719,9 +964,9 @@ export default function AboutPage() {
                     <p className="text-gray-600 text-sm leading-relaxed">
                       Development practitioner, researcher, and strategic communicator with a strong focus on Africa’s political economy and global narratives. Amina holds a Bachelor of Laws and an MSc in International Development & Humanitarian Emergencies from the London School of Economics, and is completing an MPhil in African Studies at the University of Cambridge, specializing in extractive industries, Chinese investment, and state–business relations in the Democratic Republic of Congo (DRC).
 
-Her work spans policy research, media strategy, and narrative shaping. She has authored influential analyses on resource governance, value-chain upgrading, and the political economy of strategic minerals. As an independent journalist, she documents the conflict in eastern Congo and the expansion of mining operations in the south, producing field-rooted reporting that centers Congolese perspectives and brings nuance to globally misunderstood issues.
+                      Her work spans policy research, media strategy, and narrative shaping. She has authored influential analyses on resource governance, value-chain upgrading, and the political economy of strategic minerals. As an independent journalist, she documents the conflict in eastern Congo and the expansion of mining operations in the south, producing field-rooted reporting that centers Congolese perspectives and brings nuance to globally misunderstood issues.
 
-Amina brings to the AEF a unique blend of intellectual rigor, communication expertise, and geopolitical insight—crafting narratives that strengthen Africa’s voice, credibility, and influence on the global stage.
+                      Amina brings to the AEF a unique blend of intellectual rigor, communication expertise, and geopolitical insight—crafting narratives that strengthen Africa’s voice, credibility, and influence on the global stage.
                     </p>
                   </div>
                 </div>
@@ -734,14 +979,58 @@ Amina brings to the AEF a unique blend of intellectual rigor, communication expe
                     className="w-full h-64 object-cover object-top"
                   />
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Walid Louki</h4>
-                    <p className="text-sm text-blue-600 mb-3">Walid Loukil, AEF Regional Director for North Africa</p>
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Walid Loukil</h4>
+                    <p className="text-sm text-blue-600 mb-3">Industrial & Infrastructure Investment Leader</p>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      Walid Koulil is a senior executive and strategic leader with extensive experience in international investment, economic development, and cross-border partnerships across Africa, Europe, and the Middle East. He is recognized for his ability to bridge public and private sector stakeholders, mobilize capital, and structure high-impact initiatives aligned with long-term growth and regional integration.
+                      Senior executive and business leader with extensive experience in diversified industrial, infrastructure, and engineering sectors. Actively involved in regional and international expansion across Africa and Europe, supporting large-scale projects in industry, technology, and trade. Brings strategic leadership in cross-border investment, industrial development, and private sector growth.
+                    </p>
+                  </div>
+                </div>
 
-With a career spanning executive leadership, advisory roles, and board governance, Mr. Koulil has been closely involved in large-scale projects at the intersection of infrastructure, finance, energy, and strategic industries. His work focuses on value creation, institutional strengthening, and positioning emerging markets within the evolving global economic order.
+                {/* Tasen Metsegharun */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="/images/Oritsesantasen Metseagharun.jpeg"
+                    alt="Tasen Metsegharun"
+                    className="w-full h-64 object-contain object-center bg-gray-100"
+                  />
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Tasen Metsegharun</h4>
+                    <p className="text-sm text-blue-600 mb-3">International Trade & Economic Intelligence Specialist</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      International trade analyst and economic intelligence professional with a focus on data-driven trade mapping and market opportunity analysis. Experienced in leveraging advanced analytics tools to support sustainable investment strategies and the development of international trade corridors. Actively engaged in strengthening economic linkages between Africa and global markets through evidence-based insights and strategic intelligence.
+                    </p>
+                  </div>
+                </div>
 
-At the Africa Economic Forum, Walid Koulil serves as Regional Director for North Africa, where he contributes to advancing economic diplomacy, investment facilitation, and strategic alliances between Africa and global capital markets.
+                {/* Jorge Sebastião */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="/images/Jorge Sebastiao.jpeg"
+                    alt="Jorge Sebastião"
+                    className="w-full h-64 object-cover object-top"
+                  />
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Jorge Sebastião</h4>
+                    <p className="text-sm text-blue-600 mb-3">Technology, Innovation & Digital Transformation Expert</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      International technology leader, author, and mentor specializing in blockchain, artificial intelligence, cybersecurity, Web3, and digital transformation. With over three decades of experience across telecommunications, finance, public sector, and emerging technologies, he supports innovation-driven growth and startup acceleration. Recognized speaker and advisor on digital infrastructure, cybersecurity, and next-generation technology ecosystems.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Jean-Bosco Bukuru Senani */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="/images/Jean-Bosco Bakuru Senani.jpeg"
+                    alt="Jean-Bosco Bukuru Senani"
+                    className="w-full h-64 object-contain object-center bg-gray-100"
+                  />
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">Jean-Bosco Bukuru Senani</h4>
+                    <p className="text-sm text-blue-600 mb-3">International Investment & Trade Advisor</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      International business executive and board advisor specializing in cross-border investment, trade facilitation, and strategic partnerships across Africa, Europe, and North America. Experienced in infrastructure, ICT, agriculture, commodities, and investment promotion. Works closely with governments, investors, and enterprises to structure partnerships and attract capital into high-impact African markets.
                     </p>
                   </div>
                 </div>
@@ -880,7 +1169,7 @@ At the Africa Economic Forum, Walid Koulil serves as Regional Director for North
                 <Link to="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy &amp; Terms of Service
                 </Link>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

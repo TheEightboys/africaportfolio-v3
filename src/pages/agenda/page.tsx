@@ -2,11 +2,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
 import MeetingRegistrationForm from '../../components/forms/MeetingRegistrationForm';
 import { jsPDF } from "jspdf"; // Certifique-se de que esta linha esteja presente
 
 export default function AgendaPage() {
   const { user, signOut } = useAuth();
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
 
   // Events data (mover aqui para não usar `events` antes de ser declarado)
@@ -382,7 +384,7 @@ Tourism:
       location: "To be announced — Forum Host Country Partner",
       image:
         "/images/miningafrica.jpg",
-description: `
+      description: `
 Africa's minerals are the bedrock of the global energy transition. 
 This forum is dedicated to moving the continent from mere extraction to value-chain dominance. 
 We focus on local beneficiation, ESG-compliant mining, and financing mineral processing plants.
@@ -457,7 +459,7 @@ Public signing of MoUs for new processing plants and supply agreements.`,
       location: "To be announced — Forum Host Country Partner",
       image:
         "/images/africaenergi.jpg",
-description: `
+      description: `
 Energy and infrastructure are the non-negotiable backbones of economic sovereignty. 
 This forum is a dedicated deal-making hub for bankable projects in power, transport, 
 and digital infrastructure. We showcase integrated projects—from renewable energy 
@@ -532,7 +534,7 @@ Summary of MoUs and deals announced.
       location: "To be announced — Forum Host Country Partner",
       image:
         "/images/africafood.jpg",
-description: `
+      description: `
 This forum is dedicated to transforming Africa into the world's next breadbasket. 
 We focus on integrating smallholder farmers into global value chains through 
 cutting-edge technology and innovative finance. The agenda features live AgTech 
@@ -609,7 +611,7 @@ Announcements of major supply contracts and investments in processing facilities
       location: "To be announced — Forum Host Country Partner",
       image:
         "/images/africawelth.jpeg",
-description: `
+      description: `
 This is Africa's premier gathering for the guardians of capital.
 The Wealth Forum is where African pension funds, sovereign wealth funds, and family offices meet global private equity, venture capital, and asset managers. 
 The focus is on de-risking African investments and presenting curated, vetted opportunities from the sectors covered in our previous forums, translating project pipelines into investment-ready vehicles. 
@@ -656,8 +658,8 @@ DAY 2: CAPITAL CONNECTIONS
       theme: "Africa Tech Forum",
       date: "Sept 22-23, 2026",
       location: "To be announced — Forum Host Country Partner",
-      image:"/images/tech.jpg",
-description: `
+      image: "/images/tech.jpg",
+      description: `
 Africa's tech revolution is reshaping its economic destiny. 
 This forum is a dynamic, high-energy showcase of innovation, from FinTech and EdTech to HealthTech and CleanTech. 
 It is designed as a massive platform for startups to pitch to global VCs, for corporates to find tech solutions, and for governments to articulate their digital economy strategies. 
@@ -714,7 +716,7 @@ DAY 2: SCALING THROUGH PARTNERSHIPS
       location: "To be announced — Forum Host Country Partner",
       image:
         "/images/africatourism.jpg",
-description: `
+      description: `
 This forum is dedicated to selling the African experience to the world and dismantling barriers to intra-African trade. 
 We target global hotel chains, airlines, tour operators, and retail giants, focusing on high-value tourism (eco, cultural, luxury) and the practical implementation of the AfCFTA. 
 The agenda includes exclusive site visits and one-on-one deal-making sessions between tourism ministers and international investors. 
@@ -769,7 +771,7 @@ DAY 2: SIGNING THE DEALS
       location: "To be announced — Forum Host Country Partner",
       image:
         "/images/africahealth.jpg",
-description: `
+      description: `
 A healthy population is the core of economic productivity and sovereignty. 
 This forum addresses Africa's healthcare infrastructure gap and its burgeoning pharmaceutical market. 
 It brings together hospital groups, pharma manufacturers, medical tech companies, and impact investors to forge partnerships for building diagnostic centers, local vaccine production, and deploying scalable health-tech solutions. 
@@ -823,7 +825,7 @@ DAY 2: PARTNERING FOR HEALTH
       location: "UAE (A Global Nexus for Africa)",
       image:
         "/images/awardsend.jpg",
-    description: `
+      description: `
 The culminating event of the AEF journey. 
 This is not a talking shop but a grand celebration of the year's achievements and a look ahead to 2027. 
 The centerpiece is the launch of the AEF 2026 Deal Book, a comprehensive portfolio of partnerships and investments initiated through our forums. 
@@ -901,7 +903,7 @@ Join us at The African Table. Let's redesign the future, together.`,
         "https://readdy.ai/api/form/tourism-forum-registration",
     },
 
-    
+
   ];
 
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -985,14 +987,14 @@ Join us at The African Table. Let's redesign the future, together.`,
 
   const downloadAgenda = () => {
     const doc = new jsPDF();
-    
+
     // Adicione a logo da AEF
     // replace path with real logo path in public folder, e.g. /logo.png
     // doc.addImage requires base64 or Image element for remote images in some setups
     // keeping a simple header for now
     doc.text("THE AFRICA ECONOMIC FORUM 2026", 10, 20);
     doc.text("ANNUAL THEME: Africa and Global Realignments: Investments, Alliances, and Strategic Opportunities", 10, 30);
-    
+
     // Add simple footer
     const pageHeight = doc.internal.pageSize.height;
     doc.text("www.africaef.com | info@africaef.com", 10, pageHeight - 10);
@@ -1048,11 +1050,12 @@ Join us at The African Table. Let's redesign the future, together.`,
                 Agenda
               </Link>
               <Link
-                to="/publications"
+                to="/spotlight"
                 className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors"
               >
-                Publications
+                Spotlight
               </Link>
+
               <Link
                 to="/meetings"
                 className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors"
@@ -1087,8 +1090,8 @@ Join us at The African Table. Let's redesign the future, together.`,
                       <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
                         {getInitials(
                           user.user_metadata?.full_name ||
-                            user.email?.charAt(0) ||
-                            "U"
+                          user.email?.charAt(0) ||
+                          "U"
                         )}
                       </div>
                     )}
@@ -1178,12 +1181,13 @@ Join us at The African Table. Let's redesign the future, together.`,
                 Agenda
               </Link>
               <Link
-                to="/publications"
+                to="/spotlight"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Publications
+                Spotlight
               </Link>
+
               <Link
                 to="/meetings"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
@@ -1212,8 +1216,8 @@ Join us at The African Table. Let's redesign the future, together.`,
                         <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
                           {getInitials(
                             user.user_metadata?.full_name ||
-                              user.email?.charAt(0) ||
-                              "U"
+                            user.email?.charAt(0) ||
+                            "U"
                           )}
                         </div>
                       )}
@@ -1265,16 +1269,26 @@ Join us at The African Table. Let's redesign the future, together.`,
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h1 className="text-5xl font-bold mb-6">THE AFRICA ECONOMIC FORUM 2026</h1>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            ANNUAL THEME: Africa and Global Realignments: Investments, Alliances, and Strategic Opportunities <br/>
+            ANNUAL THEME: Africa and Global Realignments: Investments, Alliances, and Strategic Opportunities <br />
             Our Mantra: We Don't Just Talk. We Deal.
           </p>
-          <a 
-            href="/Brochure.pdf"
-            download="AEF-2026-Full-Agenda.pdf"
-            className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
-          >
-            Download Full Agenda
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href={i18n.language === 'fr' ? "/Brochure - 2026 FR-3_compressed 2.pdf" : "/Brochure - 2026 ANG-2_compressed 3.pdf"}
+              download={i18n.language === 'fr' ? "AEF-2026-Brochure-FR.pdf" : "AEF-2026-Brochure-EN.pdf"}
+              className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer transition-colors"
+            >
+              📄 {i18n.language === 'fr' ? 'Télécharger la Brochure (FR)' : 'Download Brochure (EN)'}
+            </a>
+            <a
+              href="/Partnership_Prospectus.pdf"
+              download="AEF-2026-Partnership-Prospectus.pdf"
+              className="bg-teal-600 text-white px-8 py-3 rounded-md hover:bg-teal-700 font-medium whitespace-nowrap cursor-pointer transition-colors"
+            >
+              <i className="ri-download-line mr-2"></i>
+              {i18n.language === 'fr' ? 'Télécharger Dossier de Partenariat' : 'Download Partnership Prospectus'}
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1354,7 +1368,7 @@ Join us at The African Table. Let's redesign the future, together.`,
             </div>
 
             {/* Modal Footer */}
-            <div className="sticky bottom-0 bg-gray-50 border-t p-6 flex justify-end space-x-4">
+            <div className="sticky bottom-0 bg-gray-50 border-t p-6 flex flex-col sm:flex-row justify-end gap-3">
               <button
                 onClick={() => setShowChairmanModal(false)}
                 className="px-6 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 font-medium cursor-pointer transition-colors"
@@ -1362,16 +1376,27 @@ Join us at The African Table. Let's redesign the future, together.`,
                 Close
               </button>
               <a
-                href="/Brochure.pdf"
-                download="AEF-2026-Full-Agenda.pdf"
+                href={i18n.language === 'fr' ? "/Brochure - 2026 FR-3_compressed 2.pdf" : "/Brochure - 2026 ANG-2_compressed 3.pdf"}
+                download={i18n.language === 'fr' ? "AEF-2026-Brochure-FR.pdf" : "AEF-2026-Brochure-EN.pdf"}
                 className="px-6 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 font-medium cursor-pointer transition-colors"
               >
-                Download Full Agenda
+                📄 {i18n.language === 'fr' ? 'Télécharger (FR)' : 'Download (EN)'}
+              </a>
+              <a
+                href="/Partnership_Prospectus.pdf"
+                download="AEF-2026-Partnership-Prospectus.pdf"
+                className="px-6 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 font-medium cursor-pointer transition-colors"
+              >
+                <i className="ri-download-line mr-2"></i>
+                {i18n.language === 'fr' ? 'Partenariat' : 'Partnership Prospectus'}
               </a>
             </div>
           </div>
         </div>
       )}
+
+
+
 
       {/* 2026 Journey Section */}
       <section className="py-20 bg-gray-50">
@@ -1404,7 +1429,7 @@ Join us at The African Table. Let's redesign the future, together.`,
 
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {event.title}
+                    {event.theme}
                   </h3>
                   <div className="flex items-center text-gray-600 mb-3">
                     <i className="ri-calendar-line mr-2"></i>
@@ -1822,14 +1847,14 @@ Join us at The African Table. Let's redesign the future, together.`,
       )}
 
       {/* Meeting Registration Form */}
-       <MeetingRegistrationForm
-         isOpen={isRegistrationOpen}
-         onClose={closeRegistration}
-         meetingTitle={registrationData.title}
-         meetingDate={registrationData.date}
-         submitUrl={registrationData.submitUrl}
-       />
-     </div>
-   );
- }
- // ...existing code...
+      <MeetingRegistrationForm
+        isOpen={isRegistrationOpen}
+        onClose={closeRegistration}
+        meetingTitle={registrationData.title}
+        meetingDate={registrationData.date}
+        submitUrl={registrationData.submitUrl}
+      />
+    </div>
+  );
+}
+// ...existing code...

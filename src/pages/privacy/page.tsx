@@ -14,10 +14,10 @@ export default function Privacy() {
   const handleSignInSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    
+
     if (email && password) {
       alert('Sign in successful! Welcome back.');
       setShowSignInModal(false);
@@ -29,18 +29,18 @@ export default function Privacy() {
   const handleCreateAccountSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const confirmPassword = formData.get('confirm_password') as string;
     const firstName = formData.get('first_name') as string;
     const lastName = formData.get('last_name') as string;
-    
+
     if (password !== confirmPassword) {
       alert('Passwords do not match. Please try again.');
       return;
     }
-    
+
     if (email && password && firstName && lastName) {
       alert('Account created successfully! Welcome to Africa Economic Forum.');
       setShowSignInModal(false);
@@ -70,10 +70,10 @@ export default function Privacy() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <a href="/" className="flex items-center">
-                <img 
-                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png" 
-                  alt="Africa Economic Forum" 
-                  className="h-10 w-auto" 
+                <img
+                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png"
+                  alt="Africa Economic Forum"
+                  className="h-10 w-auto"
                 />
               </a>
             </div>
@@ -104,14 +104,14 @@ export default function Privacy() {
               </a>
             </nav>
             <div className="hidden md:flex items-center space-x-4">
-              <button 
+              <button
                 onClick={handleSignIn}
                 className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
               >
                 Sign In
               </button>
             </div>
-            <button 
+            <button
               className="md:hidden p-2 cursor-pointer"
               onClick={toggleMobileMenu}
             >
@@ -162,7 +162,7 @@ export default function Privacy() {
       </header>
 
       {/* Hero Section */}
-      <section 
+      <section
         className="relative py-32 bg-cover bg-center"
         style={{
           backgroundImage: `linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://readdy.ai/api/search-image?query=Legal%20documents%20and%20privacy%20protection%20symbols%2C%20professional%20law%20office%20with%20legal%20books%20and%20scales%20of%20justice%2C%20data%20protection%20and%20privacy%20concepts%2C%20modern%20legal%20environment&width=1920&height=800&seq=privacy-hero&orientation=landscape')`
@@ -178,12 +178,12 @@ export default function Privacy() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
-            
+
             {/* Privacy Policy */}
             <div className="mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-8">Privacy Policy</h2>
               <p className="text-gray-600 mb-8">Last updated: January 2025</p>
-              
+
               <div className="space-y-8">
                 <div>
                   <h3 className="text-2xl font-semibold text-gray-900 mb-4">1. Information We Collect</h3>
@@ -270,7 +270,7 @@ export default function Privacy() {
             <div className="border-t border-gray-200 pt-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h2>
               <p className="text-gray-600 mb-8">Last updated: January 2025</p>
-              
+
               <div className="space-y-8">
                 <div>
                   <h3 className="text-2xl font-semibold text-gray-900 mb-4">1. Acceptance of Terms</h3>
@@ -369,7 +369,7 @@ export default function Privacy() {
                 <h3 className="text-2xl font-bold text-gray-900">
                   {showCreateAccount ? 'Create Account' : 'Sign In'}
                 </h3>
-                <button 
+                <button
                   onClick={() => setShowSignInModal(false)}
                   className="text-gray-400 hover:text-gray-600 cursor-pointer"
                 >
@@ -382,41 +382,41 @@ export default function Privacy() {
                   <form onSubmit={handleSignInSubmit} className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                      <input 
-                        type="email" 
-                        name="email" 
-                        required 
+                      <input
+                        type="email"
+                        name="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Enter your email address"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
-                      <input 
-                        type="password" 
-                        name="password" 
-                        required 
+                      <input
+                        type="password"
+                        name="password"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Enter your password"
                       />
                     </div>
                     <div className="flex items-center justify-between">
                       <label className="flex items-center space-x-2">
-                        <input 
-                          type="checkbox" 
-                          name="remember_me" 
+                        <input
+                          type="checkbox"
+                          name="remember_me"
                           className="cursor-pointer"
                         />
                         <span className="text-sm text-gray-600">Remember me</span>
                       </label>
-                      <button 
+                      <button
                         type="button"
                         className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer"
                       >
                         Forgot password?
                       </button>
                     </div>
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
                     >
@@ -425,8 +425,8 @@ export default function Privacy() {
                   </form>
                   <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600">
-                      Don't have an account? 
-                      <button 
+                      Don't have an account?
+                      <button
                         onClick={switchToCreateAccount}
                         className="text-blue-600 hover:text-blue-800 font-medium ml-1 cursor-pointer"
                       >
@@ -441,20 +441,20 @@ export default function Privacy() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                        <input 
-                          type="text" 
-                          name="first_name" 
-                          required 
+                        <input
+                          type="text"
+                          name="first_name"
+                          required
                           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                           placeholder="First name"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                        <input 
-                          type="text" 
-                          name="last_name" 
-                          required 
+                        <input
+                          type="text"
+                          name="last_name"
+                          required
                           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                           placeholder="Last name"
                         />
@@ -462,47 +462,47 @@ export default function Privacy() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                      <input 
-                        type="email" 
-                        name="email" 
-                        required 
+                      <input
+                        type="email"
+                        name="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Enter your email address"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Organization</label>
-                      <input 
-                        type="text" 
-                        name="organization" 
+                      <input
+                        type="text"
+                        name="organization"
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Your organization"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Password *</label>
-                      <input 
-                        type="password" 
-                        name="password" 
-                        required 
+                      <input
+                        type="password"
+                        name="password"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Create a password"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password *</label>
-                      <input 
-                        type="password" 
-                        name="confirm_password" 
-                        required 
+                      <input
+                        type="password"
+                        name="confirm_password"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         placeholder="Confirm your password"
                       />
                     </div>
                     <div className="flex items-start space-x-3">
-                      <input 
-                        type="checkbox" 
-                        name="terms_agreement" 
+                      <input
+                        type="checkbox"
+                        name="terms_agreement"
                         required
                         className="mt-1 cursor-pointer"
                       />
@@ -511,8 +511,8 @@ export default function Privacy() {
                       </span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <input 
-                        type="checkbox" 
+                      <input
+                        type="checkbox"
                         name="newsletter_consent"
                         className="mt-1 cursor-pointer"
                       />
@@ -520,7 +520,7 @@ export default function Privacy() {
                         I would like to receive updates about Forum activities and events
                       </span>
                     </div>
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
                     >
@@ -529,8 +529,8 @@ export default function Privacy() {
                   </form>
                   <div className="mt-6 text-center">
                     <p className="text-sm text-gray-600">
-                      Already have an account? 
-                      <button 
+                      Already have an account?
+                      <button
                         onClick={switchToSignIn}
                         className="text-blue-600 hover:text-blue-800 font-medium ml-1 cursor-pointer"
                       >
@@ -644,7 +644,7 @@ export default function Privacy() {
               </div>
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
                 <a href="/privacy" className="hover:text-white cursor-pointer">Privacy Policy &amp; Terms of Service</a>
-              
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

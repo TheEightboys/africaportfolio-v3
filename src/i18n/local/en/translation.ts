@@ -1,0 +1,211 @@
+const translation = {
+  header: {
+    home: 'Home',
+    about: 'About',
+    initiatives: 'Initiatives',
+    stakeholders: 'Stakeholders',
+    agenda: 'Agenda',
+    publications: 'Publications',
+    meetings: 'Meetings',
+    contact: 'Contact',
+    signIn: 'Sign In'
+  },
+  meetingsPage: {
+    heroTitle: 'Specialized Forums',
+    heroSubtitle:
+      "Sector-specific gatherings that drive targeted solutions and create tangible outcomes for Africa's economic transformation.",
+    sectionTitle: 'Our Specialized Forums',
+    sectionSubtitle:
+      'Each forum is designed to address specific challenges and opportunities, bringing together the right stakeholders to create actionable solutions.',
+    readMore: 'Read More',
+    showLess: 'Show Less'
+  },
+  cta: {
+    title: 'Join the Conversation',
+    subtitle:
+      "Be part of Africa's transformation. Connect with leaders, share insights, and contribute to solutions that will shape the continent's future.",
+    register: 'Register for Forums',
+    contact: 'Contact Us'
+  },
+  footer: {
+    aboutUs: 'About us',
+    ourMission: 'Our mission',
+    ourFramework: 'Our Institutional Framework',
+    history: 'History',
+    leadership: 'Leadership and governance',
+    ourImpact: 'Our Impact',
+    moreFromForum: 'More from the Forum',
+    centres: 'Centres',
+    meetings: 'Meetings',
+    stakeholders: 'Stakeholders',
+    forumStories: 'Forum Stories',
+    pressReleases: 'Press releases',
+    gallery: 'Photo gallery',
+    podcasts: 'Podcasts',
+    videos: 'Videos',
+    engage: 'Engage with us',
+    signIn: 'Sign in',
+    logout: 'Logout',
+    partner: 'Partner with us',
+    member: 'Become a member',
+    pressSignUp: 'Sign up for our press releases',
+    newsletters: 'Subscribe to our newsletters',
+    contactUs: 'Contact us',
+    quickLinks: 'Quick links',
+    sustainability: 'Sustainability at the Forum',
+    careers: 'Careers',
+    languageEditions: 'Language editions',
+    privacy: 'Privacy Policy & Terms of Service',
+    copyright: '© 2025 Africa Economic Forum'
+  },
+  forums: [
+    {
+      id: 1,
+      title: 'Africa Agriculture & Food Forum (AAFF)',
+      description:
+        'Transforming African agriculture from subsistence farming to a modern, productive, and sustainable system.',
+      image: '/images/africafood.jpg',
+      overview:
+        "The Agriculture and Food Security Forum addresses one of Africa's most critical development challenges and opportunities. Despite possessing over 60% of the world's uncultivated arable land, Africa continues to face persistent food insecurity and agricultural productivity issues. This forum serves as a dedicated platform to transform African agriculture from subsistence farming to a modern, productive, and sustainable system that can ensure food security for the continent's growing population while creating economic prosperity. The forum aligns with the African Union's Comprehensive Africa Agriculture Development Programme (CAADP) and focuses on promoting agricultural innovation, sustainable practices, value chain development, and investment in agribusiness.",
+      keyAreas: [
+        'Modernizing farming practices through adoption of advanced technologies, precision agriculture, and climate-resilient techniques',
+        'Developing integrated value chains that connect smallholder farmers to markets, processing facilities, and distribution networks',
+        "Promoting sustainable land management and water conservation practices to preserve Africa's agricultural resources",
+        'Facilitating investment in agricultural infrastructure, processing facilities, and storage capabilities to reduce post-harvest losses',
+        'Advancing policy reforms that support agricultural development, cross-border trade, and private sector investment'
+      ]
+    },
+    {
+      id: 2,
+      title: 'Africa Energy & Infrastructure Forum',
+      description:
+        'Mobilizing capital and expertise to build world-class infrastructure that connects Africa and drives economic growth.',
+      image: '/images/africaenergi.jpg',
+      overview:
+        "The Infrastructure Investment Forum is designed to address Africa's massive infrastructure deficit, which is estimated to require over $130 billion annually. This forum brings together governments, development finance institutions, private investors, and infrastructure companies to unlock the capital needed for transformational projects across the continent. The forum focuses on transportation networks, energy systems, telecommunications infrastructure, and urban development projects that will connect African markets, reduce trade costs, and improve quality of life for millions of people.",
+      keyAreas: [
+        'Transportation infrastructure including highways, railways, ports, and airports to enhance regional connectivity',
+        'Energy infrastructure development focusing on renewable energy, grid modernization, and rural electrification',
+        'Digital infrastructure expansion including fiber optic networks, data centers, and telecommunications systems',
+        'Water and sanitation infrastructure to support urban growth and improve public health outcomes',
+        'Public-private partnership models that leverage both public resources and private sector efficiency'
+      ]
+    },
+    {
+      id: 3,
+      title: 'Africa Mining & Minerals Forum (AMMF)',
+      description:
+        'Moving Africa from mere mineral extraction to value-chain dominance through local beneficiation and ESG-compliant mining.',
+      image: '/images/miningafrica.jpg',
+      overview:
+        "Africa's minerals are the bedrock of the global energy transition. This forum is dedicated to moving the continent from mere extraction to value-chain dominance. We focus on local beneficiation, ESG-compliant mining, and financing mineral processing plants. The forum directly connects African Mining Ministers with battery manufacturers, EV automakers, and green-tech investors to negotiate deals that retain value and jobs on the continent.",
+      keyAreas: [
+        'Local beneficiation and value chain development for critical minerals',
+        'ESG-compliant mining practices and green mining agreements',
+        'Mine-to-manufacture joint ventures with global manufacturers',
+        'Critical minerals supply contracts for the energy transition',
+        'Strategic partnerships between African mining ministries and global tech companies'
+      ]
+    },
+    {
+      id: 4,
+      title: 'Africa Digital Economy & Tech Forum (ADETF)',
+      description:
+        "Igniting Africa's digital economy through innovation, venture capital, and strategic technology partnerships.",
+      image: '/images/africatechforum.jpg',
+      overview:
+        "Africa's tech revolution is reshaping its economic destiny. This forum is a dynamic, high-energy showcase of innovation, from FinTech and EdTech to HealthTech and CleanTech. It is designed as a massive platform for startups to pitch to global VCs, for corporates to find tech solutions, and for governments to articulate their digital economy strategies. The forum promotes digital sovereignty and local capacity building for long-term growth.",
+      keyAreas: [
+        'FinTech innovation: payments, lending, and blockchain solutions',
+        'HealthTech and EdTech: solving human capital challenges at scale',
+        'ClimateTech: AI for agriculture, green energy, and ESG data',
+        'Venture capital funding and tech startup ecosystem development',
+        'Digital sovereignty and platform building for African markets'
+      ]
+    },
+    {
+      id: 5,
+      title: 'Africa Wealth Forum (AWF)',
+      description:
+        'Mobilizing African and global wealth for long-term investment, sovereign growth, and strategic capital alignment.',
+      image: '/images/africawelth.jpeg',
+      overview:
+        'The Africa Wealth Forum (AWF) is the flagship platform of the Africa Economic Forum dedicated to mobilizing, structuring, and aligning African and global wealth toward long-term, strategic, and sovereign development. Organized under the aegis of the Africa Economic Forum, the AWF brings together family offices, institutional investors, sovereign wealth actors, private banks, asset managers, and strategic capital partners to reposition African wealth as a driver of continental transformation. The Forum is designed as a permanent platform for dialogue, deal-making, and strategic alignment — ensuring that African and diaspora capital plays a central role in financing Africa’s future priorities.',
+      keyAreas: [
+        'Mobilization of African and diaspora private wealth',
+        'Alignment of long-term capital with sovereign development priorities',
+        'Structuring of cross-border investment platforms',
+        'Wealth deployment into strategic sectors (infrastructure, energy, health, tech, agribusiness)',
+        'Intergenerational wealth strategy and legacy investment frameworks'
+      ],
+      stakeholders: [
+        'Family Offices & Ultra-High-Net-Worth Individuals',
+        'Private Banks & Wealth Managers',
+        'Institutional Investors & Asset Managers',
+        'Sovereign Wealth & Strategic Capital Vehicles',
+        'Diaspora Investment Platforms',
+        'Philanthropic & Impact Investment Leaders'
+      ],
+      purpose:
+        'The Africa Wealth Forum positions wealth not only as capital, but as a strategic instrument for sovereignty, resilience, and long-term prosperity — ensuring that African wealth is a central pillar of Africa’s economic future.'
+    },
+    {
+      id: 6,
+      title: 'Africa Women Forum',
+      description: 'Establish the women\'s economic leadership agenda as the cornerstone of continental sovereignty.',
+      image: '/images/africa-lead.jpg',
+      overview: 'The Africa Women Forum moves beyond empowerment rhetoric to focus on women as essential architects of economic resilience, strategic decision-makers, and drivers of inclusive growth. The agenda is designed to secure tangible leadership roles, investment capital, and procurement opportunities for women, integrating their influence directly into the continent\'s sovereign agenda.',
+      keyAreas: [
+        'Policy Architecture: Designing Africa\'s Gender Economic Agenda',
+        'Capital Connectivity: Women-Backed Enterprises Investment Fund',
+        'Strategic Alliance Building: Partnerships across sectors and borders',
+        'Financial Inclusion Architecture and Access to Capital',
+        'Digital Economy Governance and Women\'s Leadership'
+      ]
+    },
+    {
+      id: 7,
+      title: 'Africa Tourism & Trade Forum',
+      description: 'Selling the African experience to the world and dismantling barriers to intra-African trade.',
+      image: '/images/africatourism.jpg',
+      overview: 'This forum is dedicated to selling the African experience to the world and dismantling barriers to intra-African trade. We target global hotel chains, airlines, tour operators, and retail giants, focusing on high-value tourism (eco, cultural, luxury) and the practical implementation of the AfCFTA.',
+      keyAreas: [
+        'Luxury Eco-Tourism and Conservation-Led Development',
+        'Film, Music, and Cultural Festivals as Economic Drivers',
+        'The Single African Air Transport Market – Making Travel Seamless',
+        'Cross-border Trade and Retail Partnerships',
+        'High-Value Tourism Investment'
+      ]
+    },
+    {
+      id: 8,
+      title: 'Africa Health Forum',
+      description: 'Building Resilient Health Systems and investing in human capital.',
+      image: '/images/africahealth.jpg',
+      overview: 'A healthy population is the core of economic productivity and sovereignty. This forum addresses Africa\'s healthcare infrastructure gap and its burgeoning pharmaceutical market. It brings together hospital groups, pharma manufacturers, medical tech companies, and impact investors to forge partnerships for building diagnostic centers, local vaccine production, and deploying scalable health-tech solutions.',
+      keyAreas: [
+        'The Hospital of the Future – PPPs for Tertiary Care and Diagnostic Centers',
+        'Pharma & Vaccines – Building Local Manufacturing Capacity',
+        'Telehealth and AI – Democratizing Access to Quality Care',
+        'Health Sovereignty and Local Vaccine Production',
+        'Health Infrastructure Investment'
+      ]
+    },
+    {
+      id: 9,
+      title: 'Africa Economic Forum Cooperation Summit',
+      description: 'The strategic launchpad for the year, integrating macroeconomic strategy with the core pillars of sovereignty.',
+      image: '/images/annual.jpg',
+      overview: 'The Cooperation Summit is the strategic launchpad for the year, where we convene at the diplomatic heart of Africa. It integrates macroeconomic strategy with the core pillars of sovereignty—fiscal policy, security, energy independence, and food security. The focus is on defining the "rules of the game" for the year ahead: how African nations leverage their assets to negotiate from a position of strength in a realigning world.',
+      keyAreas: [
+        'The Addis Ababa Consensus (a strategic framework for investment & sovereignty)',
+        'Bilateral Cooperation Agreements',
+        'Sovereign Wealth Fund Strategies',
+        'Regional Security Pacts',
+        'Africa in the Geopolitics of Investment'
+      ]
+    }
+  ]
+};
+
+export default translation;

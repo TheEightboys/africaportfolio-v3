@@ -38,7 +38,7 @@ export default function Contact() {
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     try {
       const response = await fetch('https://readdy.ai/api/form/d3edvgd2v2m9odki5mm0', {
         method: 'POST',
@@ -47,7 +47,7 @@ export default function Contact() {
         },
         body: new URLSearchParams(formData as any).toString()
       });
-      
+
       if (response.ok) {
         setFormSubmitted(true);
         (e.target as HTMLFormElement).reset();
@@ -59,29 +59,7 @@ export default function Contact() {
     }
   };
 
-  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    try {
-      const response = await fetch('https://readdy.ai/api/form/d3edvgd2v2m9odki5mlg', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(formData as any).toString()
-      });
-      
-      if (response.ok) {
-        alert('Successfully subscribed to our newsletter!');
-        (e.target as HTMLFormElement).reset();
-      } else {
-        alert('Subscription failed. Please try again.');
-      }
-    } catch (error) {
-      alert('Subscription failed. Please try again.');
-    }
-  };
+
 
   const switchToCreateAccount = () => {
     setShowCreateAccount(true);
@@ -150,10 +128,10 @@ export default function Contact() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <img 
-                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png" 
-                  alt="Africa Economic Forum" 
-                  className="h-10 w-auto" 
+                <img
+                  src="https://static.readdy.ai/image/433d1257c1dbc1f8bb2f3f1c418f6689/0727857f21d196505f8ef18cfc1cd897.png"
+                  alt="Africa Economic Forum"
+                  className="h-10 w-auto"
                 />
               </Link>
             </div>
@@ -173,9 +151,10 @@ export default function Contact() {
               <Link to="/agenda" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Agenda
               </Link>
-              <Link to="/publications" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
-                Publications
+              <Link to="/spotlight" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
+                Spotlight
               </Link>
+
               <Link to="/meetings" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Meetings
               </Link>
@@ -228,7 +207,7 @@ export default function Contact() {
                   )}
                 </div>
               ) : (
-                <Link 
+                <Link
                   to="/signin"
                   className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
                 >
@@ -237,7 +216,7 @@ export default function Contact() {
               )}
             </div>
 
-            <button 
+            <button
               className="md:hidden p-2 cursor-pointer"
               onClick={toggleMobileMenu}
             >
@@ -265,9 +244,10 @@ export default function Contact() {
               <Link to="/agenda" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
                 Agenda
               </Link>
-              <Link to="/publications" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
-                Publications
+              <Link to="/spotlight" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
+                Spotlight
               </Link>
+
               <Link to="/meetings" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md">
                 Meetings
               </Link>
@@ -293,7 +273,7 @@ export default function Contact() {
                       )}
                       <span className="text-gray-700 font-medium">{user.user_metadata?.full_name || 'User'}</span>
                     </div>
-                    <button 
+                    <button
                       onClick={() => {
                         handleViewProfile();
                         setIsMobileMenuOpen(false);
@@ -302,7 +282,7 @@ export default function Contact() {
                     >
                       View Profile
                     </button>
-                    <button 
+                    <button
                       onClick={() => {
                         handleSignOut();
                         setIsMobileMenuOpen(false);
@@ -313,7 +293,7 @@ export default function Contact() {
                     </button>
                   </div>
                 ) : (
-                  <Link 
+                  <Link
                     to="/signin"
                     className="w-full bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer block text-center"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -330,7 +310,7 @@ export default function Contact() {
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <section 
+        <section
           className="relative py-32 bg-cover bg-center"
           style={{
             backgroundImage: `linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://readdy.ai/api/search-image?query=Modern%20African%20business%20office%20with%20professional%20staff%20ready%20to%20assist%2C%20customer%20service%20representatives%20in%20contemporary%20workspace%20with%20communication%20technology&width=1920&height=800&seq=contact-hero&orientation=landscape')`
@@ -350,11 +330,11 @@ export default function Contact() {
                 <div>
                   <h2 className="text-4xl font-bold text-gray-900 mb-6">Send us a message</h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    Whether you're interested in partnership opportunities, have questions about our programs, 
+                    Whether you're interested in partnership opportunities, have questions about our programs,
                     or want to contribute to our mission, we'd love to hear from you.
                   </p>
                 </div>
-                
+
                 {formSubmitted ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                     <div className="flex items-center">
@@ -364,7 +344,7 @@ export default function Contact() {
                         <p className="text-green-700">Thank you for contacting us. We'll get back to you within 24 hours.</p>
                       </div>
                     </div>
-                    <button 
+                    <button
                       onClick={() => setFormSubmitted(false)}
                       className="mt-4 text-green-600 hover:text-green-800 font-medium cursor-pointer"
                     >
@@ -376,55 +356,55 @@ export default function Contact() {
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                        <input 
-                          type="text" 
-                          name="first_name" 
-                          required 
+                        <input
+                          type="text"
+                          name="first_name"
+                          required
                           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                        <input 
-                          type="text" 
-                          name="last_name" 
-                          required 
+                        <input
+                          type="text"
+                          name="last_name"
+                          required
                           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                      <input 
-                        type="email" 
-                        name="email" 
-                        required 
+                      <input
+                        type="email"
+                        name="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Organization</label>
-                        <input 
-                          type="text" 
-                          name="organization" 
+                        <input
+                          type="text"
+                          name="organization"
                           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                        <input 
-                          type="tel" 
-                          name="phone" 
+                        <input
+                          type="tel"
+                          name="phone"
                           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                         />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                      <select 
-                        name="subject" 
-                        required 
+                      <select
+                        name="subject"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm pr-8"
                       >
                         <option value="">Select a subject</option>
@@ -438,8 +418,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                      <textarea 
-                        name="message" 
+                      <textarea
+                        name="message"
                         rows={6}
                         required
                         maxLength={500}
@@ -450,9 +430,9 @@ export default function Contact() {
                     </div>
                     <div>
                       <label className="flex items-start space-x-3">
-                        <input 
-                          type="checkbox" 
-                          name="newsletter_consent" 
+                        <input
+                          type="checkbox"
+                          name="newsletter_consent"
                           value="yes"
                           className="mt-1 cursor-pointer"
                         />
@@ -461,7 +441,7 @@ export default function Contact() {
                         </span>
                       </label>
                     </div>
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
                     >
@@ -575,85 +555,7 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Newsletter Section */}
-        <section className="py-20 bg-blue-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h2 className="text-4xl font-bold">Stay Connected</h2>
-                <p className="text-xl text-blue-100">
-                  Subscribe to our newsletter for the latest updates on African economic development, 
-                  upcoming events, and exclusive insights from our experts.
-                </p>
-                <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
-                    <i className="ri-facebook-fill text-xl"></i>
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
-                    <i className="ri-twitter-x-fill text-xl"></i>
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
-                    <i className="ri-linkedin-fill text-xl"></i>
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer">
-                    <i className="ri-instagram-fill text-xl"></i>
-                  </a>
-                </div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8">
-                <h3 className="text-2xl font-bold mb-6">Newsletter Subscription</h3>
-                <form onSubmit={handleNewsletterSubmit} data-readdy-form id="newsletter-subscription" className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-blue-100 mb-2">Email Address *</label>
-                    <input 
-                      type="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-md focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-blue-200 text-sm"
-                      placeholder="Enter your email address"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-blue-100 mb-2">Name</label>
-                    <input 
-                      type="text"
-                      name="name"
-                      className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-md focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-blue-200 text-sm"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-blue-100 mb-2">Interests</label>
-                    <div className="space-y-2">
-                      <label className="flex items-center space-x-3">
-                        <input type="checkbox" name="interests" value="Economic Policy" className="cursor-pointer" />
-                        <span className="text-sm text-blue-100">Economic Policy</span>
-                      </label>
-                      <label className="flex items-center space-x-3">
-                        <input type="checkbox" name="interests" value="Technology Innovation" className="cursor-pointer" />
-                        <span className="text-sm text-blue-100">Technology Innovation</span>
-                      </label>
-                      <label className="flex items-center space-x-3">
-                        <input type="checkbox" name="interests" value="Sustainable Development" className="cursor-pointer" />
-                        <span className="text-sm text-blue-100">Sustainable Development</span>
-                      </label>
-                      <label className="flex items-center space-x-3">
-                        <input type="checkbox" name="interests" value="Events & Meetings" className="cursor-pointer" />
-                        <span className="text-sm text-blue-100">Events & Meetings</span>
-                      </label>
-                    </div>
-                  </div>
-                  <button 
-                    type="submit"
-                    className="w-full bg-white text-blue-900 px-6 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
-                  >
-                    Subscribe Now
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
+
       </main>
 
       {/* Sign In Modal */}
@@ -952,7 +854,7 @@ export default function Contact() {
               </div>
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
                 <Link to="/privacy" className="hover:text-white cursor-pointer">Privacy Policy &amp; Terms of Service</Link>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

@@ -2,132 +2,13 @@
 import { useState } from 'react';
 
 export default function InvestorsPage() {
-  const [showSignInModal, setShowSignInModal] = useState(false);
   const [showMembershipForm, setShowMembershipForm] = useState(false);
-
-  const handleSignIn = () => {
-    setShowSignInModal(true);
-  };
-
-  const handleSignInSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const formData = new FormData(e.currentTarget);
-      const email = formData.get('email') as string;
-      const password = formData.get('password') as string;
-
-      if (email && password) {
-        alert('Login successful! Welcome back.');
-        setShowSignInModal(false);
-      } else {
-        alert('Please fill in all required fields.');
-      }
-    } catch (err) {
-      console.error('Login error:', err);
-      alert('An unexpected error occurred. Please try again later.');
-    }
-  };
 
   const handleMembershipSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const formData = new FormData(e.currentTarget);
-      const organizationName = formData.get('organization_name') as string;
-      const contactName = formData.get('contact_name') as string;
-      const email = formData.get('email') as string;
-      const phone = formData.get('phone') as string;
-      const investorType = formData.get('investor_type') as string;
-      const investmentFocus = formData.get('investment_focus') as string;
-
-      if (organizationName && contactName && email && phone && investorType && investmentFocus) {
-        alert('Membership application submitted successfully! We will contact you within 48 hours to discuss exclusive opportunities.');
-        setShowMembershipForm(false);
-      } else {
-        alert('Please fill in all required fields.');
-      }
-    } catch (err) {
-      console.error('Membership application error:', err);
-      alert('An unexpected error occurred. Please try again later.');
-    }
+    alert('Membership application submitted successfully! We will contact you within 48 hours.');
+    setShowMembershipForm(false);
   };
-
-  const benefits = [
-    {
-      icon: 'ri-eye-line',
-      title: 'Curated Deal Pipeline',
-      description: 'Access to pre-screened, high-potential investment opportunities across Africa.'
-    },
-    {
-      icon: 'ri-shield-check-line',
-      title: 'Private Deal Rooms',
-      description: 'Exclusive access to confidential investment opportunities and due diligence materials.'
-    },
-    {
-      icon: 'ri-group-line',
-      title: 'Investor Networking',
-      description: 'Connect with leading global investors, family offices, and institutional funds.'
-    },
-    {
-      icon: 'ri-bar-chart-line',
-      title: 'Market Intelligence',
-      description: 'Comprehensive market analysis, sector reports, and investment trends across Africa.'
-    },
-    {
-      icon: 'ri-handshake-line',
-      title: 'Co-Investment Opportunities',
-      description: 'Participate in syndicated deals with other alliance members and strategic partners.'
-    },
-    {
-      icon: 'ri-calendar-line',
-      title: 'Exclusive Events',
-      description: 'Private investor roundtables, deal showcases, and strategic partnership meetings.'
-    }
-  ];
-
-  const memberInvestors = [
-    {
-      name: 'Africa Finance Corporation',
-      type: 'Development Finance',
-      country: 'Nigeria',
-      description: 'Leading pan-African multilateral development finance institution with $9 billion in assets.',
-      logo: 'https://readdy.ai/api/search-image?query=Africa%20Finance%20Corporation%20AFC%20logo%2C%20Nigerian%20development%20finance%20institution%20branding%2C%20multilateral%20financial%20organization%20logo&width=120&height=80&seq=afc-logo&orientation=landscape'
-    },
-    {
-      name: 'TLcom Capital',
-      type: 'Venture Capital',
-      country: 'Kenya/UK',
-      description: 'Africa-focused VC firm investing in scalable tech companies across the continent.',
-      logo: 'https://readdy.ai/api/search-image?query=TLcom%20Capital%20venture%20capital%20logo%2C%20African%20tech%20investment%20firm%20branding%2C%20VC%20company%20logo%20design&width=120&height=80&seq=tlcom-logo&orientation=landscape'
-    },
-    {
-      name: 'Helios Investment Partners',
-      type: 'Private Equity',
-      country: 'UK/Nigeria',
-      description: 'Premier Africa-focused private equity firm with over $4 billion in assets under management.',
-      logo: 'https://readdy.ai/api/search-image?query=Helios%20Investment%20Partners%20private%20equity%20logo%2C%20African%20investment%20firm%20branding%2C%20PE%20company%20logo%20design&width=120&height=80&seq=helios-logo&orientation=landscape'
-    },
-    {
-      name: 'Partech Africa',
-      type: 'Venture Capital',
-      country: 'Senegal/France',
-      description: 'Leading VC fund dedicated to African tech startups with $143 million fund.',
-      logo: 'https://readdy.ai/api/search-image?query=Partech%20Africa%20venture%20capital%20logo%2C%20African%20tech%20startup%20investment%20firm%20branding%2C%20VC%20fund%20logo&width=120&height=80&seq=partech-logo&orientation=landscape'
-    },
-    {
-      name: 'Development Bank of Southern Africa',
-      type: 'Development Finance',
-      country: 'South Africa',
-      description: 'Development finance institution focused on infrastructure and economic development.',
-      logo: 'https://readdy.ai/api/search-image?query=Development%20Bank%20of%20Southern%20Africa%20DBSA%20logo%2C%20South%20African%20development%20finance%20institution%20branding&width=120&height=80&seq=dbsa-logo&orientation=landscape'
-    },
-    {
-      name: 'Novastar Ventures',
-      type: 'Impact Investment',
-      country: 'Kenya',
-      description: 'Impact investor focused on scalable businesses serving low-income populations in Africa.',
-      logo: 'https://readdy.ai/api/search-image?query=Novastar%20Ventures%20impact%20investment%20logo%2C%20Kenyan%20impact%20investor%20branding%2C%20social%20impact%20fund%20logo&width=120&height=80&seq=novastar-logo&orientation=landscape'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -170,283 +51,255 @@ export default function InvestorsPage() {
                 Contact
               </a>
             </nav>
-            <div className="hidden md:flex items-center space-x-4">
-              <button
-                onClick={handleSignIn}
-                className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
-              >
-                Sign In
-              </button>
-            </div>
-            <button className="md:hidden p-2 cursor-pointer">
-              <i className="ri-menu-line text-2xl"></i>
-            </button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section
-        className="relative py-32 bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('https://readdy.ai/api/search-image?query=International%20investors%20and%20venture%20capitalists%20in%20elegant%20conference%20room%2C%20financial%20charts%20and%20African%20market%20data%20on%20screens%2C%20sophisticated%20investment%20meeting%20atmosphere&width=1920&height=800&seq=investors-hero&orientation=landscape')`,
-        }}
-      >
+      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white">
-            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="ri-funds-line text-3xl text-white"></i>
-            </div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-6">AEF Investors Alliance</h1>
-            <p className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-              Global financiers, family offices, venture capitalists, and strategic investors committed to Africa's growth. 
-              Members gain access to a curated investment pipeline, private deal rooms, and high-level networking with Africa's most promising ventures.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Alliance Benefits */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Alliance Benefits</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Join Africa's premier investor network and unlock exclusive access to the continent's most promising investment opportunities.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className={`${benefit.icon} text-2xl text-green-600`}></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+                  AEF Investors Alliance
+                </h1>
+                <h2 className="text-2xl text-blue-100 italic">
+                  A Global Coalition Driving Africa's Economic Transformation <br />
+                  <span className="text-xl">Une coalition mondiale pour la transformation économique de l'Afrique</span>
+                </h2>
+                <p className="text-lg text-blue-100 leading-relaxed">
+                  The AEF Investors Alliance is a global network of visionary investors, sovereign wealth funds, development banks, venture capitalists, private equity firms, family offices, and strategic partners committed to financing Africa's future.
+                </p>
+                <p className="text-base text-blue-100 leading-relaxed">
+                  Initiated by the Africa Economic Forum, the Alliance is designed to foster long-term partnerships, structured co-investment platforms, and sovereign growth strategies aligned with Africa's emerging priorities, including infrastructure, green energy, digital economy, healthcare, food security, and industrialization.
+                </p>
+                <p className="text-base text-blue-100 leading-relaxed">
+                  The Alliance serves as a trusted institutional interface between global capital and African governments, projects, and execution ecosystems, ensuring that investment flows are aligned with national development priorities and long-term value creation.
+                </p>
+                <button
+                  onClick={() => setShowMembershipForm(true)}
+                  className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
+                >
+                  Apply for Membership
+                </button>
               </div>
-            ))}
+            </div>
+            <div className="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=International%20investors%20and%20venture%20capitalists%20in%20elegant%20conference%20room%2C%20financial%20charts%20and%20African%20market%20data%20on%20screens%2C%20sophisticated%20investment%20meeting%20atmosphere&width=600&height=400&seq=investors&orientation=landscape"
+                alt="AEF Investors Alliance"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Investment Focus Areas */}
+      {/* Main Content - Strategic Investment Platform */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Investment Focus Areas</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our alliance members are actively investing across key sectors driving Africa's economic transformation.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-smartphone-line text-2xl text-blue-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Fintech</h3>
-              <p className="text-gray-600 text-sm">Digital payments, lending, and financial inclusion solutions</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-leaf-line text-2xl text-green-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Agritech</h3>
-              <p className="text-gray-600 text-sm">Agricultural technology and food security innovations</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-health-book-line text-2xl text-purple-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Healthtech</h3>
-              <p className="text-gray-600 text-sm">Digital health solutions and medical technology</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-graduation-cap-line text-2xl text-orange-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Edtech</h3>
-              <p className="text-gray-600 text-sm">Educational technology and skills development platforms</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-flashlight-line text-2xl text-red-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Energy</h3>
-              <p className="text-gray-600 text-sm">Renewable energy and clean technology solutions</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-truck-line text-2xl text-indigo-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Logistics</h3>
-              <p className="text-gray-600 text-sm">Supply chain and transportation technology</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-building-line text-2xl text-teal-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Real Estate</h3>
-              <p className="text-gray-600 text-sm">Property technology and urban development</p>
-            </div>
-            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <i className="ri-shopping-cart-line text-2xl text-yellow-600"></i>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">E-commerce</h3>
-              <p className="text-gray-600 text-sm">Online retail and marketplace platforms</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Alliance Members */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Distinguished Alliance Members</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Join leading investors who are actively shaping Africa's investment landscape and driving economic growth.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {memberInvestors.map((investor, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
-                <div className="flex items-center mb-4">
-                  <img
-                    src={investor.logo}
-                    alt={`${investor.name} logo`}
-                    className="w-16 h-12 object-contain mr-4"
-                  />
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <h2 className="text-4xl font-bold text-gray-900">Strategic Investment Platform</h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                The AEF Investors Alliance is not a traditional investor network. It is a sovereign-aligned investment platform designed to connect capital with policy, execution, and long-term development strategies across Africa. The Alliance enables structured engagement between investors and African leadership to unlock large-scale, bankable opportunities and facilitate durable capital deployment.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i className="ri-auction-line text-blue-600 text-xl"></i>
+                  </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{investor.name}</h3>
-                    <p className="text-sm text-gray-500">{investor.country}</p>
+                    <h3 className="font-semibold text-gray-900 text-xl mb-2">Investment Missions & Deal Rooms</h3>
+                    <p className="text-gray-600">Private investment missions and structured deal rooms that bring together investors, governments, project sponsors, and institutions to originate, evaluate, and close high-impact transactions across priority sectors.</p>
                   </div>
                 </div>
-                <div className="mb-3">
-                  <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
-                    {investor.type}
-                  </span>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i className="ri-government-line text-green-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-xl mb-2">Policy Dialogue with African Leaders</h3>
+                    <p className="text-gray-600">Direct dialogue platforms with heads of state, ministers, and senior policymakers to align investment strategies with regulatory frameworks, national priorities, and sovereign development agendas.</p>
+                  </div>
                 </div>
-                <p className="text-gray-600 text-sm">{investor.description}</p>
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <i className="ri-line-chart-line text-purple-600 text-xl"></i>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 text-xl mb-2">Sovereign Growth Partnerships & Impact Portfolios</h3>
+                    <p className="text-gray-600">Development of sovereign growth programs, impact funds, and SDG-aligned portfolios that support long-term industrialization, infrastructure development, and sustainable economic transformation.</p>
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+            <div className="relative">
+              <img
+                src="https://readdy.ai/api/search-image?query=International%20investors%20and%20venture%20capitalists%20in%20elegant%20conference%20room%2C%20financial%20charts%20and%20African%20market%20data%20on%20screens%2C%20sophisticated%20investment%20meeting%20atmosphere&width=600&height=400&seq=investors&orientation=landscape"
+                alt="Strategic Investment Platform"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Statistics */}
+      {/* Who Can Join & Membership Benefits */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Who Can Join */}
+            <div className="bg-gray-50 rounded-lg p-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Who Can Join</h3>
+              <div className="space-y-3 text-gray-700">
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Sovereign Wealth Funds</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Investment Banks</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Private Equity & Venture Capital Firms</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Development Finance Institutions</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Family Offices</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Institutional Investors</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Philanthropic Investors</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-check-line text-green-600 text-xl mr-3 mt-1"></i>
+                  <span>Pension Funds, Insurance Funds, and Endowments</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Membership Benefits */}
+            <div className="bg-blue-50 rounded-lg p-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">Membership Benefits</h3>
+              <div className="space-y-3 text-gray-700">
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Exclusive access to curated, investment-ready opportunities</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Participation in private sessions with African leaders</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Structured co-investment platforms across sectors and countries</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Strategic visibility through AEF platforms and summits</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Influence on continental investment frameworks and priorities</span>
+                </p>
+                <p className="flex items-start">
+                  <i className="ri-star-fill text-blue-600 text-xl mr-3 mt-1"></i>
+                  <span>Intelligence briefings and strategic investment reports</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership Benefits */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Alliance Impact</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Partnership Benefits</h2>
+            <p className="text-gray-600 text-lg">Advantages of collaborating with the Africa Economic Forum</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">$2.5B+</div>
-              <div className="text-gray-600">Capital Deployed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">150+</div>
-              <div className="text-gray-600">Portfolio Companies</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">85+</div>
-              <div className="text-gray-600">Alliance Members</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">25</div>
-              <div className="text-gray-600">Countries Covered</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Join the AEF Investors Alliance</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Access exclusive investment opportunities, connect with leading investors, and be part of Africa's economic transformation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => setShowMembershipForm(true)}
-              className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
-            >
-              Apply for Membership
-            </button>
-            <a
-              href="/contact"
-              className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-blue-900 font-medium whitespace-nowrap cursor-pointer inline-block"
-            >
-              Learn More
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Sign In Modal */}
-      {showSignInModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-md w-full">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">Sign In</h3>
-                <button
-                  onClick={() => setShowSignInModal(false)}
-                  className="text-gray-400 hover:text-gray-600 cursor-pointer"
-                >
-                  <i className="ri-close-line text-2xl"></i>
-                </button>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-map-pin-line text-blue-600 text-2xl"></i>
               </div>
-
-              <form onSubmit={handleSignInSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    placeholder="Enter your email address"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Password *
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    placeholder="Enter your password"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
-                >
-                  Sign In
-                </button>
-              </form>
+              <h3 className="font-semibold text-gray-900">Local Expertise</h3>
+              <p className="text-gray-600">Deep understanding of African markets, cultures, and business environments</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-team-line text-green-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Network Access</h3>
+              <p className="text-gray-600">Direct connections to African governments, businesses, and civil society</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-rocket-line text-purple-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Program Implementation</h3>
+              <p className="text-gray-600">Efficient delivery of development programs and initiatives</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-bar-chart-line text-orange-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Impact Measurement</h3>
+              <p className="text-gray-600">Comprehensive monitoring and evaluation of development outcomes</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-lightbulb-line text-teal-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Innovation Hub</h3>
+              <p className="text-gray-600">Platform for testing and scaling innovative development solutions</p>
+            </div>
+            <div className="text-center space-y-4">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+                <i className="ri-shield-check-line text-red-600 text-2xl"></i>
+              </div>
+              <h3 className="font-semibold text-gray-900">Risk Mitigation</h3>
+              <p className="text-gray-600">Reduced operational risks through local partnerships and knowledge</p>
             </div>
           </div>
         </div>
-      )}
+      </section>
 
-      {/* Membership Application Modal */}
+      {/* Bottom CTA - Partner with Us */}
+      <section className="py-20 bg-blue-900 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold mb-6">Partner with Us</h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+            Join our network of visionary investors working to transform Africa's economic landscape. Together, we can achieve sustainable development and prosperity.
+          </p>
+          <button
+            onClick={() => setShowMembershipForm(true)}
+            className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium whitespace-nowrap cursor-pointer"
+          >
+            Apply for Membership
+          </button>
+        </div>
+      </section>
+
+      {/* Membership Form Modal */}
       {showMembershipForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">Investors Alliance Application</h3>
+                <h3 className="text-2xl font-bold text-gray-900">Apply for Membership</h3>
                 <button
                   onClick={() => setShowMembershipForm(false)}
                   className="text-gray-400 hover:text-gray-600 cursor-pointer"
@@ -459,26 +312,24 @@ export default function InvestorsPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Organization Name *
+                      Organization Name
                     </label>
                     <input
                       type="text"
-                      name="organization_name"
+                      name="organizationName"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                      placeholder="Fund/Organization name"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Contact Person *
+                      Contact Person
                     </label>
                     <input
                       type="text"
-                      name="contact_name"
+                      name="contactName"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                      placeholder="Full name"
                     />
                   </div>
                 </div>
@@ -486,273 +337,94 @@ export default function InvestorsPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email Address *
+                      Email
                     </label>
                     <input
                       type="email"
                       name="email"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                      placeholder="contact@fund.com"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number *
+                      Phone
                     </label>
                     <input
                       type="tel"
                       name="phone"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                      placeholder="+1 (555) 000-0000"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Investor Type *
-                    </label>
-                    <select
-                      name="investor_type"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm pr-8"
-                    >
-                      <option value="">Select type</option>
-                      <option value="venture_capital">Venture Capital</option>
-                      <option value="private_equity">Private Equity</option>
-                      <option value="family_office">Family Office</option>
-                      <option value="institutional">Institutional Investor</option>
-                      <option value="development_finance">Development Finance</option>
-                      <option value="impact_investor">Impact Investor</option>
-                      <option value="angel_investor">Angel Investor</option>
-                      <option value="sovereign_wealth">Sovereign Wealth Fund</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Investment Focus *
-                    </label>
-                    <select
-                      name="investment_focus"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm pr-8"
-                    >
-                      <option value="">Select focus</option>
-                      <option value="fintech">Fintech</option>
-                      <option value="agritech">Agritech</option>
-                      <option value="healthtech">Healthtech</option>
-                      <option value="edtech">Edtech</option>
-                      <option value="energy">Energy & Clean Tech</option>
-                      <option value="logistics">Logistics & Supply Chain</option>
-                      <option value="real_estate">Real Estate</option>
-                      <option value="ecommerce">E-commerce</option>
-                      <option value="infrastructure">Infrastructure</option>
-                      <option value="manufacturing">Manufacturing</option>
-                      <option value="multi_sector">Multi-Sector</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Assets Under Management
-                    </label>
-                    <select
-                      name="aum_range"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm pr-8"
-                    >
-                      <option value="">Select range</option>
-                      <option value="under_10m">Under $10M</option>
-                      <option value="10m_50m">$10M - $50M</option>
-                      <option value="50m_100m">$50M - $100M</option>
-                      <option value="100m_500m">$100M - $500M</option>
-                      <option value="500m_1b">$500M - $1B</option>
-                      <option value="over_1b">Over $1B</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Geographic Focus
-                    </label>
-                    <select
-                      name="geographic_focus"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm pr-8"
-                    >
-                      <option value="">Select focus</option>
-                      <option value="pan_african">Pan-African</option>
-                      <option value="west_africa">West Africa</option>
-                      <option value="east_africa">East Africa</option>
-                      <option value="southern_africa">Southern Africa</option>
-                      <option value="north_africa">North Africa</option>
-                      <option value="specific_countries">Specific Countries</option>
-                      <option value="global_with_africa">Global with Africa Focus</option>
-                    </select>
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Investor Type
+                  </label>
+                  <select
+                    name="investorType"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    <option value="">Select Type</option>
+                    <option value="sovereign_wealth">Sovereign Wealth Fund</option>
+                    <option value="investment_bank">Investment Bank</option>
+                    <option value="private_equity">Private Equity</option>
+                    <option value="venture_capital">Venture Capital</option>
+                    <option value="dfi">Development Finance Institution</option>
+                    <option value="family_office">Family Office</option>
+                    <option value="institutional">Institutional Investor</option>
+                    <option value="philanthropic">Philanthropic Investor</option>
+                    <option value="pension_fund">Pension/Insurance Fund</option>
+                  </select>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Investment Thesis
+                    Message
                   </label>
                   <textarea
-                    name="investment_thesis"
+                    name="message"
                     rows={4}
-                    maxLength={500}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                    placeholder="Brief description of your investment approach and thesis for African markets (max 500 characters)"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Tell us about your investment focus and interest in joining the alliance..."
                   ></textarea>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Alliance Interests
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <label className="flex items-center space-x-2">
-                      <input type="checkbox" name="interest_deal_flow" className="cursor-pointer" />
-                      <span className="text-sm text-gray-700">Deal Flow Access</span>
-                    </label>
-                    <label className="flex items-center space-x-2">
-                      <input type="checkbox" name="interest_co_investment" className="cursor-pointer" />
-                      <span className="text-sm text-gray-700">Co-Investment</span>
-                    </label>
-                    <label className="flex items-center space-x-2">
-                      <input type="checkbox" name="interest_networking" className="cursor-pointer" />
-                      <span className="text-sm text-gray-700">Investor Networking</span>
-                    </label>
-                    <label className="flex items-center space-x-2">
-                      <input type="checkbox" name="interest_intelligence" className="cursor-pointer" />
-                      <span className="text-sm text-gray-700">Market Intelligence</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
+                <div className="flex items-center space-x-2">
                   <input
                     type="checkbox"
-                    name="terms_agreement"
+                    name="agreeToTerms"
+                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     required
-                    className="mt-1 cursor-pointer"
                   />
-                  <span className="text-sm text-gray-600">
-                    I agree to the Terms of Service and Privacy Policy, and consent to being contacted regarding exclusive investment opportunities and alliance activities.
-                  </span>
+                  <label className="text-sm text-gray-700">
+                    I agree to the terms and conditions of AEF membership
+                  </label>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
-                >
-                  Submit Application
-                </button>
+                <div className="flex justify-end space-x-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowMembershipForm(false)}
+                    className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer"
+                  >
+                    Submit Application
+                  </button>
+                </div>
               </form>
             </div>
           </div>
         </div>
       )}
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            <div>
-              <h3 className="font-semibold text-lg mb-6">About us</h3>
-              <ul className="space-y-3">
-                <li><a href="/about" className="text-gray-300 hover:text-white cursor-pointer">Our mission</a></li>
-                <li><a href="/framework" className="text-gray-300 hover:text-white cursor-pointer">Our Institutional Framework</a></li>
-                <li><a href="/history" className="text-gray-300 hover:text-white cursor-pointer">History</a></li>
-                <li><a href="/about" className="text-gray-300 hover:text-white cursor-pointer">Leadership and governance</a></li>
-                <li><a href="/about" className="text-gray-300 hover:text-white cursor-pointer">Our Impact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-6">More from the Forum</h3>
-              <ul className="space-y-3">
-                <li><a href="/initiatives" className="text-gray-300 hover:text-white cursor-pointer">Centres</a></li>
-                <li><a href="/meetings" className="text-gray-300 hover:text-white cursor-pointer">Meetings</a></li>
-                <li><a href="/stakeholders" className="text-gray-300 hover:text-white cursor-pointer">Stakeholders</a></li>
-                <li><a href="/agenda" className="text-gray-300 hover:text-white cursor-pointer">Forum Stories</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Press releases</a></li>
-                <li><a href="/gallery" className="text-gray-300 hover:text-white cursor-pointer">Photo gallery</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Podcasts</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Videos</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-6">Engage with us</h3>
-              <ul className="space-y-3">
-                <li>
-                  {user ? (
-                    <button onClick={handleLogout} className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 whitespace-nowrap cursor-pointer">
-                      Logout
-                    </button>
-                  ) : (
-                    <button onClick={handleSignIn} className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 whitespace-nowrap cursor-pointer">
-                      Sign in
-                    </button>
-                  )}
-                </li>
-                <li><a href="/partners" className="text-gray-300 hover:text-white cursor-pointer">Become our partner</a></li>
-                <li><a href="/join" className="text-gray-300 hover:text-white cursor-pointer">Become a member</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Subscribe to our press releases</a></li>
-                <li><a href="/publications" className="text-gray-300 hover:text-white cursor-pointer">Subscribe to our newsletters</a></li>
-                <li><a href="/contact" className="text-gray-300 hover:text-white cursor-pointer">Contact us</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-6">Quick links</h3>
-              <ul className="space-y-3 mb-8">
-                <li><a href="/initiatives" className="text-gray-300 hover:text-white cursor-pointer">Sustainability at the Forum</a></li>
-                <li><a href="/careers" className="text-gray-300 hover:text-white cursor-pointer">Careers</a></li>
-              </ul>
-              <div>
-                <h4 className="font-semibold mb-4">Language editions</h4>
-                <div className="flex space-x-2">
-                  <a href="/" className="text-gray-300 hover:text-white cursor-pointer">PT</a>
-                  <span className="text-gray-500">•</span>
-                  <a href="/en" className="text-gray-300 hover:text-white cursor-pointer">EN</a>
-                  <span className="text-gray-500">•</span>
-                  <a href="/es" className="text-gray-300 hover:text-white cursor-pointer">ES</a>
-                  <span className="text-gray-500">•</span>
-                  <a href="/fr" className="text-gray-300 hover:text-white cursor-pointer">FR</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex space-x-4">
-                <a href="https://www.facebook.com/share/17Jr8NpqZJ/" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-facebook-fill text-xl"></i>
-                </a>
-                <a href="https://www.linkedin.com/company/the-africa-economic-forum/" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-linkedin-fill text-xl"></i>
-                </a>
-                <a href="https://www.instagram.com/theafricaeconomicforum?igsh=MWowNmw1NjdueXNkbQ==" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-instagram-fill text-xl"></i>
-                </a>
-                <a href="#" className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-600 transition-colors cursor-pointer">
-                  <i className="ri-youtube-fill text-xl"></i>
-                </a>
-              </div>
-              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-                <a href="/privacy" className="hover:text-white cursor-pointer">
-                  Privacy Policy & Terms of Service
-                </a>
-                
-                <p>© 2025 Africa Economic Forum</p>
-                <a href="https://codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

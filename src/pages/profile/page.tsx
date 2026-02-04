@@ -133,14 +133,14 @@ const ProfilePage: React.FC = () => {
       localStorage.setItem('aef_user', JSON.stringify(updatedUser));
 
       setSuccess('Profile picture updated successfully!');
-      
+
       // Clear success message after 3 seconds
       setTimeout(() => setSuccess(''), 3000);
-      
+
     } catch (err: any) {
       console.error('Photo upload error:', err);
       setError(err.message || 'Failed to upload photo. Please try again.');
-      
+
       // Clear error message after 5 seconds
       setTimeout(() => setError(''), 5000);
     } finally {
@@ -235,9 +235,7 @@ const ProfilePage: React.FC = () => {
               <Link to="/agenda" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Agenda
               </Link>
-              <Link to="/publications" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
-                Publications
-              </Link>
+
               <Link to="/meetings" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Meetings
               </Link>
@@ -304,13 +302,7 @@ const ProfilePage: React.FC = () => {
               >
                 Agenda
               </Link>
-              <Link
-                to="/publications"
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
-                onClick={() => setShowMobileMenu(false)}
-              >
-                Publications
-              </Link>
+
               <Link
                 to="/meetings"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
@@ -365,7 +357,7 @@ const ProfilePage: React.FC = () => {
                   <i className="ri-user-line text-4xl text-blue-600"></i>
                 </div>
               )}
-              
+
               {/* Photo Upload Button */}
               <button
                 onClick={() => fileInputRef.current?.click()}
@@ -379,7 +371,7 @@ const ProfilePage: React.FC = () => {
                   <i className="ri-camera-line text-sm"></i>
                 )}
               </button>
-              
+
               {/* Hidden file input */}
               <input
                 ref={fileInputRef}
@@ -389,7 +381,7 @@ const ProfilePage: React.FC = () => {
                 className="hidden"
               />
             </div>
-            
+
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 {authUser.firstName} {authUser.lastName}
@@ -636,7 +628,7 @@ const ProfilePage: React.FC = () => {
           <div className="border-t border-gray-700 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
               <Link to="/privacy" className="hover:text-white cursor-pointer">Privacy Policy &amp; Terms of Service</Link>
-              
+
               <p>© 2025 Africa Economic Forum</p>
               <a href="https://codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
             </div>

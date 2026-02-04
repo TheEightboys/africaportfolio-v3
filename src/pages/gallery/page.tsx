@@ -161,8 +161,8 @@ export default function Gallery() {
     { id: 'women', name: 'Women', count: galleryImages.filter(img => img.category === 'women').length }
   ];
 
-  const filteredImages = selectedCategory === 'all' 
-    ? galleryImages 
+  const filteredImages = selectedCategory === 'all'
+    ? galleryImages
     : galleryImages.filter(img => img.category === selectedCategory);
 
   return (
@@ -271,11 +271,10 @@ export default function Gallery() {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${
-                    selectedCategory === category.id
-                      ? 'bg-blue-900 text-white'
-                      : 'text-gray-600 hover:text-blue-900 bg-white'
-                  }`}
+                  className={`px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${selectedCategory === category.id
+                    ? 'bg-blue-900 text-white'
+                    : 'text-gray-600 hover:text-blue-900 bg-white'
+                    }`}
                 >
                   {category.name} ({category.count})
                 </button>
@@ -564,7 +563,7 @@ export default function Gallery() {
                 <a href="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy and Terms of Service
                 </a>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

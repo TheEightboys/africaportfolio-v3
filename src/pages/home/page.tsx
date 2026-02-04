@@ -1,6 +1,11 @@
+// ...existing code...
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { getFeaturedArticle, spotlightArticles } from '../../data/spotlightArticles';
+import { useTranslation } from 'react-i18next';
+import type { Forum } from '../meetings/forumsData';
+import ForumModal from '../../components/ForumModal';
 
 export default function Home() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -8,6 +13,11 @@ export default function Home() {
   const { user, isAuthenticated, signOut } = useAuth();
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const { t, i18n } = useTranslation();
+
+  const [forumsData, setForumsData] = useState<Forum[]>([]);
+  const [selectedForum, setSelectedForum] = useState<Forum | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // tenta iniciar reprodução por programa (fallback para navegadores que bloqueiam autoplay)
@@ -19,9 +29,25 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    const forums = t('forums', { returnObjects: true });
+    setForumsData(Array.isArray(forums) ? (forums as Forum[]) : []);
+  }, [i18n.language, t]);
+
+  const handleForumClick = (forum: Forum) => {
+    setSelectedForum(forum);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedForum(null);
+  };
+
   const handleSignIn = () => {
     navigate('/signin');
   };
+
 
   const handleLogout = async () => {
     signOut();
@@ -47,17 +73,17 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3">
-                <img 
-                  src="https://static.readdy.ai/image/849a2f489cee8d6814d30c5afad3a84a/b4bfbdc8f08b91298cef1ff69a069583.png" 
-                  alt="Africa Economic Forum" 
-                  className="w-10 h-10 object-contain" 
+                <img
+                  src="https://static.readdy.ai/image/849a2f489cee8d6814d30c5afad3a84a/b4bfbdc8f08b91298cef1ff69a069583.png"
+                  alt="Africa Economic Forum"
+                  className="w-10 h-10 object-contain"
                 />
               </Link>
             </div>
@@ -77,8 +103,9 @@ export default function Home() {
               <Link to="/agenda" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Agenda
               </Link>
-              <Link to="/publications" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
-                Publications
+
+              <Link to="/spotlight" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
+                Spotlight
               </Link>
               <Link to="/meetings" className="text-gray-700 hover:text-teal-600 px-3 py-2 text-sm font-medium transition-colors">
                 Meetings
@@ -130,7 +157,7 @@ export default function Home() {
                   )}
                 </div>
               ) : (
-                <Link 
+                <Link
                   to="/signin"
                   className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 whitespace-nowrap cursor-pointer"
                 >
@@ -138,7 +165,7 @@ export default function Home() {
                 </Link>
               )}
             </div>
-            <button 
+            <button
               onClick={toggleMobileMenu}
               className="md:hidden p-2 cursor-pointer"
             >
@@ -151,57 +178,58 @@ export default function Home() {
         {showMobileMenu && (
           <div className="md:hidden bg-white border-t border-gray-200">
             <div className="px-4 py-2 space-y-1">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="block px-3 py-2 text-base font-medium text-teal-600 bg-teal-50 rounded-md"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Home
               </Link>
-              <Link 
-                to="/about" 
+              <Link
+                to="/about"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 About
               </Link>
-              <Link 
-                to="/initiatives" 
+              <Link
+                to="/initiatives"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Initiative
               </Link>
-              <Link 
-                to="/stakeholders" 
+              <Link
+                to="/stakeholders"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Stakeholders
               </Link>
-              <Link 
-                to="/agenda" 
+              <Link
+                to="/agenda"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Agenda
               </Link>
-              <Link 
-                to="/publications" 
+
+              <Link
+                to="/spotlight"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
-                Publications
+                Spotlight
               </Link>
-              <Link 
-                to="/meetings" 
+              <Link
+                to="/meetings"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
                 Meetings
               </Link>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setShowMobileMenu(false)}
               >
@@ -225,7 +253,7 @@ export default function Home() {
                       )}
                       <span className="text-gray-700 font-medium">{user.user_metadata?.full_name || 'User'}</span>
                     </div>
-                    <button 
+                    <button
                       onClick={() => {
                         handleViewProfile();
                         setShowMobileMenu(false);
@@ -234,7 +262,7 @@ export default function Home() {
                     >
                       View Profile
                     </button>
-                    <button 
+                    <button
                       onClick={() => {
                         handleLogout();
                         setShowMobileMenu(false);
@@ -245,7 +273,7 @@ export default function Home() {
                     </button>
                   </div>
                 ) : (
-                  <Link 
+                  <Link
                     to="/signin"
                     className="w-full bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer block text-center"
                     onClick={() => setShowMobileMenu(false)}
@@ -262,21 +290,21 @@ export default function Home() {
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20 lg:py-32">
+        <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16 sm:py-20 lg:py-32">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="space-y-6">
                   <p className="text-blue-200 text-lg font-medium">Our mission</p>
-                  <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+                  <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
                     A premier platform convening leaders, governments, investors, and thinkers to shape Africa’s role in the new global order
                   </h1>
                   <Link
                     to="/about"
-                    className="bg-white text-blue-900 px-8 py-3 rounded-md hover:bg-gray-100 font-medium flex items-center space-x-2 whitespace-nowrap cursor-pointer"
+                    className="inline-block bg-white text-blue-900 px-6 sm:px-8 py-3 rounded-md hover:bg-gray-100 font-medium text-center cursor-pointer"
                   >
                     <span>More about the Forum</span>
-                    <i className="ri-arrow-right-line"></i>
+                    <i className="ri-arrow-right-line ml-2"></i>
                   </Link>
                 </div>
               </div>
@@ -303,25 +331,25 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-8">How we drive impact</h2>
-              <div className="flex justify-center space-x-8 mb-12">
-                <a 
-                  href="/initiatives"
-                  className="px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer bg-blue-900 text-white hover:bg-blue-800"
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12">
+                <Link
+                  to="/initiatives"
+                  className="px-4 sm:px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer bg-blue-900 text-white hover:bg-blue-800"
                 >
                   Initiatives
-                </a>
-                <a 
-                  href="/meetings"
-                  className="px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer text-gray-600 hover:text-blue-900 hover:bg-gray-100"
+                </Link>
+                <Link
+                  to="/meetings"
+                  className="px-4 sm:px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer text-gray-600 hover:text-blue-900 hover:bg-gray-100"
                 >
                   Meetings
-                </a>
-                <a 
-                  href="/stakeholders"
-                  className="px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer text-gray-600 hover:text-blue-900 hover:bg-gray-100"
+                </Link>
+                <Link
+                  to="/stakeholders"
+                  className="px-4 sm:px-6 py-3 font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer text-gray-600 hover:text-blue-900 hover:bg-gray-100"
                 >
                   Stakeholders
-                </a>
+                </Link>
               </div>
             </div>
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -359,32 +387,26 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <a 
-                  href="/initiatives"
-                  className="bg-blue-900 text-white px-8 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer inline-block"
-                >
-                  <span>More about our Initiatives</span>
-                </a>
               </div>
 
               {/* Existing right column content */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-4">
                   <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <img 
-                      src="https://readdy.ai/api/search-image?query=African%20economic%20leaders%20and%20business%20executives%20in%20modern%20conference%20setting%2C%20professional%20meeting%20with%20diverse%20African%20participants%20discussing%20economic%20development%2C%20contemporary%20architecture%20with%20African%20cultural%20elements%2C%20dignified%20cooperation%20and%20strategic%20partnerships&width=400&height=300&seq=centre1-updated&orientation=landscape" 
-                      alt="Advanced Manufacturing" 
-                      className="w-full h-48 object-cover object-top" 
+                    <img
+                      src="https://readdy.ai/api/search-image?query=African%20economic%20leaders%20and%20business%20executives%20in%20modern%20conference%20setting%2C%20professional%20meeting%20with%20diverse%20African%20participants%20discussing%20economic%20development%2C%20contemporary%20architecture%20with%20African%20cultural%20elements%2C%20dignified%20cooperation%20and%20strategic%20partnerships&width=400&height=300&seq=centre1-updated&orientation=landscape"
+                      alt="Advanced Manufacturing"
+                      className="w-full h-48 object-cover object-top"
                     />
                     <div className="p-4">
                       <h4 className="font-semibold text-gray-900">Africa Investment & Innovation Fund (AIIF)</h4>
                     </div>
                   </div>
                   <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <img 
-                      src="https://readdy.ai/api/search-image?query=African%20technology%20innovation%20hub%20with%20young%20entrepreneurs%2C%20modern%20startup%20incubator%20in%20African%20city%2C%20digital%20solutions%20and%20fintech%20development%2C%20diverse%20African%20tech%20professionals%20working%20on%20computers&width=400&height=300&seq=centre2-updated&orientation=landscape" 
-                      alt="AI Excellence" 
-                      className="w-full h-48 object-cover object-top" 
+                    <img
+                      src="https://readdy.ai/api/search-image?query=African%20technology%20innovation%20hub%20with%20young%20entrepreneurs%2C%20modern%20startup%20incubator%20in%20African%20city%2C%20digital%20solutions%20and%20fintech%20development%2C%20diverse%20African%20tech%20professionals%20working%20on%20computers&width=400&height=300&seq=centre2-updated&orientation=landscape"
+                      alt="AI Excellence"
+                      className="w-full h-48 object-cover object-top"
                     />
                     <div className="p-4">
                       <h4 className="font-semibold text-gray-900">African Economic Intelligence Hub</h4>
@@ -393,20 +415,20 @@ export default function Home() {
                 </div>
                 <div className="space-y-4 mt-8">
                   <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <img 
-                      src="https://readdy.ai/api/search-image?query=African%20cybersecurity%20operations%20center%2C%20modern%20tech%20security%20infrastructure%20in%20African%20business%20district%2C%20digital%20protection%20systems%20with%20African%20professionals%20monitoring%20networks&width=400&height=300&seq=centre3-updated&orientation=landscape" 
-                      alt="Cybersecurity" 
-                      className="w-full h-48 object-cover object-top" 
+                    <img
+                      src="https://readdy.ai/api/search-image?query=African%20cybersecurity%20operations%20center%2C%20modern%20tech%20security%20infrastructure%20in%20African%20business%20district%2C%20digital%20protection%20systems%20with%20African%20professionals%20monitoring%20networks&width=400&height=300&seq=centre3-updated&orientation=landscape"
+                      alt="Cybersecurity"
+                      className="w-full h-48 object-cover object-top"
                     />
                     <div className="p-4">
                       <h4 className="font-semibold text-gray-900">Next Africa Accelerator</h4>
                     </div>
                   </div>
                   <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <img 
-                      src="https://readdy.ai/api/search-image?query=African%20renewable%20energy%20infrastructure%20with%20solar%20panels%20and%20wind%20turbines%2C%20sustainable%20energy%20development%20in%20African%20landscape%2C%20clean%20technology%20with%20African%20engineers%20and%20technicians&width=400&height=300&seq=centre4-updated&orientation=landscape" 
-                      alt="Energy and Materials" 
-                      className="w-full h-48 object-cover object-top" 
+                    <img
+                      src="https://readdy.ai/api/search-image?query=African%20renewable%20energy%20infrastructure%20with%20solar%20panels%20and%20wind%20turbines%2C%20sustainable%20energy%20development%20in%20African%20landscape%2C%20clean%20technology%20with%20African%20engineers%20and%20technicians&width=400&height=300&seq=centre4-updated&orientation=landscape"
+                      alt="Energy and Materials"
+                      className="w-full h-48 object-cover object-top"
                     />
                     <div className="p-4">
                       <h4 className="font-semibold text-gray-900">AEF Labs</h4>
@@ -426,296 +448,123 @@ export default function Home() {
               <p className="text-gray-600 text-lg max-w-3xl mx-auto">Explore our key meetings addressing Africa's most pressing economic challenges</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20economic%20summit%20with%20government%20leaders%20and%20business%20executives%20in%20modern%20conference%20hall%2C%20professional%20meeting%20discussing%20economic%20development%20strategies%2C%20diverse%20African%20participants%20in%20formal%20business%20attire&width=400&height=300&seq=meeting1&orientation=landscape" 
-                  alt="Annual Economic Summit" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">the Africa Mining & Minerals Forum (AMMF)</h3>
+              {(Array.isArray(forumsData) ? forumsData : []).map((forum) => (
+                <div
+                  key={forum.id}
+                  className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer transform hover:-translate-y-1 transition-transform duration-300"
+                  onClick={() => handleForumClick(forum)}
+                >
+                  <img
+                    src={forum.image}
+                    alt={forum.title}
+                    className="w-full h-48 object-cover object-top"
+                  />
+                  <div className="p-6">
+                    <h3 className="font-semibold text-gray-900 text-lg leading-tight mb-2 min-h-[3.5rem] flex items-center">
+                      {forum.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm line-clamp-3">
+                      {forum.description}
+                    </p>
+                    <div className="mt-4 flex items-center text-blue-900 font-medium text-sm group">
+                      <span>Read more</span>
+                      <i className="ri-arrow-right-line ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20trade%20ministers%20and%20business%20leaders%20discussing%20regional%20trade%20agreements%2C%20modern%20conference%20room%20with%20African%20flags%2C%20professional%20diplomatic%20meeting%20focused%20on%20economic%20collaboration&width=400&height=300&seq=meeting2&orientation=landscape" 
-                  alt="Regional Trade Forum" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Agriculture & Food Forum (AAFF)</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20investment%20conference%20with%20international%20investors%20and%20African%20entrepreneurs%2C%20modern%20business%20center%20with%20presentation%20screens%20showing%20investment%20opportunities%20&width=400&height=300&seq=meeting3&orientation=landscape" 
-                  alt="Investment Conference" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Tourism & Trade Forum (ATTF)</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20technology%20leaders%20and%20innovators%20in%20modern%20tech%20conference%2C%20startup%20pitch%20presentations%20with%20digital%20displays%2C%20young%20African%20entrepreneurs%20showcasing%20technological%20solutions&width=400&height=300&seq=meeting4&orientation=landscape" 
-                  alt="Innovation Symposium" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Digital Economy & Tech Forum (ADETF)</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="/images/africa-women.jpg" 
-                  alt="Africa Women Forum" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Women Forum (AWF)</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20healthcare%20leaders%20and%20medical%20professionals%20in%20health%20policy%20conference%2C%20modern%20medical%20facility%20meeting%20room%2C%20diverse%20healthcare%20experts%20discussing%20public%20health%20strategies&width=400&height=300&seq=meeting6&orientation=landscape" 
-                  alt="Healthcare Leadership Summit" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight"> Africa Healthcare & Pharmaceuticals Forum</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20environmental%20ministers%20and%20climate%20experts%20discussing%20sustainability%20policies%2C%20green%20conference%20venue%20with%20renewable%20energy%20displays%20&width=400&height=300&seq=meeting7&orientation=landscape" 
-                  alt="Climate Action Assembly" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Energy & Infrastructure Forum</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20trade%20officials%20and%20diplomats%20in%20international%20trade%20negotiations%2C%20formal%20diplomatic%20meeting%20room%20with%20world%20maps%20&width=400&height=300&seq=meeting8&orientation=landscape" 
-                  alt="Trade Policy Roundtable" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight">Africa Wealth Forum</h3>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                <img 
-                  src="https://readdy.ai/api/search-image?query=African%20economic%20development%20experts%20and%20social%20policy%20makers%20in%20modern%20conference%20center%2C%20diverse%20professionals%20discussing%20inclusive%20growth%20strategies%2C%20contemporary%20meeting%20space&width=400&height=300&seq=meeting9&orientation=landscape" 
-                  alt="Economic Development Workshop" 
-                  className="w-full h-48 object-cover object-top" 
-                />
-                <div className="p-6">
-                  <h3 className="font-semibold text-gray-900 text-lg leading-tight"> Africa Youth Forum (AYF)</h3>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
+
+        <ForumModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          forum={selectedForum}
+        />
 
         {/* Spotlight */}
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-12">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-12">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Spotlight</h2>
-                <p className="text-gray-600 text-lg"> Invest in Africa. Country by Country.</p>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 sm:mb-4">Spotlight</h2>
+                <p className="text-gray-600 text-base sm:text-lg">AEF Strategic Announcements & Institutional Milestones</p>
               </div>
-              <button className="bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium flex items-center space-x-2 whitespace-nowrap cursor-pointer">
-                <span>More Stories</span>
+              <Link
+                to="/spotlight"
+                className="bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium inline-flex items-center justify-center space-x-2 whitespace-nowrap cursor-pointer self-start sm:self-auto"
+              >
+                <span>View All Articles</span>
                 <i className="ri-arrow-right-line"></i>
-              </button>
+              </Link>
             </div>
             <div className="grid lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="relative">
-                    <img 
-                      src="https://assets.weforum.org/article/image/Uwbfxacnvqw4k8cRvkrJtfWmaE3yh_DoZ6yD_QxdCeo.jpg" 
-                      alt="SDIM 2025: Surprising stats and key conversations from our New York meetings" 
-                      className="w-full h-64 object-cover object-top" 
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <span className="text-blue-600 font-medium text-sm">Global Cooperation</span>
+              {/* Featured Article - AfDB Partnership */}
+              {getFeaturedArticle() && (
+                <Link
+                  to={`/spotlight/${getFeaturedArticle()!.slug}`}
+                  className="lg:col-span-2"
+                >
+                  <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full">
+                    <div className="relative">
+                      <img
+                        src={getFeaturedArticle()!.image || '/images/africa-women.jpg'}
+                        alt={getFeaturedArticle()!.title}
+                        className="w-full h-64 object-cover object-top"
+                      />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 leading-tight">Unveiling investment-ready nations and transformative partnerships.</h3>
-                  </div>
-                </article>
-              </div>
+                    <div className="p-6">
+                      <div className="flex items-center space-x-4 mb-4">
+                        <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                          {getFeaturedArticle()!.category}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {new Date(getFeaturedArticle()!.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 leading-tight mb-4">
+                        {getFeaturedArticle()!.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed line-clamp-3">
+                        {getFeaturedArticle()!.summary}
+                      </p>
+                    </div>
+                  </article>
+                </Link>
+              )}
+
+              {/* Other Strategic Articles */}
               <div className="space-y-6">
-                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="flex">
-                    <div className="relative w-32 h-24 flex-shrink-0">
-                      <img 
-                        src="https://assets.weforum.org/article/image/vxHpLiINOQ37FUtocfRZvxAwdPaUDjT3rBAlxjrbC0k.JPG" 
-                        alt="Europe is lagging in AI adoption – how can businesses close the gap?" 
-                        className="w-full h-full object-cover object-top" 
-                      />
-                    </div>
-                    <div className="p-4 flex-1">
-                      <div className="mb-2">
-                        <span className="text-blue-600 font-medium text-sm">Emerging Technologies</span>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-3">Europe is lagging in AI adoption – how can businesses close the gap?</h4>
-                    </div>
-                  </div>
-                </article>
-                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="flex">
-                    <div className="relative w-32 h-24 flex-shrink-0">
-                      <img 
-                        src="https://assets.weforum.org/report/cover_image/d6PK7yfSfpnxr5PWKuA6yy5B1R0Kc9uasr9W_V31XqE.png" 
-                        alt="Defossilizing Industry: Considerations for Scaling-up Carbon Capture and Utilization Pathways" 
-                        className="w-full h-full object-cover object-top" 
-                      />
-                    </div>
-                    <div className="p-4 flex-1">
-                      <div className="mb-2">
-                        <span className="text-blue-600 font-medium text-sm">Reports</span>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-3">Defossilizing Industry: Considerations for Scaling-up Carbon Capture and Utilization Pathways</h4>
-                    </div>
-                  </div>
-                </article>
-                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="flex">
-                    <div className="relative w-32 h-24 flex-shrink-0">
-                      <img 
-                        src="https://assets.weforum.org/article/image/liFHL8-4-8B-VTlVsvpRRostMNqNmaGbKv-TGGYu3Sg.JPG" 
-                        alt="Logistics Emergency Team: 20 years of coordinating humanitarian aid" 
-                        className="w-full h-full object-cover object-top" 
-                      />
-                    </div>
-                    <div className="p-4 flex-1">
-                      <div className="mb-2">
-                        <span className="text-blue-600 font-medium text-sm">Global Cooperation</span>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-3">Logistics Emergency Team: 20 years of coordinating humanitarian aid</h4>
-                    </div>
-                  </div>
-                </article>
-                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="flex">
-                    <div className="relative w-32 h-24 flex-shrink-0">
-                      <img 
-                        src="https://cdn.jwplayer.com/thumbs/rqTBjlzG-1920.jpg" 
-                        alt="Climate change is threatening workers' health. Here are 8 ways businesses can protect their employees" 
-                        className="w-full h-full object-cover object-top" 
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-black/50 rounded-full p-2">
-                          <i className="ri-play-fill text-white text-lg"></i>
+                {spotlightArticles.filter(article => !article.featured).slice(0, 4).map(article => (
+                  <Link
+                    key={article.id}
+                    to={`/spotlight/${article.slug}`}
+                    className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer block"
+                  >
+                    <article>
+                      <div className="p-4">
+                        <div className="mb-2">
+                          <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                            {article.category}
+                          </span>
                         </div>
+                        <h4 className="font-semibold text-gray-900 text-sm leading-tight mb-2 line-clamp-2">
+                          {article.title}
+                        </h4>
+                        <p className="text-gray-600 text-xs line-clamp-2">
+                          {article.summary}
+                        </p>
                       </div>
-                      <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">2:35</div>
-                    </div>
-                    <div className="p-4 flex-1">
-                      <div className="mb-2">
-                        <span className="text-blue-600 font-medium text-sm">Climate Action</span>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-3">Climate change is threatening workers' health. Here are 8 ways businesses can protect their employees</h4>
-                    </div>
-                  </div>
-                </article>
+                    </article>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Discover */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-12">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Discover</h2>
-                <p className="text-gray-600 text-lg">Find stories through a selection of our key strategic topics</p>
-              </div>
-              <button className="bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium flex items-center space-x-2 whitespace-nowrap cursor-pointer">
-                <span>More topics</span>
-                <i className="ri-arrow-right-line"></i>
-              </button>
-            </div>
-            <div className="space-y-16">
-              <div className="bg-gray-50 rounded-lg p-8">
-                <div className="flex justify-between items-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900">Resilience, Peace and Security</h3>
-                  <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center space-x-2 cursor-pointer">
-                    <span>View more</span>
-                    <i className="ri-arrow-right-line"></i>
-                  </button>
-                </div>
-                <div className="grid lg:grid-cols-3 gap-8">
-                  <div className="lg:col-span-1">
-                    <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                      <img 
-                        src="https://assets.weforum.org/article/image/Z6_Ad4qkPfdLI33a7PykS9BrrIcL916mG5SSEeOOksU.jpg" 
-                        alt="Why women must be involved in building flood resilience" 
-                        className="w-full h-48 object-cover object-top" 
-                      />
-                      <div className="p-6">
-                        <div className="mb-2">
-                          <span className="text-blue-600 font-medium text-sm">Articles</span>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 leading-tight">Why women must be involved in building flood resilience</h4>
-                      </div>
-                    </article>
-                  </div>
-                  <div className="lg:col-span-2 space-y-4">
-                    <article className="border-b border-gray-200 pb-4 last:border-b-0 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-1">
-                          <div className="mb-1">
-                            <span className="text-blue-600 font-medium text-sm">Reports</span>
-                          </div>
-                          <h5 className="font-medium text-gray-900 leading-tight hover:text-blue-600">Building Economic Resilience to the Health Impacts of Climate Change</h5>
-                        </div>
-                      </div>
-                    </article>
-                    <article className="border-b border-gray-200 pb-4 last:border-b-0 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-1">
-                          <div className="mb-1">
-                            <span className="text-blue-600 font-medium text-sm">Articles</span>
-                          </div>
-                          <h5 className="font-medium text-gray-900 leading-tight hover:text-blue-600">Why we must rethink ...</h5>
-                        </div>
-                      </div>
-                    </article>
-                    <article className="border-b border-gray-200 pb-4 last:border-b-0 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-1">
-                          <div className="mb-1">
-                            <span className="text-blue-600 font-medium text-sm">Articles</span>
-                          </div>
-                          <h5 className="font-medium text-gray-900 leading-tight hover:text-blue-600">Why is the International Day of Peace ...</h5>
-                        </div>
-                      </div>
-                    </article>
-                    <article className="border-b border-gray-200 pb-4 last:border-b-0 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-1">
-                          <div className="mb-1">
-                            <span className="text-blue-600 font-medium text-sm">Articles</span>
-                          </div>
-                          <h5 className="font-semibold text-gray-900 leading-tight hover:text-blue-600">Japan's peace initiatives preserving the past for the future</h5>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
       </main>
 
       {/* Footer */}
@@ -804,7 +653,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
                 <Link to="/privacy" className="hover:text-white cursor-pointer">Privacy Policy &amp; Terms of Service</Link>
-        
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

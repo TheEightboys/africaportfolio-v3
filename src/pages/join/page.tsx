@@ -31,7 +31,7 @@ export default function Join() {
   const handleMembershipSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    
+
     try {
       const response = await fetch('https://readdy.ai/api/form/d3j7ittsoafcrsrcqad0', {
         method: 'POST',
@@ -40,7 +40,7 @@ export default function Join() {
         },
         body: new URLSearchParams(formData as any).toString()
       });
-      
+
       if (response.ok) {
         setFormSubmitted(true);
         (e.target as HTMLFormElement).reset();
@@ -287,10 +287,10 @@ export default function Join() {
                 </div>
                 <h3 className="text-2xl font-bold text-green-800 mb-4">Application Submitted Successfully!</h3>
                 <p className="text-green-700 mb-6">
-                  Thank you for your interest in becoming an AEF member. Our membership team 
+                  Thank you for your interest in becoming an AEF member. Our membership team
                   will review your application and contact you within 24 hours with the next steps.
                 </p>
-                <button 
+                <button
                   onClick={() => setFormSubmitted(false)}
                   className="text-green-600 hover:text-green-800 font-medium cursor-pointer"
                 >
@@ -303,19 +303,19 @@ export default function Join() {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                      <input 
-                        type="text" 
-                        name="full_name" 
-                        required 
+                      <input
+                        type="text"
+                        name="full_name"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Position/Title *</label>
-                      <input 
-                        type="text" 
-                        name="position" 
-                        required 
+                      <input
+                        type="text"
+                        name="position"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
@@ -324,18 +324,18 @@ export default function Join() {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                      <input 
-                        type="email" 
-                        name="email" 
-                        required 
+                      <input
+                        type="email"
+                        name="email"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                      <input 
-                        type="tel" 
-                        name="phone" 
+                      <input
+                        type="tel"
+                        name="phone"
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
@@ -344,19 +344,19 @@ export default function Join() {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Organization *</label>
-                      <input 
-                        type="text" 
-                        name="organization" 
-                        required 
+                      <input
+                        type="text"
+                        name="organization"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Country *</label>
-                      <input 
-                        type="text" 
-                        name="country" 
-                        required 
+                      <input
+                        type="text"
+                        name="country"
+                        required
                         className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                       />
                     </div>
@@ -364,9 +364,9 @@ export default function Join() {
 
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Sector *</label>
-                    <select 
-                      name="sector" 
-                      required 
+                    <select
+                      name="sector"
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm pr-8"
                     >
                       <option value="">Select your sector</option>
@@ -418,8 +418,8 @@ export default function Join() {
 
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Motivation for Membership *</label>
-                    <textarea 
-                      name="motivation" 
+                    <textarea
+                      name="motivation"
                       rows={4}
                       required
                       maxLength={500}
@@ -431,8 +431,8 @@ export default function Join() {
 
                   <div className="mb-6">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Relevant Experience</label>
-                    <textarea 
-                      name="experience" 
+                    <textarea
+                      name="experience"
                       rows={3}
                       maxLength={500}
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm resize-none"
@@ -443,9 +443,9 @@ export default function Join() {
 
                   <div className="mb-6">
                     <label className="flex items-start space-x-3">
-                      <input 
-                        type="checkbox" 
-                        name="terms_agreement" 
+                      <input
+                        type="checkbox"
+                        name="terms_agreement"
                         required
                         className="mt-1 cursor-pointer"
                       />
@@ -457,9 +457,9 @@ export default function Join() {
 
                   <div className="mb-6">
                     <label className="flex items-start space-x-3">
-                      <input 
-                        type="checkbox" 
-                        name="newsletter_consent" 
+                      <input
+                        type="checkbox"
+                        name="newsletter_consent"
                         className="mt-1 cursor-pointer"
                       />
                       <span className="text-sm text-gray-600">
@@ -468,7 +468,7 @@ export default function Join() {
                     </label>
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     className="w-full bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 font-medium whitespace-nowrap cursor-pointer"
                   >
@@ -614,7 +614,7 @@ export default function Join() {
                 <a href="/privacy" className="hover:text-white cursor-pointer">
                   Privacy Policy and Terms of Service
                 </a>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>

@@ -6,7 +6,6 @@ import { lazy } from 'react';
 const HomePage = lazy(() => import('../pages/home/page'));
 const AboutPage = lazy(() => import('../pages/about/page'));
 const InitiativesPage = lazy(() => import('../pages/initiatives/page'));
-const PublicationsPage = lazy(() => import('../pages/publications/page'));
 const AgendaPage = lazy(() => import('../pages/agenda/page'));
 const ContactPage = lazy(() => import('../pages/contact/page'));
 const CareersPage = lazy(() => import('../pages/careers/page'));
@@ -20,6 +19,8 @@ const PrivacyPage = lazy(() => import('../pages/privacy/page'));
 const ProfilePage = lazy(() => import('../pages/profile/page'));
 const SignInPage = lazy(() => import('../pages/signin/page'));
 const AdminPage = lazy(() => import('../pages/admin/page'));
+const SpotlightPage = lazy(() => import('../pages/spotlight/page'));
+const SpotlightArticlePage = lazy(() => import('../pages/spotlight/article/page'));
 const NotFoundPage = lazy(() => import('../pages/NotFound'));
 
 // Stakeholders pages
@@ -47,10 +48,6 @@ const routes: RouteObject[] = [
   {
     path: '/initiatives',
     element: <InitiativesPage />,
-  },
-  {
-    path: '/publications',
-    element: <PublicationsPage />,
   },
   {
     path: '/agenda',
@@ -147,6 +144,14 @@ const routes: RouteObject[] = [
   {
     path: '/stakeholders/youth',
     element: <YouthPage />,
+  },
+  {
+    path: '/spotlight',
+    element: <SpotlightPage />,
+  },
+  {
+    path: '/spotlight/:slug',
+    element: <SpotlightArticlePage />,
   },
   {
     path: '*',

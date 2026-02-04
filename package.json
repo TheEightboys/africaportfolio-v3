@@ -1,38 +1,36 @@
 {
   "name": "react",
   "private": true,
-
   "engines": {
     "node": "20.x"
   },
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
-
   "dependencies": {
     "@stripe/react-stripe-js": "4.0.2",
     "@supabase/supabase-js": "2.57.4",
     "firebase": "12.0.0",
     "i18next": "^25.7.1",
     "i18next-browser-languagedetector": "^8.2.0",
-    "i18next-http-backend": "^3.0.2",
     "jspdf": "^3.0.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-i18next": "^15.7.4",
     "react-router-dom": "^7.6.3",
-    "recharts": "3.2.0"
+    "recharts": "3.2.0",
+    "unplugin-auto-import": "^21.0.0"
   },
-
   "devDependencies": {
+    "@types/react": "^19.2.11",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^3.10.2",
-    "vite": "^7.0.3",
-    "tailwindcss": "^3.4.17",
-    "postcss": "^8.5.6",
     "autoprefixer": "^10.4.21",
-    "typescript": "~5.8.3"
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.3"
   }
 }

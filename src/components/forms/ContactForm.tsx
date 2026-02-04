@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { supabase } from '../../supabase/client';
 
 interface ContactFormProps {
   className?: string;
@@ -35,27 +36,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ className = '' }) => {
     }
 
     try {
-      const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('email', formData.email);
-      submitData.append('subject', formData.subject);
-      submitData.append('message', formData.message);
-
-      const response = await fetch('https://readdy.ai/api/form/d3objcqj4bght59ko2qg', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(submitData as any).toString(),
+      // Send notification to info@africaef.com via Supabase edge function
+      const { data, error } = await supabase.functions.invoke('contact-notification', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        }
       });
 
-      if (response.ok) {
+      if (error) {
+        console.error('Contact form error:', error);
+        setSubmitMessage('Failed to send message. Please try again.');
+      } else {
         setSubmitMessage('Thank you for your message! We will get back to you soon.');
         setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitMessage('Failed to send message. Please try again.');
       }
     } catch (error) {
+      console.error('Contact form submission error:', error);
       setSubmitMessage('An error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);

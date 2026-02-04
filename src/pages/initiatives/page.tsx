@@ -12,6 +12,10 @@ export default function InitiativesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
+  // Modal state for programs
+  const [selectedProgram, setSelectedProgram] = useState<any>(null);
+  const [showModal, setShowModal] = useState(false);
+
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -33,6 +37,12 @@ export default function InitiativesPage() {
 
   const getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  };
+
+  // Open program modal
+  const openProgramModal = (program: any) => {
+    setSelectedProgram(program);
+    setShowModal(true);
   };
 
   const magazineSections = [
@@ -78,49 +88,140 @@ export default function InitiativesPage() {
       title: 'Sovereign Growth Partnerships',
       description: 'With governments to co-develop national branding & investment promotion strategies.',
       icon: 'ri-government-line',
-      category: 'Government'
+      category: 'Government',
+      fullContent: `Sovereign Growth Partnerships is AEF's platform for working directly with African governments to co-design national economic positioning, investment promotion strategies, and long-term growth narratives.
+
+Through this initiative, AEF supports governments in structuring compelling country investment stories, aligning national priorities with global capital, and strengthening institutional frameworks for attracting high-quality, long-term investment.
+
+The program focuses on translating policy ambition into actionable investment pipelines, helping countries move from visibility to real deal flow, partnerships, and execution.`
     },
     {
       title: 'Africa Investment & Innovation Fund (AIIF)',
       description: 'Supporting transformative startups and scalable projects across key sectors.',
       icon: 'ri-funds-line',
-      category: 'Investment'
+      category: 'Investment',
+      fullContent: `The Africa Investment & Innovation Fund (AIIF) is AEF's investment facilitation and capital-mobilization platform designed to support scalable African ventures and strategic projects across priority sectors.
+
+AIIF works to connect high-potential companies and projects with aligned investors, strategic partners, and institutional capital, helping bridge the gap between innovative ideas and deployable funding.
+
+The fund focuses on ventures that contribute to economic sovereignty, industrial upgrading, and sustainable growth, supporting both early-stage innovation and later-stage scale-up opportunities.`
     },
     {
       title: 'AEF Labs',
       description: 'Startup incubator for early-stage African ventures.',
       icon: 'ri-flask-line',
-      category: 'Incubation'
+      category: 'Incubation',
+      fullContent: `AEF Labs serves as AEF's incubation and experimentation platform, designed to support early-stage African ventures, new business models, and innovative solutions.
+
+The Labs provide structured support for entrepreneurs to refine their ideas, validate market fit, and build scalable operating models. This includes mentorship, strategic guidance, exposure to partners, and access to networks that can accelerate growth.
+
+AEF Labs acts as a bridge between early innovation and later-stage acceleration or investment pathways within the broader AEF ecosystem.`
     },
     {
       title: 'Next Africa Accelerator',
       description: 'For growth-stage ventures & family businesses.',
       icon: 'ri-speed-up-line',
-      category: 'Acceleration'
+      category: 'Acceleration',
+      fullContent: `The Next Africa Accelerator is AEF's growth-stage acceleration platform focused on helping promising African ventures and family businesses scale regionally and globally.
+
+The accelerator supports companies that have demonstrated traction and are ready to expand operations, professionalize governance, and attract strategic partnerships or capital.
+
+Through tailored support, the program helps participating ventures strengthen leadership, optimize business models, and position themselves for long-term competitiveness and cross-border growth.`
     },
     {
       title: 'Pan-African Economic Missions',
       description: 'Delegations and roadshows across Africa & globally to attract partnerships and capital.',
       icon: 'ri-plane-line',
-      category: 'Missions'
+      category: 'Missions',
+      fullContent: `Pan-African Economic Missions organizes targeted delegations, roadshows, and strategic visits across Africa and to key global financial and commercial centers.
+
+These missions are designed to facilitate direct engagement between African governments, companies, and international investors, corporates, and institutions.
+
+The program supports deal-making, partnership formation, and relationship-building, helping convert dialogue into concrete cooperation and investment outcomes.`
     },
     {
       title: 'African Economic Intelligence Hub',
       description: 'A data platform providing fresh analysis, sector dashboards & forecasts.',
       icon: 'ri-database-line',
-      category: 'Intelligence'
+      category: 'Intelligence',
+      fullContent: `The African Economic Intelligence Hub is AEF's analytical and insight platform, providing data-driven perspectives on African economies, sectors, and investment trends.
+
+The Hub produces analysis, dashboards, sector intelligence, and forward-looking insights to support policymakers, investors, and business leaders in making informed strategic decisions.
+
+It serves as a centralized resource for understanding economic dynamics, identifying opportunities, and tracking structural transformation across African markets.`
     },
     {
       title: 'Young Builders Fellowship',
       description: 'Empowering youth in policy, business & innovation.',
       icon: 'ri-user-star-line',
-      category: 'Youth'
+      category: 'Youth',
+      fullContent: `The Young Builders Fellowship is AEF's leadership and capacity-building program for emerging African leaders in policy, business, innovation, and entrepreneurship.
+
+The fellowship aims to equip young professionals with the skills, networks, and exposure needed to contribute meaningfully to Africa's economic transformation.
+
+Participants engage in learning, mentorship, and practical engagement with real economic and development challenges, building a pipeline of future African decision-makers and builders.`
     },
     {
       title: 'Women Lead Africa Program',
       description: 'Empowering women-led enterprises and voices in the economic discourse.',
       icon: 'ri-women-line',
-      category: 'Women'
+      category: 'Women',
+      fullContent: `The Women Lead Africa Program is AEF's platform dedicated to supporting women-led enterprises and amplifying women's leadership in Africa's economic landscape.
+
+The program focuses on strengthening women entrepreneurs, executives, and leaders by providing access to networks, visibility, strategic support, and partnership opportunities.
+
+It aims to increase the participation and influence of women in shaping economic policy, investment, and business growth across the continent.`
+    },
+    {
+      title: 'Global Inspiration Awards',
+      description: 'An Initiative of the Africa Economic Forum - Honoring the heroes shaping a better world.',
+      icon: 'ri-award-line',
+      category: 'Recognition',
+      fullContent: `An Initiative of the Africa Economic Forum
+Honoring the heroes shaping a better world
+
+Essence of the Awards
+The Global Inspiration Awards (GIA), created by the Africa Economic Forum, are a prestigious platform to honor modern-day heroes whose vision, courage, and leadership transcend borders.
+
+They celebrate individuals and institutions advancing humanity through peace, innovation, sustainability, and cooperation — reminding the world that Africa is not just a continent of opportunities, but also a beacon of inspiration and values-driven leadership.
+
+Our Mission
+To celebrate greatness that moves the world forward, amplifying those who embody conscience, courage, and legacy. Through the Awards, the Africa Economic Forum reinforces its mission to drive global partnerships rooted in honor, equity, and shared prosperity.
+
+Our Distinction
+The GIA are:
+• A Global Platform Born in Africa: Elevating stories of global leaders while positioning Africa at the heart of the new global order.
+• Beyond Borders, Politics, and Profits: Recognizing impact that is timeless and universal.
+• A Call to Action: Every award is not an end, but a starting point to inspire collective responsibility.
+
+Thematic Pillars
+The Awards honor leaders across eight categories, reflecting humanity's highest priorities:
+• Dr. Sunday Adelaja Voice of Democracy Award
+• Peace & Humanitarian Leadership Award
+• Climate & Sustainability Champions
+• Ana-Helena Chacon Gender Equity & Inclusion Advocates
+• Ameenah Gurib-Fakim Health & Science Innovators Award
+• Youth & Education Pioneers
+• Business with Purpose
+• Rosalia Arteaga Global Cooperation Catalysts
+• Leadership & Good Governance
+
+Format & Experience
+• Strategic Integration: Organized as a flagship initiative of the Africa Economic Forum, complementing its annual meeting and sectoral forums.
+• Global Stages: Hosted in iconic locations such as Dubai, New York, Geneva, or Addis Ababa — reinforcing Africa's voice in the world.
+• Leadership Convergence: Bringing together governments, philanthropists, entrepreneurs, investors, and cultural leaders.
+• Legacy Beyond the Ceremony: Each edition leaves behind commitments, partnerships, and actions to advance global causes.
+
+Why It Matters
+The Africa Economic Forum believes that celebrating those who inspire is itself a strategy for change.
+
+By showcasing exemplary figures, the GIA:
+• Inspire leaders in Africa and worldwide to act with honor.
+• Strengthen Africa's positioning in global conversations.
+• Create a legacy of values-driven leadership for future generations.
+
+Our Call
+Because honoring greatness is how we ignite global change.`
     }
   ];
 
@@ -131,6 +232,7 @@ export default function InitiativesPage() {
     { number: '$500M+', label: 'Capital Mobilized' }
   ];
 
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -140,9 +242,9 @@ export default function InitiativesPage() {
             {/* Logo */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center space-x-3">
-                <img 
-                  src="https://static.readdy.ai/image/849a2f489cee8d6814d30c5afad3a84a/b4bfbdc8f08b91298cef1ff69a069583.png" 
-                  alt="AEF Logo" 
+                <img
+                  src="https://static.readdy.ai/image/849a2f489cee8d6814d30c5afad3a84a/b4bfbdc8f08b91298cef1ff69a069583.png"
+                  alt="AEF Logo"
                   className="h-10 w-10 object-contain"
                 />
               </Link>
@@ -165,9 +267,10 @@ export default function InitiativesPage() {
               <Link to="/agenda" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Agenda
               </Link>
-              <Link to="/publications" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                Publications
+              <Link to="/spotlight" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                Spotlight
               </Link>
+
               <Link to="/meetings" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
                 Meetings
               </Link>
@@ -259,16 +362,17 @@ export default function InitiativesPage() {
                 <Link to="/agenda" className="text-gray-700 hover:text-blue-600 font-medium">
                   Agenda
                 </Link>
-                <Link to="/publications" className="text-gray-700 hover:text-blue-600 font-medium">
-                  Publications
+                <Link to="/spotlight" className="text-gray-700 hover:text-blue-600 font-medium">
+                  Spotlight
                 </Link>
+
                 <Link to="/meetings" className="text-gray-700 hover:text-blue-600 font-medium">
                   Meetings
                 </Link>
                 <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium">
                   Contact
                 </Link>
-                
+
                 {user ? (
                   <div className="pt-4 border-t border-gray-100">
                     <div className="flex items-center space-x-3 mb-4">
@@ -330,18 +434,9 @@ export default function InitiativesPage() {
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Driving real transformation beyond dialogue through innovative programs, strategic partnerships, and impactful initiatives that empower Africa's economic sovereignty.
           </p>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold mb-2">{stat.number}</div>
-                <div className="text-sm opacity-90">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
+
 
       {/* Tab Navigation */}
       <section className="py-8 bg-gray-50">
@@ -350,21 +445,19 @@ export default function InitiativesPage() {
             <div className="bg-white rounded-full p-1 shadow-sm">
               <button
                 onClick={() => setActiveTab('magazine')}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'magazine'
-                    ? 'bg-teal-600 text-white'
-                    : 'text-gray-600 hover:text-teal-600'
-                }`}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'magazine'
+                  ? 'bg-teal-600 text-white'
+                  : 'text-gray-600 hover:text-teal-600'
+                  }`}
               >
                 AEF Magazine
               </button>
               <button
                 onClick={() => setActiveTab('programs')}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${
-                  activeTab === 'programs'
-                    ? 'bg-teal-600 text-white'
-                    : 'text-gray-600 hover:text-teal-600'
-                }`}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${activeTab === 'programs'
+                  ? 'bg-teal-600 text-white'
+                  : 'text-gray-600 hover:text-teal-600'
+                  }`}
               >
                 Programs &amp; Projects
               </button>
@@ -452,7 +545,10 @@ export default function InitiativesPage() {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">{program.title}</h3>
                   <p className="text-gray-600 mb-4">{program.description}</p>
-                  <button className="text-teal-600 font-medium hover:text-teal-700 transition-colors whitespace-nowrap cursor-pointer">
+                  <button
+                    onClick={() => openProgramModal(program)}
+                    className="text-teal-600 font-medium hover:text-teal-700 transition-colors whitespace-nowrap cursor-pointer"
+                  >
                     Learn More →
                   </button>
                 </div>
@@ -460,6 +556,7 @@ export default function InitiativesPage() {
             </div>
 
             {/* Incubators & Accelerators Highlight */}
+
             <div className="mt-16 bg-gray-50 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">AEF Incubators &amp; Accelerators</h3>
               <div className="grid md:grid-cols-2 gap-8">
@@ -595,7 +692,7 @@ export default function InitiativesPage() {
               </div>
               <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
                 <a href="/privacy" className="hover:text-white cursor-pointer">Privacy Policy &amp; Terms of Service</a>
-                
+
                 <p>© 2025 Africa Economic Forum</p>
                 <a href="https://codesignglobal.com/" className="hover:text-white cursor-pointer">Code Design Global</a>
               </div>
@@ -603,6 +700,67 @@ export default function InitiativesPage() {
           </div>
         </div>
       </footer>
+
+      {/* Program Details Modal */}
+      {showModal && selectedProgram && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg max-w-4xl w-full max-h-[85vh] overflow-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-blue-600 text-white p-8 flex justify-between items-start border-b-4 border-teal-800">
+              <div>
+                <div className="flex items-center mb-3">
+                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-4">
+                    <i className={`${selectedProgram.icon} text-white text-2xl`}></i>
+                  </div>
+                  <span className="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {selectedProgram.category}
+                  </span>
+                </div>
+                <h3 className="text-3xl font-bold mb-2">{selectedProgram.title}</h3>
+                <p className="text-blue-100 text-lg">{selectedProgram.description}</p>
+              </div>
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-white hover:text-gray-200 ml-4 flex-shrink-0"
+                aria-label="Close"
+              >
+                <i className="ri-close-line text-3xl"></i>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-8 space-y-6">
+              <div className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
+                {selectedProgram.fullContent}
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="sticky bottom-0 bg-gray-50 border-t p-6 flex justify-end space-x-4">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-6 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-100 font-medium cursor-pointer transition-colors"
+              >
+                Close
+              </button>
+              <button
+                className="px-6 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 font-medium cursor-pointer transition-colors"
+              >
+                Get Involved
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
