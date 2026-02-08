@@ -746,6 +746,22 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* H.E. John Agyekum Kufuor */}
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img
+                    src="/images/john-agyekum-kufuor.jpeg"
+                    alt="H.E. John Agyekum Kufuor"
+                    className="w-full h-64 object-cover object-top"
+                  />
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-2">H.E. John Agyekum Kufuor</h4>
+                    <p className="text-sm text-blue-600 mb-3">Former President of Ghana (2001–2009)</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      Distinguished statesman and advocate for democratic governance and economic reform in Africa. Widely recognized for leading Ghana's peaceful democratic consolidation and advancing macroeconomic stability, regional integration, and private-sector–led development. Continues to serve on international advisory boards and foundations, promoting good governance, leadership, and sustainable development across Africa and globally.
+                    </p>
+                  </div>
+                </div>
+
                 {/* H.E. Ameenah Gurib-Fakim */}
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
@@ -794,21 +810,7 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* H.E. John Agyekum Kufuor */}
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img
-                    src="/images/john-agyekum-kufuor.jpeg"
-                    alt="H.E. John Agyekum Kufuor"
-                    className="w-full h-64 object-cover object-top"
-                  />
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">H.E. John Agyekum Kufuor</h4>
-                    <p className="text-sm text-blue-600 mb-3">Former President of Ghana (2001–2009)</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Distinguished statesman and advocate for democratic governance and economic reform in Africa. Widely recognized for leading Ghana's peaceful democratic consolidation and advancing macroeconomic stability, regional integration, and private-sector–led development. Continues to serve on international advisory boards and foundations, promoting good governance, leadership, and sustainable development across Africa and globally.
-                    </p>
-                  </div>
-                </div>
+
 
                 {/* H.E. Vladimir Norov */}
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
